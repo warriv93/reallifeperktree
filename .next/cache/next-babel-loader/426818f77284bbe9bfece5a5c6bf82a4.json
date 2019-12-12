@@ -1,0 +1,1 @@
+{"ast":null,"code":"import Layout from '../components/Layout';","map":{"version":3,"sources":["/Users/madisontaskett/gitRepos/reallifeperktree/pages/index.jsx"],"names":["Layout"],"mappings":"AAAA,OAAOA,MAAP,MAAmB,sBAAnB","sourcesContent":["import Layout from '../components/Layout';\n"]},"metadata":{},"sourceType":"module"}
