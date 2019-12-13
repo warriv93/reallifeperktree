@@ -1,18 +1,36 @@
-ul, li {
-    list-style: none;
-    background: red;
+.perktree-container {
+    .perk {
+        list-style: none;
+        display: flex;
+
+        .title {
+            position: relative;
+
+            ::first-letter { 
+                font-size: 55px;
+            }
+
+            span {
+                position: absolute;
+                bottom: 0;
+                left: 5%;
+            }
+        }
+
+        .perk-level {
+            margin: 20px;
+            width: 20%;
+    
+            .perk-image {
+                height: 100px;
+                width: 115px;
+            }
+    
+            .perk-image:hover {
+                opacity: 0.6;
+            }
+        }
+    }
 }
 
-li .perk-image {
-    opacity: 0.6;
-  }
 
-
-  :root {
-    --some-color: red;
-  }
-  
-  .li {
-    /* red */
-    color: var(--some-color);
-  }
