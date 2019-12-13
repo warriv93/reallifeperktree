@@ -6,6 +6,7 @@ const Layout = props => (
         <Header>
             <title>Perktree</title>
             <link rel="stylesheet" href="https://bootswatch.com/4/flatly/bootstrap.min.css"/>
+            <link href="../style/styles.scss" rel="stylesheet" />
         </Header>
         <Navbar/> 
         <div className="container">

@@ -1,0 +1,18 @@
+ul, li {
+    list-style: none;
+    background: red;
+}
+
+li .perk-image {
+    opacity: 0.6;
+  }
+
+
+  :root {
+    --some-color: red;
+  }
+  
+  .li {
+    /* red */
+    color: var(--some-color);
+  }
