@@ -88,7 +88,7 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 4);
+/******/ 	return __webpack_require__(__webpack_require__.s = 3);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -277,10 +277,28 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 class Perk extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
   constructor(props) {
     super(props);
+    this.state = {
+      title: this.props.title,
+      perkLevel: 0,
+      oldElementTarget: null
+    };
   }
 
-  PerklevelClicked() {
-    console.log("PerklevelClicked");
+  PerklevelClicked(e, perkLevel) {
+    // if not previously assigned set opacity 1
+    console.log("PerklevelClicked", this.state.title, perkLevel);
+    e.currentTarget.style.opacity = '1';
+    this.setState({
+      perkLevel: perkLevel,
+      oldElementTarget: e.currentTarget
+    }); // if  previously assigned set opacity .6 to old element and 1 to new element
+
+    this.state.oldElementTarget ? this.state.oldElementTarget.style.opacity = '0.6' : null; //save perkLevel to state from each perk
+
+    this.props.updatePerkLevelList({
+      title: this.state.title,
+      perkLevel: perkLevel
+    });
   }
 
   render() {
@@ -288,63 +306,67 @@ class Perk extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       className: "perktree-container",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 19
+        lineNumber: 37
       },
       __self: this
     }, __jsx("ul", {
       className: "perk",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 20
+        lineNumber: 38
       },
       __self: this
     }, __jsx("li", {
       className: "perk-level title",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 21
+        lineNumber: 39
       },
       __self: this
     }, __jsx("span", {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 21
+        lineNumber: 39
       },
       __self: this
     }, this.props.title)), __jsx(_components_Perklevel__WEBPACK_IMPORTED_MODULE_1__["default"], {
-      onClick: () => this.PerklevelClicked(),
+      onClick: e => this.PerklevelClicked(e, 1),
       image: _assets_404Code_jpg__WEBPACK_IMPORTED_MODULE_2__["default"],
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 22
+        lineNumber: 40
       },
       __self: this
     }), __jsx(_components_Perklevel__WEBPACK_IMPORTED_MODULE_1__["default"], {
+      onClick: e => this.PerklevelClicked(e, 2),
       image: _assets_404Code_jpg__WEBPACK_IMPORTED_MODULE_2__["default"],
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 23
+        lineNumber: 41
       },
       __self: this
     }), __jsx(_components_Perklevel__WEBPACK_IMPORTED_MODULE_1__["default"], {
+      onClick: e => this.PerklevelClicked(e, 3),
       image: _assets_404Code_jpg__WEBPACK_IMPORTED_MODULE_2__["default"],
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 24
+        lineNumber: 42
       },
       __self: this
     }), __jsx(_components_Perklevel__WEBPACK_IMPORTED_MODULE_1__["default"], {
+      onClick: e => this.PerklevelClicked(e, 4),
       image: _assets_404Code_jpg__WEBPACK_IMPORTED_MODULE_2__["default"],
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 25
+        lineNumber: 43
       },
       __self: this
     }), __jsx(_components_Perklevel__WEBPACK_IMPORTED_MODULE_1__["default"], {
+      onClick: e => this.PerklevelClicked(e, 5),
       image: _assets_404Code_jpg__WEBPACK_IMPORTED_MODULE_2__["default"],
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 26
+        lineNumber: 44
       },
       __self: this
     })));
@@ -2215,65 +2237,101 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 class perktree extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
   constructor(props) {
     super(props);
+    this.state = {
+      perkLevelList: []
+    };
+  } //save perkLevel to state from each perk
+
+
+  updatePerkLevelList(perkLevel) {
+    // check if perklevel with same title as the new one exist in array
+    let oldPerkLevel = this.state.perkLevelList.find(perklevelitem => {
+      return perklevelitem.title == perkLevel.title;
+    }); //if exist check position in array and replace with new perklevel
+
+    if (oldPerkLevel) {
+      //get index in array of old item
+      this.state.perkLevelList[this.state.perkLevelList.indexOf(oldPerkLevel)] = perkLevel;
+    } // not exist in array just add it to the end of the array
+    else {
+        this.state.perkLevelList.push(perkLevel);
+      }
+  }
+
+  checkPerkLevels() {
+    console.log("perkLevelList", this.state.perkLevelList);
   }
 
   render() {
     return __jsx(_components_Layout__WEBPACK_IMPORTED_MODULE_1__["default"], {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 16
+        lineNumber: 42
       },
       __self: this
     }, __jsx("div", {
       className: "perktree-container",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 17
+        lineNumber: 43
       },
       __self: this
     }, __jsx(_components_Perk__WEBPACK_IMPORTED_MODULE_2__["default"], {
+      updatePerkLevelList: perkLevel => this.updatePerkLevelList(perkLevel),
       title: "Strength",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 18
+        lineNumber: 44
       },
       __self: this
     }), __jsx(_components_Perk__WEBPACK_IMPORTED_MODULE_2__["default"], {
+      updatePerkLevelList: perkLevel => this.updatePerkLevelList(perkLevel),
       title: "Perception",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 19
+        lineNumber: 45
       },
       __self: this
     }), __jsx(_components_Perk__WEBPACK_IMPORTED_MODULE_2__["default"], {
+      updatePerkLevelList: perkLevel => this.updatePerkLevelList(perkLevel),
       title: "Endurance",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 20
+        lineNumber: 46
       },
       __self: this
     }), __jsx(_components_Perk__WEBPACK_IMPORTED_MODULE_2__["default"], {
+      updatePerkLevelList: perkLevel => this.updatePerkLevelList(perkLevel),
       title: "Agility",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 21
+        lineNumber: 47
       },
       __self: this
     }), __jsx(_components_Perk__WEBPACK_IMPORTED_MODULE_2__["default"], {
+      updatePerkLevelList: perkLevel => this.updatePerkLevelList(perkLevel),
       title: "Charisma",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 22
+        lineNumber: 48
       },
       __self: this
     }), __jsx(_components_Perk__WEBPACK_IMPORTED_MODULE_2__["default"], {
+      updatePerkLevelList: perkLevel => this.updatePerkLevelList(perkLevel),
       title: "Intelligence",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 23
+        lineNumber: 49
       },
       __self: this
-    })));
+    })), __jsx("button", {
+      onClick: () => this.checkPerkLevels(),
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 51
+      },
+      __self: this
+    }, "CLICK MED"));
   }
 
 }
@@ -2291,7 +2349,7 @@ class perktree extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
 
 /***/ }),
 
-/***/ 4:
+/***/ 3:
 /*!**********************************!*\
   !*** multi ./pages/perktree.jsx ***!
   \**********************************/

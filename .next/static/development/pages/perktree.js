@@ -202,84 +202,117 @@ function (_Component) {
   Object(_babel_runtime_corejs2_helpers_esm_inherits__WEBPACK_IMPORTED_MODULE_4__["default"])(Perk, _Component);
 
   function Perk(props) {
+    var _this;
+
     Object(_babel_runtime_corejs2_helpers_esm_classCallCheck__WEBPACK_IMPORTED_MODULE_0__["default"])(this, Perk);
 
-    return Object(_babel_runtime_corejs2_helpers_esm_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_2__["default"])(this, Object(_babel_runtime_corejs2_helpers_esm_getPrototypeOf__WEBPACK_IMPORTED_MODULE_3__["default"])(Perk).call(this, props));
+    _this = Object(_babel_runtime_corejs2_helpers_esm_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_2__["default"])(this, Object(_babel_runtime_corejs2_helpers_esm_getPrototypeOf__WEBPACK_IMPORTED_MODULE_3__["default"])(Perk).call(this, props));
+    _this.state = {
+      title: _this.props.title,
+      perkLevel: 0,
+      oldElementTarget: null
+    };
+    return _this;
   }
 
   Object(_babel_runtime_corejs2_helpers_esm_createClass__WEBPACK_IMPORTED_MODULE_1__["default"])(Perk, [{
     key: "PerklevelClicked",
-    value: function PerklevelClicked() {
-      console.log("PerklevelClicked");
+    value: function PerklevelClicked(e, perkLevel) {
+      // if not previously assigned set opacity 1
+      console.log("PerklevelClicked", this.state.title, perkLevel);
+      e.currentTarget.style.opacity = '1';
+      this.setState({
+        perkLevel: perkLevel,
+        oldElementTarget: e.currentTarget
+      }); // if  previously assigned set opacity .6 to old element and 1 to new element
+
+      this.state.oldElementTarget ? this.state.oldElementTarget.style.opacity = '0.6' : null; //save perkLevel to state from each perk
+
+      this.props.updatePerkLevelList({
+        title: this.state.title,
+        perkLevel: perkLevel
+      });
     }
   }, {
     key: "render",
     value: function render() {
-      var _this = this;
+      var _this2 = this;
 
       return __jsx("div", {
         className: "perktree-container",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 19
+          lineNumber: 37
         },
         __self: this
       }, __jsx("ul", {
         className: "perk",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 20
+          lineNumber: 38
         },
         __self: this
       }, __jsx("li", {
         className: "perk-level title",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 21
+          lineNumber: 39
         },
         __self: this
       }, __jsx("span", {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 21
+          lineNumber: 39
         },
         __self: this
       }, this.props.title)), __jsx(_components_Perklevel__WEBPACK_IMPORTED_MODULE_6__["default"], {
-        onClick: function onClick() {
-          return _this.PerklevelClicked();
+        onClick: function onClick(e) {
+          return _this2.PerklevelClicked(e, 1);
         },
         image: _assets_404Code_jpg__WEBPACK_IMPORTED_MODULE_7__["default"],
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 22
-        },
-        __self: this
-      }), __jsx(_components_Perklevel__WEBPACK_IMPORTED_MODULE_6__["default"], {
-        image: _assets_404Code_jpg__WEBPACK_IMPORTED_MODULE_7__["default"],
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 23
+          lineNumber: 40
         },
         __self: this
       }), __jsx(_components_Perklevel__WEBPACK_IMPORTED_MODULE_6__["default"], {
+        onClick: function onClick(e) {
+          return _this2.PerklevelClicked(e, 2);
+        },
         image: _assets_404Code_jpg__WEBPACK_IMPORTED_MODULE_7__["default"],
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 24
+          lineNumber: 41
         },
         __self: this
       }), __jsx(_components_Perklevel__WEBPACK_IMPORTED_MODULE_6__["default"], {
+        onClick: function onClick(e) {
+          return _this2.PerklevelClicked(e, 3);
+        },
         image: _assets_404Code_jpg__WEBPACK_IMPORTED_MODULE_7__["default"],
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 25
+          lineNumber: 42
         },
         __self: this
       }), __jsx(_components_Perklevel__WEBPACK_IMPORTED_MODULE_6__["default"], {
+        onClick: function onClick(e) {
+          return _this2.PerklevelClicked(e, 4);
+        },
         image: _assets_404Code_jpg__WEBPACK_IMPORTED_MODULE_7__["default"],
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 26
+          lineNumber: 43
+        },
+        __self: this
+      }), __jsx(_components_Perklevel__WEBPACK_IMPORTED_MODULE_6__["default"], {
+        onClick: function onClick(e) {
+          return _this2.PerklevelClicked(e, 5);
+        },
+        image: _assets_404Code_jpg__WEBPACK_IMPORTED_MODULE_7__["default"],
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 44
         },
         __self: this
       })));
@@ -9856,70 +9889,127 @@ function (_Component) {
   Object(_babel_runtime_corejs2_helpers_esm_inherits__WEBPACK_IMPORTED_MODULE_4__["default"])(perktree, _Component);
 
   function perktree(props) {
+    var _this;
+
     Object(_babel_runtime_corejs2_helpers_esm_classCallCheck__WEBPACK_IMPORTED_MODULE_0__["default"])(this, perktree);
 
-    return Object(_babel_runtime_corejs2_helpers_esm_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_2__["default"])(this, Object(_babel_runtime_corejs2_helpers_esm_getPrototypeOf__WEBPACK_IMPORTED_MODULE_3__["default"])(perktree).call(this, props));
-  }
+    _this = Object(_babel_runtime_corejs2_helpers_esm_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_2__["default"])(this, Object(_babel_runtime_corejs2_helpers_esm_getPrototypeOf__WEBPACK_IMPORTED_MODULE_3__["default"])(perktree).call(this, props));
+    _this.state = {
+      perkLevelList: []
+    };
+    return _this;
+  } //save perkLevel to state from each perk
+
 
   Object(_babel_runtime_corejs2_helpers_esm_createClass__WEBPACK_IMPORTED_MODULE_1__["default"])(perktree, [{
+    key: "updatePerkLevelList",
+    value: function updatePerkLevelList(perkLevel) {
+      // check if perklevel with same title as the new one exist in array
+      var oldPerkLevel = this.state.perkLevelList.find(function (perklevelitem) {
+        return perklevelitem.title == perkLevel.title;
+      }); //if exist check position in array and replace with new perklevel
+
+      if (oldPerkLevel) {
+        //get index in array of old item
+        this.state.perkLevelList[this.state.perkLevelList.indexOf(oldPerkLevel)] = perkLevel;
+      } // not exist in array just add it to the end of the array
+      else {
+          this.state.perkLevelList.push(perkLevel);
+        }
+    }
+  }, {
+    key: "checkPerkLevels",
+    value: function checkPerkLevels() {
+      console.log("perkLevelList", this.state.perkLevelList);
+    }
+  }, {
     key: "render",
     value: function render() {
+      var _this2 = this;
+
       return __jsx(_components_Layout__WEBPACK_IMPORTED_MODULE_6__["default"], {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 16
+          lineNumber: 42
         },
         __self: this
       }, __jsx("div", {
         className: "perktree-container",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 17
+          lineNumber: 43
         },
         __self: this
       }, __jsx(_components_Perk__WEBPACK_IMPORTED_MODULE_7__["default"], {
+        updatePerkLevelList: function updatePerkLevelList(perkLevel) {
+          return _this2.updatePerkLevelList(perkLevel);
+        },
         title: "Strength",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 18
+          lineNumber: 44
         },
         __self: this
       }), __jsx(_components_Perk__WEBPACK_IMPORTED_MODULE_7__["default"], {
+        updatePerkLevelList: function updatePerkLevelList(perkLevel) {
+          return _this2.updatePerkLevelList(perkLevel);
+        },
         title: "Perception",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 19
+          lineNumber: 45
         },
         __self: this
       }), __jsx(_components_Perk__WEBPACK_IMPORTED_MODULE_7__["default"], {
+        updatePerkLevelList: function updatePerkLevelList(perkLevel) {
+          return _this2.updatePerkLevelList(perkLevel);
+        },
         title: "Endurance",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 20
+          lineNumber: 46
         },
         __self: this
       }), __jsx(_components_Perk__WEBPACK_IMPORTED_MODULE_7__["default"], {
+        updatePerkLevelList: function updatePerkLevelList(perkLevel) {
+          return _this2.updatePerkLevelList(perkLevel);
+        },
         title: "Agility",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 21
+          lineNumber: 47
         },
         __self: this
       }), __jsx(_components_Perk__WEBPACK_IMPORTED_MODULE_7__["default"], {
+        updatePerkLevelList: function updatePerkLevelList(perkLevel) {
+          return _this2.updatePerkLevelList(perkLevel);
+        },
         title: "Charisma",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 22
+          lineNumber: 48
         },
         __self: this
       }), __jsx(_components_Perk__WEBPACK_IMPORTED_MODULE_7__["default"], {
+        updatePerkLevelList: function updatePerkLevelList(perkLevel) {
+          return _this2.updatePerkLevelList(perkLevel);
+        },
         title: "Intelligence",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 23
+          lineNumber: 49
         },
         __self: this
-      })));
+      })), __jsx("button", {
+        onClick: function onClick() {
+          return _this2.checkPerkLevels();
+        },
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 51
+        },
+        __self: this
+      }, "CLICK MED"));
     }
   }]);
 
@@ -9930,7 +10020,7 @@ function (_Component) {
 
 /***/ }),
 
-/***/ 1:
+/***/ 0:
 /*!*******************************************************************************************************************************************************!*\
   !*** multi next-client-pages-loader?page=%2Fperktree&absolutePagePath=%2FUsers%2Fmadisontaskett%2FgitRepos%2Freallifeperktree%2Fpages%2Fperktree.jsx ***!
   \*******************************************************************************************************************************************************/
@@ -9953,5 +10043,5 @@ module.exports = dll_ef0ff7c60362f24a921f;
 
 /***/ })
 
-},[[1,"static/runtime/webpack.js","styles"]]]);
+},[[0,"static/runtime/webpack.js","styles"]]]);
 //# sourceMappingURL=perktree.js.map

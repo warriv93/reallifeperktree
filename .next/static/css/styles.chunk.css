@@ -11,12 +11,13 @@
       left: 5%; }
   .perktree-container .perk .perk-level {
     margin: 20px;
-    width: 20%; }
+    width: 20%;
+    opacity: 0.6; }
     .perktree-container .perk .perk-level .perk-image {
       height: 100px;
       width: 115px; }
-    .perktree-container .perk .perk-level .perk-image:hover {
-      opacity: 0.6; }
+  .perktree-container .perk .perk-level:hover {
+    opacity: 1; }
 
 
 /*# sourceMappingURL=styles.chunk.css.map*/
