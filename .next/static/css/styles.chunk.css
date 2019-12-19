@@ -1,0 +1,23 @@
+.perktree-container .perk {
+  list-style: none;
+  display: flex; }
+  .perktree-container .perk .title {
+    position: relative; }
+    .perktree-container .perk .title ::first-letter {
+      font-size: 55px; }
+    .perktree-container .perk .title span {
+      position: absolute;
+      bottom: 0;
+      left: 5%; }
+  .perktree-container .perk .perk-level {
+    margin: 20px;
+    width: 20%;
+    opacity: 0.6; }
+    .perktree-container .perk .perk-level .perk-image {
+      height: 100px;
+      width: 115px; }
+  .perktree-container .perk .perk-level:hover {
+    opacity: 1; }
+
+
+/*# sourceMappingURL=styles.chunk.css.map*/
