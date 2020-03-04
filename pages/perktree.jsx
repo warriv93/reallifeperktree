@@ -48,7 +48,7 @@ export default class perktree extends Component {
                     <Perk updatePerkLevelList={(perkLevel) => this.updatePerkLevelList(perkLevel)} title={"Charisma"} />
                     <Perk updatePerkLevelList={(perkLevel) => this.updatePerkLevelList(perkLevel)} title={"Intelligence"} />
                 </div>    
-                <button onClick={() => this.checkPerkLevels()}>CLICK MED</button>
+                <button onClick={() => this.checkPerkLevels()}>CLICK ME</button>
             </Layout>
         )
     }

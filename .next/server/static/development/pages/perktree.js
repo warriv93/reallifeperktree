@@ -287,10 +287,10 @@ class Perk extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
   PerklevelClicked(e, perkLevel) {
     // if not previously assigned set opacity 1
     console.log("PerklevelClicked", this.state.title, perkLevel);
-    e.currentTarget.style.opacity = '1';
+    e.target.style.opacity = '1';
     this.setState({
       perkLevel: perkLevel,
-      oldElementTarget: e.currentTarget
+      oldElementTarget: e.target
     }); // if  previously assigned set opacity .6 to old element and 1 to new element
 
     this.state.oldElementTarget ? this.state.oldElementTarget.style.opacity = '0.6' : null; //save perkLevel to state from each perk
@@ -2331,7 +2331,7 @@ class perktree extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
         lineNumber: 51
       },
       __self: this
-    }, "CLICK MED"));
+    }, "CLICK ME"));
   }
 
 }

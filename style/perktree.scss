@@ -20,14 +20,14 @@
         .perk-level {
             margin: 20px;
             width: 20%;
-            opacity: 0.6;
 
             .perk-image {
+                opacity: 0.6;
                 height: 100px;
                 width: 115px;
             }
         }
-        .perk-level:hover {
+        .perk-image:hover {
             opacity: 1;
         }
     }

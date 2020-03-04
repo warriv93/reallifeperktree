@@ -17,10 +17,10 @@ export default class Perk extends Component {
     PerklevelClicked (e, perkLevel) {
         // if not previously assigned set opacity 1
         console.log("PerklevelClicked", this.state.title, perkLevel);
-        e.currentTarget.style.opacity = '1';
+        e.target.style.opacity = '1';
         this.setState({
             perkLevel: perkLevel,
-            oldElementTarget: e.currentTarget
+            oldElementTarget: e.target
         })
         // if  previously assigned set opacity .6 to old element and 1 to new element
         this.state.oldElementTarget ? this.state.oldElementTarget.style.opacity = '0.6' : null;
@@ -34,16 +34,16 @@ export default class Perk extends Component {
 
     render() {
         return (
-                <div className="perktree-container">
-                    <ul className="perk">
-                        <li className="perk-level title"><span>{this.props.title}</span></li>
-                        <Perklevel onClick={(e) => this.PerklevelClicked(e, 1)} image={image_placeholder}/>
-                        <Perklevel onClick={(e) => this.PerklevelClicked(e, 2)} image={image_placeholder}/>
-                        <Perklevel onClick={(e) => this.PerklevelClicked(e, 3)} image={image_placeholder}/>
-                        <Perklevel onClick={(e) => this.PerklevelClicked(e, 4)} image={image_placeholder}/>
-                        <Perklevel onClick={(e) => this.PerklevelClicked(e, 5)} image={image_placeholder}/>
-                    </ul>
-                </div>    
+            <div className="perktree-container">
+                <ul className="perk">
+                    <li className="perk-level title"><span>{this.props.title}</span></li>
+                    <Perklevel onClick={(e) => this.PerklevelClicked(e, 1)} image={image_placeholder}/>
+                    <Perklevel onClick={(e) => this.PerklevelClicked(e, 2)} image={image_placeholder}/>
+                    <Perklevel onClick={(e) => this.PerklevelClicked(e, 3)} image={image_placeholder}/>
+                    <Perklevel onClick={(e) => this.PerklevelClicked(e, 4)} image={image_placeholder}/>
+                    <Perklevel onClick={(e) => this.PerklevelClicked(e, 5)} image={image_placeholder}/>
+                </ul>
+            </div>    
         )
     }
 }
