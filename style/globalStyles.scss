@@ -1,3 +1,15 @@
+.nav .profile .image {
+  max-height: 35px;
+  max-width: 30px;
+  margin-left: 13px;
+  display: inline-block;
+
+  img {
+    height: 100%;
+    width: 100%;
+  }
+}
+
 body {
-    background: white;
+  background: white;
 }

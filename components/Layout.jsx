@@ -1,5 +1,6 @@
 import Navbar from '../components/Navbar';
 import Header from 'next/head';
+import "../style/globalStyles.scss"
 
 const Layout = props => (
     <div>
