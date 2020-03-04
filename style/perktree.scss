@@ -1,4 +1,6 @@
 .perktree-container {
+    margin-top: 5%;
+    
     .perk {
         list-style: none;
         display: flex;
@@ -18,7 +20,7 @@
         }
 
         .perk-level {
-            margin: 20px;
+            margin: 10px;
             width: 20%;
 
             .perk-image {

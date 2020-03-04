@@ -217,21 +217,20 @@ function (_Component) {
 
   Object(_babel_runtime_corejs2_helpers_esm_createClass__WEBPACK_IMPORTED_MODULE_1__["default"])(Perk, [{
     key: "PerklevelClicked",
-    value: function PerklevelClicked(e, perkLevel) {
-      // if not previously assigned set opacity 1
-      console.log("PerklevelClicked", this.state.title, perkLevel);
-      e.target.style.opacity = '1';
-      this.setState({
-        perkLevel: perkLevel,
-        oldElementTarget: e.target
-      }); // if  previously assigned set opacity .6 to old element and 1 to new element
-
-      this.state.oldElementTarget ? this.state.oldElementTarget.style.opacity = '0.6' : null; //save perkLevel to state from each perk
-
-      this.props.updatePerkLevelList({
-        title: this.state.title,
-        perkLevel: perkLevel
-      });
+    value: function PerklevelClicked(e, perkLevel) {// // if not previously assigned set opacity 1
+      // console.log("PerklevelClicked", this.state.title, perkLevel);
+      // e.target.style.opacity = '1';
+      // this.setState({
+      //     perkLevel: perkLevel,
+      //     oldElementTarget: e.target
+      // })
+      // // if  previously assigned set opacity .6 to old element and 1 to new element
+      // this.state.oldElementTarget ? this.state.oldElementTarget.style.opacity = '0.6' : null;
+      // //save perkLevel to state from each perk
+      // this.props.updatePerkLevelList({
+      //     title: this.state.title, 
+      //     perkLevel: perkLevel
+      // })
     }
   }, {
     key: "render",
@@ -239,7 +238,7 @@ function (_Component) {
       var _this2 = this;
 
       return __jsx("div", {
-        className: "perktree-container",
+        className: "perktree-perk-container",
         __source: {
           fileName: _jsxFileName,
           lineNumber: 37
@@ -9954,7 +9953,7 @@ function (_Component) {
         updatePerkLevelList: function updatePerkLevelList(perkLevel) {
           return _this2.updatePerkLevelList(perkLevel);
         },
-        title: "Perception",
+        title: "Endurance",
         __source: {
           fileName: _jsxFileName,
           lineNumber: 45
@@ -9964,7 +9963,7 @@ function (_Component) {
         updatePerkLevelList: function updatePerkLevelList(perkLevel) {
           return _this2.updatePerkLevelList(perkLevel);
         },
-        title: "Endurance",
+        title: "Agility",
         __source: {
           fileName: _jsxFileName,
           lineNumber: 46
@@ -9974,7 +9973,7 @@ function (_Component) {
         updatePerkLevelList: function updatePerkLevelList(perkLevel) {
           return _this2.updatePerkLevelList(perkLevel);
         },
-        title: "Agility",
+        title: "Charisma",
         __source: {
           fileName: _jsxFileName,
           lineNumber: 47
@@ -9984,29 +9983,20 @@ function (_Component) {
         updatePerkLevelList: function updatePerkLevelList(perkLevel) {
           return _this2.updatePerkLevelList(perkLevel);
         },
-        title: "Charisma",
+        title: "Intelligence",
         __source: {
           fileName: _jsxFileName,
           lineNumber: 48
         },
         __self: this
-      }), __jsx(_components_Perk__WEBPACK_IMPORTED_MODULE_7__["default"], {
-        updatePerkLevelList: function updatePerkLevelList(perkLevel) {
-          return _this2.updatePerkLevelList(perkLevel);
-        },
-        title: "Intelligence",
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 49
-        },
-        __self: this
       })), __jsx("button", {
+        className: "btn btn-success",
         onClick: function onClick() {
           return _this2.checkPerkLevels();
         },
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 51
+          lineNumber: 50
         },
         __self: this
       }, "CLICK ME"));

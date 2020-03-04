@@ -42,13 +42,12 @@ export default class perktree extends Component {
             <Layout>
                 <div className="perktree-container">
                     <Perk updatePerkLevelList={(perkLevel) => this.updatePerkLevelList(perkLevel)} title={"Strength"} />
-                    <Perk updatePerkLevelList={(perkLevel) => this.updatePerkLevelList(perkLevel)} title={"Perception"} />
                     <Perk updatePerkLevelList={(perkLevel) => this.updatePerkLevelList(perkLevel)} title={"Endurance"} />
                     <Perk updatePerkLevelList={(perkLevel) => this.updatePerkLevelList(perkLevel)} title={"Agility"} />
                     <Perk updatePerkLevelList={(perkLevel) => this.updatePerkLevelList(perkLevel)} title={"Charisma"} />
                     <Perk updatePerkLevelList={(perkLevel) => this.updatePerkLevelList(perkLevel)} title={"Intelligence"} />
                 </div>    
-                <button onClick={() => this.checkPerkLevels()}>CLICK ME</button>
+                <button className="btn btn-success" onClick={() => this.checkPerkLevels()}>CLICK ME</button>
             </Layout>
         )
     }

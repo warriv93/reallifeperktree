@@ -15,26 +15,26 @@ export default class Perk extends Component {
     }
     
     PerklevelClicked (e, perkLevel) {
-        // if not previously assigned set opacity 1
-        console.log("PerklevelClicked", this.state.title, perkLevel);
-        e.target.style.opacity = '1';
-        this.setState({
-            perkLevel: perkLevel,
-            oldElementTarget: e.target
-        })
-        // if  previously assigned set opacity .6 to old element and 1 to new element
-        this.state.oldElementTarget ? this.state.oldElementTarget.style.opacity = '0.6' : null;
+        // // if not previously assigned set opacity 1
+        // console.log("PerklevelClicked", this.state.title, perkLevel);
+        // e.target.style.opacity = '1';
+        // this.setState({
+        //     perkLevel: perkLevel,
+        //     oldElementTarget: e.target
+        // })
+        // // if  previously assigned set opacity .6 to old element and 1 to new element
+        // this.state.oldElementTarget ? this.state.oldElementTarget.style.opacity = '0.6' : null;
 
-        //save perkLevel to state from each perk
-        this.props.updatePerkLevelList({
-            title: this.state.title, 
-            perkLevel: perkLevel
-        })
+        // //save perkLevel to state from each perk
+        // this.props.updatePerkLevelList({
+        //     title: this.state.title, 
+        //     perkLevel: perkLevel
+        // })
     }
 
     render() {
         return (
-            <div className="perktree-container">
+            <div className="perktree-perk-container">
                 <ul className="perk">
                     <li className="perk-level title"><span>{this.props.title}</span></li>
                     <Perklevel onClick={(e) => this.PerklevelClicked(e, 1)} image={image_placeholder}/>
