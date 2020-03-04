@@ -3,7 +3,7 @@ NextJS - A fallout like Perktree to keep track of personal real life attribute p
 
 
 ## Build
-NextJS
+Testing out NextJS serverside rendering framework
 
 
 ## DEPLOYED
