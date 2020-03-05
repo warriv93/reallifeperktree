@@ -10,6 +10,29 @@
 body {
   background: white; }
 
+.perktree-container {
+  margin-top: 5%; }
+  .perktree-container .perk {
+    list-style: none;
+    display: flex; }
+    .perktree-container .perk .title {
+      position: relative; }
+      .perktree-container .perk .title ::first-letter {
+        font-size: 55px; }
+      .perktree-container .perk .title span {
+        position: absolute;
+        bottom: 0;
+        left: 5%; }
+    .perktree-container .perk .perk-level {
+      margin: 10px;
+      width: 20%; }
+      .perktree-container .perk .perk-level .perk-image {
+        opacity: 0.6;
+        height: 100px;
+        width: 115px; }
+    .perktree-container .perk .perk-image:hover {
+      opacity: 1; }
+
 .profile-container {
   margin-top: 5%; }
   .profile-container img {
