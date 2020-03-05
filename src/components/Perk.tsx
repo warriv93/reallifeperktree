@@ -9,9 +9,8 @@ interface IProps {
 
 interface IState {
   title?: string;
-  perkLevel: number;
+  perkLevel?: number;
 }
-let amountOfLevels: number = 5;
 
 export default class Perk extends Component<IProps, IState> {
   constructor(props: IProps) {
@@ -23,12 +22,6 @@ export default class Perk extends Component<IProps, IState> {
     };
   }
 
-  createPerkLevels(amountOfLevels: number) {
-    for (let index: number = 1; index < amountOfLevels; index++) {
-      <Perklevel image={perkLevelImage} />;
-    }
-  }
-
   render() {
     return (
       <div className="perktree-perk-container">
@@ -36,7 +29,11 @@ export default class Perk extends Component<IProps, IState> {
           <li className="perk-level title">
             <span>{this.props.title}</span>
           </li>
-          {this.createPerkLevels(amountOfLevels)}
+          <Perklevel image={perkLevelImage} />
+          <Perklevel image={perkLevelImage} />
+          <Perklevel image={perkLevelImage} />
+          <Perklevel image={perkLevelImage} />
+          <Perklevel image={perkLevelImage} />
         </ul>
       </div>
     );

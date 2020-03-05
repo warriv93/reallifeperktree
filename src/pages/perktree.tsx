@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Layout from "../components/Layout";
-// import Perk from "../components/Perk";
+import Perk from "../components/Perk";
 import { Perk as IPerk } from "../interfaces";
 
 import "../style/perktree.scss";
@@ -26,20 +26,18 @@ export default class perktree extends Component<IProps, IState> {
     };
   }
 
-  createPerkList() {
-    console.log("yes");
-
-    this.state.perkList.map((level, title) => {
-      console.log(level, title);
-
-      //   return <Perk level={level} title={title} />;
+  createPerkList(perkList: Array<IPerk>) {
+    return perkList.map((perk, index) => {
+      return <Perk key={index} level={perk.level} title={perk.title} />;
     });
   }
 
   render() {
     return (
       <Layout>
-        <div className="perktree-container">{this.createPerkList}</div>
+        <div className="perktree-container">
+            {this.createPerkList(this.state.perkList)}
+        </div>
       </Layout>
     );
   }
