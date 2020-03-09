@@ -3,12 +3,12 @@ import Perklevel from "./Perklevel";
 
 import perkLevelImage from "../assets/404Code.jpg";
 interface IProps {
-  title?: string;
+  title: string;
   level: number;
 }
 
 interface IState {
-  title?: string;
+  title: string;
   perkLevel?: number;
 }
 
