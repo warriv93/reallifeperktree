@@ -23,12 +23,7 @@ export default class Perk extends Component<IProps, IState> {
       image: this.props.image
     };
   }
-  // return correct image based on perk title 
 
-
-
-  // return all levels of the perk - done
-  // with  image based on if skilled or not GRAYSCALE - done
   createPerkLevels(
     currentLevel: number,
     totalLevels: number,

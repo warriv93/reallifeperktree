@@ -2214,10 +2214,7 @@ class Perk extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       level: this.props.level,
       image: this.props.image
     };
-  } // return correct image based on perk title 
-  // return all levels of the perk - done
-  // with  image based on if skilled or not GRAYSCALE - done
-
+  }
 
   createPerkLevels(currentLevel, totalLevels, levelAchievedImage) {
     let levels = []; //push desired nbr of levels to the perk
@@ -2228,7 +2225,7 @@ class Perk extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
         image: levelAchievedImage,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 40
+          lineNumber: 35
         },
         __self: this
       }));
@@ -2242,27 +2239,27 @@ class Perk extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       className: "perktree-perk-container",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 47
+        lineNumber: 42
       },
       __self: this
     }, __jsx("ul", {
       className: "perk",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 48
+        lineNumber: 43
       },
       __self: this
     }, __jsx("li", {
       className: "perk-level title",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 49
+        lineNumber: 44
       },
       __self: this
     }, __jsx("span", {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 50
+        lineNumber: 45
       },
       __self: this
     }, this.props.title)), this.createPerkLevels(this.state.level, 5, this.state.image)));
@@ -2283,8 +2280,11 @@ class Perk extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! next/link */ "./node_modules/next/link.js");
+/* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(next_link__WEBPACK_IMPORTED_MODULE_1__);
 var _jsxFileName = "/Users/madisontaskett/gitRepos/reallifeperktree/src/components/Perklevel.tsx";
 var __jsx = react__WEBPACK_IMPORTED_MODULE_0__["createElement"];
+
 
 
 const PerkLevel = ({
@@ -2294,7 +2294,14 @@ const PerkLevel = ({
   className: "perk-level tooltip",
   __source: {
     fileName: _jsxFileName,
-    lineNumber: 10
+    lineNumber: 12
+  },
+  __self: undefined
+}, __jsx(next_link__WEBPACK_IMPORTED_MODULE_1___default.a, {
+  href: "/perkpage",
+  __source: {
+    fileName: _jsxFileName,
+    lineNumber: 13
   },
   __self: undefined
 }, __jsx("img", {
@@ -2303,14 +2310,14 @@ const PerkLevel = ({
   className: `perk-image ${grayscale}`,
   __source: {
     fileName: _jsxFileName,
-    lineNumber: 11
+    lineNumber: 14
   },
   __self: undefined
-}), grayscale && __jsx("span", {
+})), grayscale && __jsx("span", {
   className: "perktooltiptext",
   __source: {
     fileName: _jsxFileName,
-    lineNumber: 12
+    lineNumber: 17
   },
   __self: undefined
 }, "Progress perk"));

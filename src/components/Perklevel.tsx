@@ -1,4 +1,6 @@
 import * as React from "react";
+import Link from "next/link";
+
 
 type Props = {
   image: string;
@@ -8,7 +10,10 @@ type Props = {
 const PerkLevel: React.FunctionComponent<Props> = ({grayscale, image}
 ) => (
   <li className="perk-level tooltip">
-    <img src={image} alt="perk-image" className={`perk-image ${grayscale}`}  />
+    <Link href="/perkpage">
+      <img src={image} alt="perk-image" className={`perk-image ${grayscale}`}  />
+    </Link>
+    {/* if the perk level is not yet aquired show a tooltip on hover */}
     {grayscale && <span className="perktooltiptext">Progress perk</span>}
   </li>
 );
