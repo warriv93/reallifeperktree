@@ -9703,7 +9703,6 @@ var Navbar = function Navbar() {
     __self: this
   }, __jsx("a", {
     className: "nav-link",
-    href: "",
     __source: {
       fileName: _jsxFileName,
       lineNumber: 10

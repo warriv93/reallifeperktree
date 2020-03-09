@@ -1,44 +1,43 @@
 .perktree-container {
-    margin-top: 5%;
-    
-    .perk {
-        list-style: none;
-        display: flex;
+  margin-top: 5%;
 
-        .title {
-            position: relative;
+  .perk {
+    list-style: none;
+    display: flex;
 
-            ::first-letter { 
-                font-size: 55px;
-            }
+    .title {
+      position: relative;
 
-            span {
-                position: absolute;
-                bottom: 0;
-                left: 5%;
-            }
-        }
+      ::first-letter {
+        font-size: 55px;
+      }
 
-        .perk-level {
-            margin: 10px;
-            width: 20%;
-
-            .perk-image {
-                height: 100px;
-                width: 100px;
-            }
-
-            .grayscale {
-                opacity: 0.8;
-                filter: grayscale(66%);
-            }
-        }
-        .perk-level .grayscale:hover {
-            opacity: 1;
-            filter: grayscale(0);
-            cursor: pointer;
-        }
+      span {
+        position: absolute;
+        bottom: 0;
+        left: 5%;
+      }
     }
+
+    .perk-level {
+      margin: 10px;
+      width: 20%;
+      opacity: 1;
+
+      .perk-image {
+        height: 100px;
+        width: 100px;
+      }
+
+      .grayscale {
+        opacity: 0.8;
+        filter: grayscale(66%);
+      }
+    }
+    .perk-level .grayscale:hover {
+      opacity: 1;
+      filter: grayscale(0);
+      cursor: pointer;
+    }
+  }
 }
-
-

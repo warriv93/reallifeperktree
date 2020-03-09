@@ -2108,7 +2108,6 @@ const Navbar = () => __jsx("nav", {
   __self: undefined
 }, __jsx("a", {
   className: "nav-link",
-  href: "",
   __source: {
     fileName: _jsxFileName,
     lineNumber: 10
