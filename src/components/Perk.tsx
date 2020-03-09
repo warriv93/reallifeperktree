@@ -1,15 +1,16 @@
 import React, { Component } from "react";
 import Perklevel from "./Perklevel";
 
-import perkLevelImage from "../assets/404Code.jpg";
 interface IProps {
   title: string;
   level: number;
+  image: string;
 }
 
 interface IState {
   title: string;
-  perkLevel?: number;
+  level: number;
+  image: string;
 }
 
 export default class Perk extends Component<IProps, IState> {
@@ -18,8 +19,27 @@ export default class Perk extends Component<IProps, IState> {
 
     this.state = {
       title: this.props.title,
-      perkLevel: this.props.level
+      level: this.props.level,
+      image: this.props.image
     };
+  }
+  // return correct image based on perk title 
+
+
+
+  // return all levels of the perk - done
+  // with  image based on if skilled or not GRAYSCALE - done
+  createPerkLevels(
+    currentLevel: number,
+    totalLevels: number,
+    levelAchievedImage: string,
+  ) {
+    let levels = [];
+    //push desired nbr of levels to the perk
+    for (let index = 1; index < totalLevels+1; index++) {
+        levels.push(<Perklevel grayscale={currentLevel < index ? "grayscale" : ""} image={levelAchievedImage} />)
+    }
+    return levels;
   }
 
   render() {
@@ -29,11 +49,11 @@ export default class Perk extends Component<IProps, IState> {
           <li className="perk-level title">
             <span>{this.props.title}</span>
           </li>
-          <Perklevel image={perkLevelImage} />
-          <Perklevel image={perkLevelImage} />
-          <Perklevel image={perkLevelImage} />
-          <Perklevel image={perkLevelImage} />
-          <Perklevel image={perkLevelImage} />
+          {this.createPerkLevels(
+            this.state.level,
+            5,
+            this.state.image,
+          )}
         </ul>
       </div>
     );

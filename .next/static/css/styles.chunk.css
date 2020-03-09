@@ -30,9 +30,11 @@ body {
       margin: 10px;
       width: 20%; }
       .perktree-container .perk .perk-level .perk-image {
-        opacity: 0.6;
         height: 100px;
-        width: 115px; }
+        width: 70px; }
+      .perktree-container .perk .perk-level .grayscale {
+        opacity: 0.8;
+        filter: grayscale(66%); }
     .perktree-container .perk .perk-image:hover {
       opacity: 1; }
 
