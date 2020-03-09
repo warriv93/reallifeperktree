@@ -2,9 +2,14 @@ import React, { Component } from "react";
 import Layout from "../components/Layout";
 import Perk from "../components/Perk";
 import { Perk as IPerk } from "../interfaces";
-import strPerkImage from "../assets/StrengthPerkTransparent.png";
-import chaPerkImage from "../assets/CharismaTrainingPerk.png";
 
+import strPerkImage from "../assets/perks/strPerk.png";
+import endPerkImage from "../assets/perks/EndurancePerk.png";
+import agiPerkImage from "../assets/perks/AgilityPerk.png";
+import chaPerkImage from "../assets/perks/CharismaPerk.png";
+import intPerkImage from "../assets/perks/intPerk.png";
+
+// todo add images for end agi int
 
 import "../style/perktree.scss";
 
@@ -22,10 +27,10 @@ export default class perktree extends Component<IProps, IState> {
     this.state = {
       perkList: [
         { level: 2, title: "Strength", image:  strPerkImage},
-        { level: 0, title: "Endurance", image:  strPerkImage },
-        { level: 0, title: "Agility", image:  strPerkImage },
+        { level: 1, title: "Endurance", image:  endPerkImage },
+        { level: 1, title: "Agility", image:  agiPerkImage },
         { level: 3, title: "Charisma", image:  chaPerkImage },
-        { level: 0, title: "Intelligence", image:  strPerkImage }
+        { level: 1, title: "Intelligence", image:  intPerkImage }
       ]
     };
   }
