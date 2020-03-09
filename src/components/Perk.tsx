@@ -28,11 +28,12 @@ export default class Perk extends Component<IProps, IState> {
     currentLevel: number,
     totalLevels: number,
     levelAchievedImage: string,
+    title: string,
   ) {
     let levels = [];
     //push desired nbr of levels to the perk
     for (let index = 1; index < totalLevels+1; index++) {
-        levels.push(<Perklevel  grayscale={currentLevel < index ? "grayscale" : ""} image={levelAchievedImage} />)
+        levels.push(<Perklevel grayscale={currentLevel < index ? "grayscale" : ""} image={levelAchievedImage} title={title} />)
     }
     return levels;
   }
@@ -48,6 +49,7 @@ export default class Perk extends Component<IProps, IState> {
             this.state.level,
             5,
             this.state.image,
+            this.state.title,
           )}
         </ul>
       </div>
