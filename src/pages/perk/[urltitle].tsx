@@ -1,7 +1,6 @@
 import { useRouter } from "next/router";
 import Layout from "../../components/Layout";
 import PerkHeader from "./comp/Perkheader"
-import { Perk as IPerk } from "../../utils/types";
 
 import "./styles/perkpage.scss";
 import { perkList } from "../../api";
@@ -27,17 +26,8 @@ const Perk = () => {
   
   
   function createPerkHeader (){
-    let perk: IPerk = perkList.map(perk => {
-
-      if(perk.title == urltitle) {
-      }
-
-      return perk
-    })[0];
+    return perkList.map(perk => perk.title == urltitle && <PerkHeader perk={perk} />);
     // console.log(perk, urltitle);
-
-
-    perk && <PerkHeader perk={perk} />
   }
 
   return (

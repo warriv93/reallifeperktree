@@ -63,15 +63,6 @@ body {
   visibility: visible;
   opacity: 1; }
 
-.profile-container {
-  margin-top: 5%; }
-  .profile-container img {
-    height: 100%;
-    width: 20%; }
-  .profile-container .card-body .right {
-    display: inline-block;
-    margin-left: 45px; }
-
 
 
 /*# sourceMappingURL=styles.chunk.css.map*/
