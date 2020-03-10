@@ -1,8 +1,8 @@
 import React, { Component } from "react";
-import Layout from "../components/Layout";
+import Layout from "../../components/Layout";
 
-import "../style/profile.scss";
-import profileface from "../assets/profileface2.jpg";
+import "./styles/profile.scss";
+import profileface from "../../assets/profileface2.jpg";
 
 interface IProps {}
 

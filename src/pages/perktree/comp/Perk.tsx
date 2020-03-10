@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Perklevel from "./Perklevel";
+import Perklevel from "./PerkLevels";
 
 interface IProps {
   title: string;
@@ -33,7 +33,7 @@ export default class Perk extends Component<IProps, IState> {
     let levels = [];
     //push desired nbr of levels to the perk
     for (let index = 1; index < totalLevels+1; index++) {
-        levels.push(<Perklevel grayscale={currentLevel < index ? "grayscale" : ""} image={levelAchievedImage} title={title} />)
+      levels.push(<Perklevel grayscale={currentLevel < index ? "grayscale" : ""} image={levelAchievedImage} title={title} />)
     }
     return levels;
   }

@@ -1,10 +1,10 @@
 import React, { Component } from "react";
-import Layout from "../components/Layout";
-import Perk from "../components/Perk";
-import { Perk as IPerk } from "../interfaces";
-import { perkList } from "../interfaces";
+import Layout from "../../components/Layout";
+import { Perk as IPerk } from "../../utils/types";
+import { perkList } from "../../api";
 
-import "../style/perktree.scss";
+import Perk from "./comp/Perk";
+import "./styles/index.scss";
 
 //TODO - med en tom props måste jag ha med det?? - ta bort?
 interface IProps {}

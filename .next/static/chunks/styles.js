@@ -1,9 +1,9 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([["styles"],{
 
-/***/ "./src/style/globalStyles.scss":
-/*!*************************************!*\
-  !*** ./src/style/globalStyles.scss ***!
-  \*************************************/
+/***/ "./src/pages/perk/styles/perkpage.scss":
+/*!*********************************************!*\
+  !*** ./src/pages/perk/styles/perkpage.scss ***!
+  \*********************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -29,7 +29,7 @@
           .querySelectorAll("link[href][rel=stylesheet]")
           .forEach(function(link) {
             if (!link.href.match(prefix) || link.stale) return;
-            injectCss(link, link.href.split("?")[0] + "?unix=1583760977117");
+            injectCss(link, link.href.split("?")[0] + "?unix=1583834310700");
           });
       }
     }
@@ -37,10 +37,10 @@
 
 /***/ }),
 
-/***/ "./src/style/perkpage.scss":
-/*!*********************************!*\
-  !*** ./src/style/perkpage.scss ***!
-  \*********************************/
+/***/ "./src/pages/profile/styles/profile.scss":
+/*!***********************************************!*\
+  !*** ./src/pages/profile/styles/profile.scss ***!
+  \***********************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -66,7 +66,7 @@
           .querySelectorAll("link[href][rel=stylesheet]")
           .forEach(function(link) {
             if (!link.href.match(prefix) || link.stale) return;
-            injectCss(link, link.href.split("?")[0] + "?unix=1583761165708");
+            injectCss(link, link.href.split("?")[0] + "?unix=1583834166193");
           });
       }
     }
@@ -74,10 +74,10 @@
 
 /***/ }),
 
-/***/ "./src/style/perktree.scss":
-/*!*********************************!*\
-  !*** ./src/style/perktree.scss ***!
-  \*********************************/
+/***/ "./src/styles/globalStyles.scss":
+/*!**************************************!*\
+  !*** ./src/styles/globalStyles.scss ***!
+  \**************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -103,7 +103,7 @@
           .querySelectorAll("link[href][rel=stylesheet]")
           .forEach(function(link) {
             if (!link.href.match(prefix) || link.stale) return;
-            injectCss(link, link.href.split("?")[0] + "?unix=1583760972944");
+            injectCss(link, link.href.split("?")[0] + "?unix=1583834196405");
           });
       }
     }

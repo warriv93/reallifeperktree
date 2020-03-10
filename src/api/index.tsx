@@ -3,12 +3,7 @@ import endPerkImage from "../assets/perks/EndurancePerk.png";
 import agiPerkImage from "../assets/perks/AgilityPerk.png";
 import chaPerkImage from "../assets/perks/CharismaPerk.png";
 import intPerkImage from "../assets/perks/intPerk.png";
-
-export type Perk = {
-  level: number;
-  title: string;
-  image: string;
-};
+import {Perk} from "../utils/types"
 
 export const perkList: Array<Perk> = [
   { level: 2, title: "Strength", image:  strPerkImage},
@@ -20,9 +15,3 @@ export const perkList: Array<Perk> = [
 
 
 
-
-export type User = {
-  id: number;
-  username: string;
-  password: string;
-};

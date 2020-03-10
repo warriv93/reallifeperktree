@@ -1,6 +1,6 @@
 import React from "react";
-import Perk from "../components/Perk";
-import { Perk as IPerk } from "../interfaces";
+import Perk from "../../perktree/comp/Perk";
+import { Perk as IPerk } from "../../../utils/types";
 
 interface Props {
   perk: IPerk;
