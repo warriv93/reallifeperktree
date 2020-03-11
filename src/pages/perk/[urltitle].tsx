@@ -1,8 +1,10 @@
 import { useRouter } from "next/router";
 import Layout from "../../components/Layout";
-import PerkHeader from "./comp/Perkheader"
+import PerkHeader from "./comp/PerkHeader";
+import PerkCard from "./comp/PerkCard";
 
-import "./styles/perkpage.scss";
+import "./styles/perkPage.scss";
+import "./styles/perkCard.scss";
 import { perkList } from "../../api";
 
 // TODO try fetching API items
@@ -22,16 +24,35 @@ import { perkList } from "../../api";
 const Perk = () => {
   const router = useRouter();
   const { urltitle } = router.query;
-  
-  function createPerkHeader (){
-    return perkList && urltitle && perkList.map(perk => perk.title == urltitle && <PerkHeader perk={perk} />);
+
+  //TODO Hur löser jag denna cluster fuck
+  // perk kan bli undefined eller en string o då kan jag inte retunera den in till perk={} för den vill ha enbart perk type
+  function createPerkHeader() {
+    return (
+      perkList &&
+      urltitle &&
+      perkList.map(perk => perk.title == urltitle && <PerkHeader perk={perk} />)
+    );
+  }
+  function createPerkCard() {
+    //TODO: add map for each info card and spawn more cards
+    return (
+      perkList &&
+      urltitle &&
+      perkList.map(perk => perk.title == urltitle && <PerkCard perk={perk} />)
+    );
   }
 
   return (
     <Layout>
       {createPerkHeader()}
+      <div className="perk-card-container">
+        {createPerkCard()}
+        {createPerkCard()}
+        {createPerkCard()}
+        {createPerkCard()}
+      </div>
       {/* TODO add info items containers */}
-      <p>Perk: {urltitle}</p>
     </Layout>
   );
 };

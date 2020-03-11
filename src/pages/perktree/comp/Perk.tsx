@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Perklevel from "./PerkLevels";
-
+import "../styles/perk.scss";
 
 interface IProps {
   title: string;
@@ -40,27 +40,28 @@ export default class Perk extends Component<IProps, IState> {
   ) {
     let levels = [];
     //push desired nbr of levels to the perk
-    for (let index = 1; index < totalLevels+1; index++) {
-      levels.push(<Perklevel usedInPerkHeader={usedInPerkHeader} grayscale={currentLevel < index ? "grayscale" : ""} image={levelAchievedImage} title={title} />)
+    for (let index = 1; index < totalLevels + 1; index++) {
+      levels.push(
+        <Perklevel
+          usedInPerkHeader={usedInPerkHeader}
+          grayscale={currentLevel < index ? "grayscale" : ""}
+          image={levelAchievedImage}
+          title={title}
+        />
+      );
     }
     return levels;
   }
 
   render() {
-    let {level, image, title, usedInPerkHeader, description} = this.state;
+    let { level, image, title, usedInPerkHeader, description } = this.state;
     return (
       <div className="perk-container">
         <ul className="perk">
           <li className="perk-level title">
             <span>{this.props.title}</span>
           </li>
-          {this.createPerkLevels(
-            level,
-            5,
-            image,
-            title,
-            usedInPerkHeader
-          )}
+          {this.createPerkLevels(level, 5, image, title, usedInPerkHeader)}
         </ul>
         {usedInPerkHeader && description && (
           <div className="perk-description">

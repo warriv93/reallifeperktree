@@ -1,7 +1,7 @@
 import * as React from "react";
 import Link from "next/link";
 
-import "../styles/perklevel.scss";
+import "../styles/perkLevel.scss";
 
 type Props = {
   image: string;
