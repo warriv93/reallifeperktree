@@ -32,7 +32,31 @@ body {
     margin-left: -60px;
     opacity: 0;
     transition: opacity 0.3s; }
-  .tooltip .perktooltiptext {
+  .tooltip .tooltiptext::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #555 transparent transparent transparent; }
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+  opacity: 1; }
+
+.perk-level {
+  margin: 10px;
+  width: 20%;
+  opacity: 1; }
+  .perk-level .perk-image {
+    height: 100px;
+    width: 100px; }
+  .perk-level .grayscale {
+    opacity: 0.8;
+    filter: grayscale(66%); }
+  .perk-level .perktooltiptext {
     visibility: hidden;
     width: 120px;
     color: #fff;
@@ -43,12 +67,11 @@ body {
     z-index: 1;
     bottom: 110%;
     left: 40%;
-    margin-left: -60px;
+    margin-left: -73px;
     opacity: 0;
     transition: opacity 0.3s;
     background-color: #18bc9c; }
-  .tooltip .tooltiptext::after,
-  .tooltip .perktooltiptext::after {
+  .perk-level .perktooltiptext::after {
     content: "";
     position: absolute;
     top: 100%;
@@ -58,10 +81,33 @@ body {
     border-style: solid;
     border-color: #555 transparent transparent transparent; }
 
-.tooltip:hover .tooltiptext,
 .tooltip:hover .perktooltiptext {
   visibility: visible;
   opacity: 1; }
+
+.perk-level .grayscale:hover {
+  opacity: 1;
+  filter: grayscale(0);
+  cursor: pointer; }
+
+.perk-container {
+  margin-top: 5%; }
+  .perk-container .perk {
+    list-style: none;
+    display: flex; }
+    .perk-container .perk .title {
+      position: relative; }
+      .perk-container .perk .title ::first-letter {
+        font-size: 55px; }
+      .perk-container .perk .title span {
+        position: absolute;
+        bottom: 0;
+        left: 5%; }
+
+.perk-header .perk-description {
+  text-align: center;
+  letter-spacing: 1px;
+  font-style: italic; }
 
 
 

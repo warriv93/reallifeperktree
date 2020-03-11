@@ -1,4 +1,4 @@
-.perktree-container {
+.perk-container {
   margin-top: 5%;
 
   .perk {
@@ -17,27 +17,6 @@
         bottom: 0;
         left: 5%;
       }
-    }
-
-    .perk-level {
-      margin: 10px;
-      width: 20%;
-      opacity: 1;
-
-      .perk-image {
-        height: 100px;
-        width: 100px;
-      }
-
-      .grayscale {
-        opacity: 0.8;
-        filter: grayscale(66%);
-      }
-    }
-    .perk-level .grayscale:hover {
-      opacity: 1;
-      filter: grayscale(0);
-      cursor: pointer;
     }
   }
 }

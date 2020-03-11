@@ -23,17 +23,13 @@ const Perk = () => {
   const router = useRouter();
   const { urltitle } = router.query;
   
-  
-  
   function createPerkHeader (){
-    return perkList.map(perk => perk.title == urltitle && <PerkHeader perk={perk} />);
-    // console.log(perk, urltitle);
+    return perkList && urltitle && perkList.map(perk => perk.title == urltitle && <PerkHeader perk={perk} />);
   }
 
   return (
     <Layout>
       {createPerkHeader()}
-      {/* TODO add top container */}
       {/* TODO add info items containers */}
       <p>Perk: {urltitle}</p>
     </Layout>
