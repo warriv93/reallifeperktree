@@ -2,32 +2,19 @@ import { useRouter } from "next/router";
 import Layout from "../../components/Layout";
 import PerkHeader from "./comp/PerkHeader";
 import PerkCard from "./comp/PerkCard";
+import { perkList } from "../../api";
 
 import "./styles/perkPage.scss";
 import "./styles/perkCard.scss";
-import { perkList } from "../../api";
-
-// TODO try fetching API items
-//   static getInitialProps = async ({ query }: NextPageContext) => {
-//     try {
-//     //   const { id } = query
-//       const item = await sampleFetchWrapper(
-//         // `http://localhost:3000/api/users/${Array.isArray(id) ? id[0] : id}`
-//         "https://api.chucknorris.io/jokes/random"
-//       )
-//       return { item }
-//     } catch (err) {
-//       return { errors: err.message }
-//     }
-//   }
 
 const Perk = () => {
-  const router = useRouter();
-  const { urltitle } = router.query;
+  //fetch param from url
+  const { urltitle } = useRouter().query;
 
   //TODO Hur löser jag denna cluster fuck
   // perk kan bli undefined eller en string o då kan jag inte retunera den in till perk={} för den vill ha enbart perk type
   function createPerkHeader() {
+    
     return (
       perkList &&
       urltitle &&
@@ -46,7 +33,7 @@ const Perk = () => {
   return (
     <Layout>
       {createPerkHeader()}
-      <div className="perk-card-container">
+      <div className="perk-cards-container">
         {createPerkCard()}
         {createPerkCard()}
         {createPerkCard()}

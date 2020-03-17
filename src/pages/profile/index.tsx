@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Layout from "../../components/Layout";
 
 import "./styles/profile.scss";
-import profileface from "../../assets/profileface2.jpg";
+import profileface from "../../assets/vaultboyface.png";
 
 interface IProps {}
 
@@ -22,22 +22,23 @@ export default class profile extends Component<IProps, IState> {
       password: "____Password Placeholder____"
     };
 
-    this.handleChange = this.handleChange.bind(this);
+    this.handleUsernameChange = this.handleUsernameChange.bind(this);
+    this.handlePasswordChange = this.handlePasswordChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleChange(event: any) {
-    console.log(event.target.value);
-    
-    // this.setState({ value: event.target.value });
-
+  handleUsernameChange(event: any) {
+    this.setState({ username: event.target.value });
+  }
+  handlePasswordChange(event: any) {
+    this.setState({ password: event.target.value });
   }
 
   handleSubmit(event: any) {
-    console.log("submitted");
-
-    // alert('A name was submitted: ' + this.state.value);
+    console.log("submitted", this.state.username, this.state.password);
     event.preventDefault();
+    // TODO: change values in database
+    // check if username already exist in database
   }
 
   toggleEditMode() {
@@ -47,10 +48,11 @@ export default class profile extends Component<IProps, IState> {
   }
 
   render() {
+    
     return (
       <Layout>
         <div className="profile-container card border-primary mb-3">
-          <div className="card-header">Profile for ____USERNAME TODO_____</div>
+          <div className="card-header">Profile for {this.state.username}</div>
           <div className="card-body">
             <img src={profileface} alt="Profilememes" />
 
@@ -62,7 +64,7 @@ export default class profile extends Component<IProps, IState> {
                 >
                   {this.state.username}
                 </h4>
-                <p className="card-text">{this.state.password}</p>
+                <p className="card-text">*************************</p>
               </div>
             ) : (
               <div className="right">
@@ -71,13 +73,14 @@ export default class profile extends Component<IProps, IState> {
                     className="card-title"
                     type="text"
                     name="name"
-                    onChange={this.handleChange}
+                    onChange={this.handleUsernameChange}
                     value={this.state.username}
                   ></input>
                   <input
                     className="card-text"
                     type="text"
                     name="name"
+                    onChange={this.handlePasswordChange}
                     value={this.state.password}
                   ></input>
                   <input type="submit" value="Done" />

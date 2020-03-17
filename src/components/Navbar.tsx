@@ -1,5 +1,5 @@
 import Link from "next/link";
-import profileface from "../assets/profileface2.jpg";
+import profileface from "../assets/vaultboyface.png";
 
 const Navbar = () => (
   <nav className="navbar navbar-expand-lg navbar-dark bg-primary">

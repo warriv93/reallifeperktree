@@ -32,7 +32,7 @@ export default class perktree extends Component<IProps, IState> {
     return (
       <Layout>
         <div className="perktree-container">
-            {this.createPerkList(this.state.perkList)}
+          {this.createPerkList(this.state.perkList)}
         </div>
       </Layout>
     );

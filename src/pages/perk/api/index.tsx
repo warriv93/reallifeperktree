@@ -1,33 +1,19 @@
-import fetch from 'axios'
+// import axios from "axios";
 
-// posts will be populated at build time by getStaticProps()
-function Blog({ posts }) {
-  return (
-    <ul>
-      {posts.map(post => (
-        <li>{post.title}</li>
-      ))}
-    </ul>
-  )
+
+// TODO: hur löser jag detta? - returnerar den kanske undefined så får jag inte assigna den typen
+// type Knowledge = {
+//   title: string;
+//   description: string;
+//   link: string;
+//   img?: string;
+// }
+
+// export function fetchKnowledge(): Knowledge {
+
+export var fetchKnowledge = async () => {
+  // Make a request for a user with a given ID
+ 
+
 }
-
-// This function gets called at build time on server-side.
-// It won't be called on client-side, so you can even do
-// direct database queries. See the "Technical details" section.
-export async function getStaticProps() {
-  // Call an external API endpoint to get posts.
-  const res = await fetch('https://.../posts')
-  const posts = await res.json()
-
-  // By returning { props: posts }, the Blog component
-  // will receive `posts` as a prop at build time
-  return {
-    props: {
-      posts,
-    },
-  }
-}
-
-export default Blog
-
 
