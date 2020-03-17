@@ -54,6 +54,11 @@ body {
   .profile-container .card-body .right {
     display: inline-block;
     margin-left: 45px; }
+    .profile-container .card-body .right input.card-text {
+      min-width: 225px;
+      display: block; }
+    .profile-container .card-body .right input.btn {
+      width: 50%; }
 
 
 /*# sourceMappingURL=styles.chunk.css.map*/

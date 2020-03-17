@@ -30,25 +30,23 @@ export default class profile extends Component<IProps, IState> {
   handleUsernameChange(event: any) {
     this.setState({ username: event.target.value });
   }
+
   handlePasswordChange(event: any) {
     this.setState({ password: event.target.value });
   }
 
   handleSubmit(event: any) {
-    console.log("submitted", this.state.username, this.state.password);
+    console.log(event, "submitted", this.state.username, this.state.password);
     event.preventDefault();
     // TODO: change values in database
     // check if username already exist in database
   }
 
-  toggleEditMode() {
-    console.log("editmode active");
-
-    this.setState({ editMode: true });
+  toggleEditMode(editMode: boolean) {
+    this.setState({ editMode: !editMode });
   }
 
   render() {
-    
     return (
       <Layout>
         <div className="profile-container card border-primary mb-3">
@@ -60,30 +58,45 @@ export default class profile extends Component<IProps, IState> {
               <div className="right">
                 <h4
                   className="card-title"
-                  onClick={() => this.toggleEditMode()}
+                  onClick={() => this.toggleEditMode(this.state.editMode)}
                 >
                   {this.state.username}
                 </h4>
-                <p className="card-text">*************************</p>
+                <p
+                  className="card-text"
+                  onClick={() => this.toggleEditMode(this.state.editMode)}
+                >
+                  *************************
+                </p>
               </div>
             ) : (
               <div className="right">
                 <form>
                   <input
-                    className="card-title"
+                    className="card-title form-control mr-sm-2"
                     type="text"
                     name="name"
                     onChange={this.handleUsernameChange}
                     value={this.state.username}
                   ></input>
                   <input
-                    className="card-text"
+                    className="card-text form-control mr-sm-2"
                     type="text"
                     name="name"
                     onChange={this.handlePasswordChange}
                     value={this.state.password}
                   ></input>
-                  <input type="submit" value="Done" />
+                  <input
+                    className="btn btn-success"
+                    type="submit"
+                    value="Update"
+                  />
+                  <input
+                    className="btn btn-danger"
+                    type="cancel"
+                    onClick={() => this.toggleEditMode(this.state.editMode)}
+                    value="Cancel"
+                  />
                 </form>
               </div>
             )}
