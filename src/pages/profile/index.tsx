@@ -1,7 +1,13 @@
 import React, { Component } from "react";
 import Layout from "../../components/Layout";
-
+// import { fab } from '@fortawesome/free-brands-svg-icons'
 import "./styles/profile.scss";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { fab } from '@fortawesome/free-brands-svg-icons'
+import { faPencilAlt } from '@fortawesome/free-solid-svg-icons'
+library.add(fab, faPencilAlt)
+
 import profileface from "../../assets/vaultboyface.png";
 
 interface IProps {}
@@ -10,6 +16,7 @@ interface IState {
   editMode: boolean;
   username: string;
   password: string;
+  hover: boolean;
 }
 
 export default class profile extends Component<IProps, IState> {
@@ -19,12 +26,14 @@ export default class profile extends Component<IProps, IState> {
     this.state = {
       editMode: false,
       username: "____Username Placeholder____",
-      password: "____Password Placeholder____"
+      password: "____Password Placeholder____",
+      hover: false
     };
 
     this.handleUsernameChange = this.handleUsernameChange.bind(this);
     this.handlePasswordChange = this.handlePasswordChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleHover = this.handleHover.bind(this);
   }
 
   handleUsernameChange(event: any) {
@@ -33,6 +42,10 @@ export default class profile extends Component<IProps, IState> {
 
   handlePasswordChange(event: any) {
     this.setState({ password: event.target.value });
+  }
+
+  handleHover(hover: boolean) {
+    this.setState({ hover: !hover });
   }
 
   handleSubmit(event: any) {
@@ -55,18 +68,26 @@ export default class profile extends Component<IProps, IState> {
             <img src={profileface} alt="Profilememes" />
 
             {!this.state.editMode ? (
-              <div className="right">
-                <h4
+              <div 
+                className="right"
+              >
+                <h4 
                   className="card-title"
                   onClick={() => this.toggleEditMode(this.state.editMode)}
+                  onMouseEnter={() => this.handleHover(this.state.hover)}
+                  onMouseOut={() => this.handleHover(this.state.hover)}
                 >
                   {this.state.username}
+                  {this.state.hover && <FontAwesomeIcon icon='pencil-alt' />}
                 </h4>
                 <p
                   className="card-text"
                   onClick={() => this.toggleEditMode(this.state.editMode)}
+                  onMouseEnter={() => this.handleHover(this.state.hover)}
+                  onMouseOut={() => this.handleHover(this.state.hover)}
                 >
                   *************************
+                  {this.state.hover && <FontAwesomeIcon icon='pencil-alt' />}
                 </p>
               </div>
             ) : (
@@ -78,14 +99,15 @@ export default class profile extends Component<IProps, IState> {
                     name="name"
                     onChange={this.handleUsernameChange}
                     value={this.state.username}
-                  ></input>
+                    autoFocus
+                  />
                   <input
                     className="card-text form-control mr-sm-2"
                     type="text"
                     name="name"
                     onChange={this.handlePasswordChange}
                     value={this.state.password}
-                  ></input>
+                  />
                   <input
                     className="btn btn-success"
                     type="submit"

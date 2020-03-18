@@ -10,10 +10,18 @@
     display: inline-block;
     margin-left: 45px;
 
+    svg.fa-pencil-alt {
+      width: 15px;
+      height: auto;
+      margin-left: 15px;
+      opacity: 0.5;
+    }
+
     input.card-text {
       min-width: 225px;
       display: block;
     }
+
     input.btn {
       width: 50%;
     }
