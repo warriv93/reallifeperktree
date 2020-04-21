@@ -1,0 +1,36 @@
+.login-container {
+    width: 40%;
+    height: 50vh;
+    display: block;
+    margin-left:auto;
+    margin-right:auto;
+    padding: 20px;
+    margin-top: 15%;
+
+    h3, p {
+        text-align: center;
+        margin-top: 5%;
+        margin-bottom: 5%;
+    }
+
+    input {
+        width: 91%;
+        padding: 20px;
+        margin-top: 2%;
+        background-color: transparent;
+        border: 0px solid;
+        margin-bottom: 2%;
+        border-bottom: 1px solid lightgray;
+    }
+
+    button {
+        padding: 20px;
+        margin-top: 5%;
+        width: 100%;
+        background-color: #18BC9C;
+    }
+    
+    p.error {
+        color: red;
+    }
+}

@@ -39,7 +39,6 @@ class PerkCard extends Component<State, Props> {
 
 render () {
   let {data} = this.state;
-  console.log(data);
 
   return (
     <Fragment>

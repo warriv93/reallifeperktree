@@ -65,5 +65,92 @@ body {
     .profile-container .card-body .right input.btn {
       width: 50%; }
 
+.perk-level {
+  margin: 10px;
+  width: 20%;
+  opacity: 1; }
+  .perk-level .perk-image {
+    height: 100px;
+    width: 100px; }
+  .perk-level .grayscale {
+    opacity: 0.8;
+    filter: grayscale(66%); }
+  .perk-level .perktooltiptext {
+    visibility: hidden;
+    width: 120px;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    position: absolute;
+    z-index: 1;
+    bottom: 110%;
+    left: 40%;
+    margin-left: -73px;
+    opacity: 0;
+    transition: opacity 0.3s;
+    background-color: #18bc9c; }
+  .perk-level .perktooltiptext::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #555 transparent transparent transparent; }
+
+.tooltip:hover .perktooltiptext {
+  visibility: visible;
+  opacity: 1; }
+
+.perk-level .grayscale:hover {
+  opacity: 1;
+  filter: grayscale(0);
+  cursor: pointer; }
+
+.perk-container {
+  margin-top: 5vh; }
+  .perk-container .perk {
+    list-style: none;
+    display: flex; }
+    .perk-container .perk .title {
+      position: relative; }
+      .perk-container .perk .title ::first-letter {
+        font-size: 55px; }
+      .perk-container .perk .title span {
+        position: absolute;
+        bottom: 0;
+        left: 5%; }
+
+
+.login-container {
+  width: 40%;
+  height: 50vh;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 20px;
+  margin-top: 15%; }
+  .login-container h3, .login-container p {
+    text-align: center;
+    margin-top: 5%;
+    margin-bottom: 5%; }
+  .login-container input {
+    width: 91%;
+    padding: 20px;
+    margin-top: 2%;
+    background-color: transparent;
+    border: 0px solid;
+    margin-bottom: 2%;
+    border-bottom: 1px solid lightgray; }
+  .login-container button {
+    padding: 20px;
+    margin-top: 5%;
+    width: 100%;
+    background-color: #18BC9C; }
+  .login-container p.error {
+    color: red; }
+
 
 /*# sourceMappingURL=styles.chunk.css.map*/

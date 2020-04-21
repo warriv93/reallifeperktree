@@ -4,9 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "next",
+    "dev": "concurrently \"npm run api\" \"npm run client\"",
+    "client": "next",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "api": "npm run dev --prefix server"
   },
   "repository": {
     "type": "git",
@@ -20,6 +22,7 @@
   },
   "homepage": "https://github.com/warriv93/reallifeperktree#readme",
   "dependencies": {
+    "@babel/runtime": "^7.9.2",
     "@fortawesome/fontawesome-svg-core": "^1.2.27",
     "@fortawesome/free-brands-svg-icons": "^5.12.1",
     "@fortawesome/free-regular-svg-icons": "^5.12.1",
@@ -28,10 +31,12 @@
     "@zeit/next-css": "^1.0.1",
     "@zeit/next-sass": "^1.0.1",
     "axios": "^0.19.2",
+    "concurrently": "^5.1.0",
     "next": "^9.1.5",
     "node-sass": "^4.13.0",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
+    "reactjs-localstorage": "0.0.8",
     "typescript": "^3.8.3"
   },
   "devDependencies": {

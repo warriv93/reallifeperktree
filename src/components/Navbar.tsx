@@ -1,16 +1,17 @@
 import Link from "next/link";
 import profileface from "../assets/vaultboyface.png";
 
-const Navbar = () => (
+type Props = {
+  loggedin: Boolean;
+};
+
+const Navbar: React.FunctionComponent<Props> = ({ loggedin }) => (
   <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
     <div className="collapse navbar-collapse" id="navbarColor01">
       <ul className="navbar-nav mr-auto">
         <li className="nav-item">
           <Link href="/">
-            <a className="nav-link">
-              {" "}
-              Home{" "}
-            </a>
+            <a className="nav-link"> Home </a>
           </Link>
         </li>
         <li className="nav-item">
@@ -22,16 +23,27 @@ const Navbar = () => (
 
       <ul className="nav navbar-nav navbar-right">
         {/* Profile */}
-        <li className="profile">
-          <Link href="/profile">
-            <div>
-              <a className="nav-link"> Profile</a>
-              <div className="image">
-                <img src={profileface} alt="Profilememes" />
+        {
+        loggedin ? (
+          <li className="profile">
+            <Link href="/profile">
+              <div>
+                <a className="nav-link"> Profile</a>
+                <div className="image">
+                  <img src={profileface} alt="Profilememes" />
+                </div>
               </div>
-            </div>
-          </Link>
-        </li>
+            </Link>
+          </li>
+        ) : (
+          <li className="profile">
+            <Link href="/login">
+              <div>
+                <a className="nav-link"> Login</a>
+              </div>
+            </Link>
+          </li>
+        )}
       </ul>
     </div>
   </nav>
