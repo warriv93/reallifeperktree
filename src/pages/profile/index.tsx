@@ -34,8 +34,8 @@ export default class profile extends Component<IProps, IState> {
       username: "____Username Placeholder____",
       email: "",
       profilePicture: "",
-      password: "******",
-      hover: false,
+      password: "******************",
+      hover: true,
     };
 
     this.handleUsernameChange = this.handleUsernameChange.bind(this);
@@ -48,22 +48,21 @@ export default class profile extends Component<IProps, IState> {
   componentDidMount() {
     if (!getUserLoggedin()) Router.push("/login");
     else {
-      getUserData(res => {
-        let {username, email, profilePicture} = res
+      getUserData((res) => {
+        let { username, email, profilePicture } = res;
         this.setState({
           username,
           email,
-          profilePicture
-        })
-      })
+          profilePicture,
+        });
+      });
     }
   }
 
   logout() {
-    axios
-      .get("http://127.0.0.1:1337/user/logout")
-      logout();
-      Router.push("/perktree");
+    axios.get("http://127.0.0.1:1337/user/logout");
+    logout();
+    Router.push("/perktree");
   }
 
   handleUsernameChange(event: any) {
@@ -96,7 +95,6 @@ export default class profile extends Component<IProps, IState> {
     return (
       <Layout>
         <div className="profile-container card border-primary mb-3">
-          <div className="card-header">Profile for {this.state.username}</div>
           <div className="card-body">
             <img src={profileface} alt="Profilememes" />
 
@@ -108,7 +106,7 @@ export default class profile extends Component<IProps, IState> {
                   onMouseEnter={() => this.handleHover(this.state.hover)}
                   onMouseOut={() => this.handleHover(this.state.hover)}
                 >
-                  { this.state.username}
+                  {this.state.username}
                   {this.state.hover && <FontAwesomeIcon icon="pencil-alt" />}
                 </h4>
                 <p
@@ -120,8 +118,8 @@ export default class profile extends Component<IProps, IState> {
                   {this.state.password}
                   {this.state.hover && <FontAwesomeIcon icon="pencil-alt" />}
                 </p>
-               {this.state.email && 
-                <p
+                {this.state.email && (
+                  <p
                     className="card-text"
                     onClick={() => this.toggleEditMode(this.state.editMode)}
                     onMouseEnter={() => this.handleHover(this.state.hover)}
@@ -130,7 +128,7 @@ export default class profile extends Component<IProps, IState> {
                     {this.state.email}
                     {this.state.hover && <FontAwesomeIcon icon="pencil-alt" />}
                   </p>
-                }
+                )}
               </div>
             ) : (
               <div className="right">
@@ -175,8 +173,14 @@ export default class profile extends Component<IProps, IState> {
                 </form>
               </div>
             )}
-
-            <button onClick={() => this.logout()}>Logout</button>
+            <div>
+              <button
+                className="btn btn-outline-primary logout"
+                onClick={() => this.logout()}
+              >
+                Logout
+              </button>
+            </div>
           </div>
         </div>
       </Layout>
