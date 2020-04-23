@@ -8,21 +8,36 @@ User.prototype.data = {}
 User.prototype.save = function (callback) {
 	var self = this;
 
-	console.log("Save User");
-	// Creates an Object of the User Schema by using the User Model
-	var UserDBObject = new DatabaseObject(self.data);
-
-	// Saves the UserObject and retrieves the savedUserObject (The physical one from the DB!)
-	UserDBObject.save(function (err, savedUserObject) {
+	DatabaseObject.find({ username: self.data.username }, function (err, UserObject) {
 		if (err) {
-			console.error("Err: ", err);
 			callback(err);
 		}
 		else {
-			// Returns the savedUserObject through a Callback
-			callback(savedUserObject);
+			if (UserObject.length > 0) {
+				callback({ error: "Username already exist" })
+			}
+			else {
+				console.log("Save User", self.data);
+				// Creates an Object of the User Schema by using the User Model
+				var UserDBObject = new DatabaseObject(self.data);
+
+				// Saves the UserObject and retrieves the savedUserObject (The physical one from the DB!)
+				UserDBObject.save(function (err, savedUserObject) {
+					if (err) {
+						console.error("Err: ", err);
+						callback(err);
+					}
+					else {
+						// Returns the savedUserObject through a Callback
+						callback(savedUserObject);
+					}
+				});
+			}
 		}
 	});
+		
+
+	
 }
 
 /* GENERAL/CLASS FUNCTIONS */
@@ -39,7 +54,7 @@ User.findById = function (id, callback) {
 }
 User.findbyUsername = function (username, callback) {
 	// Find the User Object and Update it, {new: true} means that findByIdAndUpdate will return a updated User Object
-	DatabaseObject.find({username: username}, function (err, UserObject) {
+	DatabaseObject.find({ username: username }, function (err, UserObject) {
 		if (err) {
 			callback(err);
 		}
@@ -60,7 +75,7 @@ User.findAll = function (callback) {
 	});
 }
 User.findOneAndDelete = function (id, callback) {
-	DatabaseObject.findOneAndDelete ({_id: id}, function (err, UserObject) {
+	DatabaseObject.findOneAndDelete({ _id: id }, function (err, UserObject) {
 		if (err) {
 			callback(err);
 		}

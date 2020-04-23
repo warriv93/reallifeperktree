@@ -1,0 +1,120 @@
+import * as React from "react";
+import Router from "next/router";
+
+import axios from "axios";
+import "../../styles/index.scss";
+import { setUserLoggedin } from "../../../../api/user";
+
+type Props = {
+};
+
+type State = {
+  username: string;
+  password: string;
+  email: string;
+  error: string;
+};
+class Newuser extends React.Component<Props, State> {
+  constructor(props: Props) {
+    super(props);
+
+    this.state = {
+      username: "",
+      password: "",
+      email: "",
+      error: "",
+    };
+
+    this.onSubmit = this.onSubmit.bind(this);
+    this.handleChangeUsername = this.handleChangeUsername.bind(this);
+    this.handleChangePassword = this.handleChangePassword.bind(this);
+    this.handleChangeEmail = this.handleChangeEmail.bind(this);
+  }
+
+  // When username input value is changed update the state
+  handleChangeUsername(e) {
+    this.setState({ username: e.target.value });
+  }
+
+  // When password input value is changed update the state
+  handleChangePassword(e) {
+    this.setState({ password: e.target.value });
+  }
+
+  handleChangeEmail(e) {
+    this.setState({ email: e.target.value });
+  }
+
+  // when submitting call authenticateUserLogin to make the request to the server
+  onSubmit(e) {
+    e.preventDefault();
+
+    let { username, password, email } = this.state;
+
+    //if username and password both have strings with value run the authenticateUserLogin function otherwise show error message
+    username != "" && password != ""
+      ? this.authenticateUserLogin(username, password, email)
+      : this.setState({ error: "Please fill out username and password" });
+  }
+
+  // Request a user based on username and password, if anything is found pass it back up to parent
+  authenticateUserLogin(username: string, password: string, email: string) {
+    let self = this;
+    axios
+      .post("http://127.0.0.1:1337/user/new", {
+        username: username,
+        password: password,
+        email: email,
+        profilePicture: "",
+      })
+      .then((response) => {
+        if (response.data.error) {
+          self.setState({ error: response.data.error });
+        } else {
+          delete response.data.password;
+          delete response.data._id;
+          // set the user data and boolean loggedin into localstorage
+          setUserLoggedin(response.data);
+          Router.push("/perktree");
+        }
+      })
+      .catch(function (error) {
+        console.error(error);
+        self.setState({ error: error });
+      });
+  }
+  render() {
+    return (
+      <div className="login-container">
+        {/* <h3>Welcome!</h3>
+        <p>Create a new user</p> */}
+        {this.state.error.length > 0 && (
+          <p className="error">{this.state.error}</p>
+        )}
+        <form onSubmit={this.onSubmit}>
+          <input
+            type="username"
+            placeholder="Username"
+            onChange={this.handleChangeUsername}
+            name="username"
+          />
+          <input
+            type="password"
+            placeholder="Password"
+            onChange={this.handleChangePassword}
+            name="password"
+          />
+          <input
+            type="email"
+            placeholder="Email"
+            onChange={this.handleChangeEmail}
+            name="email"
+          />
+          <button className="btn">Create user</button>
+        </form>
+      </div>
+    );
+  }
+}
+
+export default Newuser;
