@@ -15,7 +15,7 @@ User.prototype.save = function (callback) {
 	// Saves the UserObject and retrieves the savedUserObject (The physical one from the DB!)
 	UserDBObject.save(function (err, savedUserObject) {
 		if (err) {
-			console.log("Err: ", err);
+			console.error("Err: ", err);
 			callback(err);
 		}
 		else {
@@ -26,7 +26,7 @@ User.prototype.save = function (callback) {
 }
 
 /* GENERAL/CLASS FUNCTIONS */
-User.findById = (id, callback) {
+User.findById = function (id, callback) {
 	// Find the User Object and Update it, {new: true} means that findByIdAndUpdate will return a updated User Object
 	DatabaseObject.findById(id, function (err, UserObject) {
 		if (err) {
@@ -47,6 +47,16 @@ User.findAll = function (callback) {
 			callback(Users);
 		}
 	});
+}
+User.findOneAndDelete = function (id, callback) {
+	DatabaseObject.findOneAndDelete ({_id: id}, function (err, UserObject) {
+		if (err) {
+			callback(err);
+		}
+		else {
+			callback(UserObject);
+		}
+	})
 }
 
 module.exports = User;

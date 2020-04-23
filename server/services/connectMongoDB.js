@@ -9,7 +9,7 @@ mongodb.prototype.data = {}
 
 mongodb.init = function (callback) {
   // Connect to the database
-  mongoose.connect('mongodb+srv://rw:lZ2SrgosB2mTiZmX@cluster0-lkcv2.mongodb.net/perktree?retryWrites=true&w=majority', function (err, db) {
+  mongoose.connect('mongodb+srv://rw:lZ2SrgosB2mTiZmX@cluster0-lkcv2.mongodb.net/perktree?retryWrites=true&w=majority', { useUnifiedTopology: true, useNewUrlParser: true }, function (err, db) {
 	
 	  if (err) throw err
 	  db.collection('users').find().toArray(function (err, result) {
