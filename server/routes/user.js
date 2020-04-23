@@ -64,8 +64,8 @@ router.delete('/delete/:id', function (req, res, next) {
   })
 });
 
-router.get('/:id', function (req, res, next) {
-  UserModel.findById(req.params.id, function (user) {
+router.get('/find/:username', function (req, res, next) {
+  UserModel.findbyUsername(req.params.username, function (user) {
     res.send(user);
   })
 });

@@ -37,6 +37,17 @@ User.findById = function (id, callback) {
 		}
 	});
 }
+User.findbyUsername = function (username, callback) {
+	// Find the User Object and Update it, {new: true} means that findByIdAndUpdate will return a updated User Object
+	DatabaseObject.find({username: username}, function (err, UserObject) {
+		if (err) {
+			callback(err);
+		}
+		else {
+			callback(UserObject);
+		}
+	});
+}
 
 User.findAll = function (callback) {
 	DatabaseObject.find(function (err, Users) {
