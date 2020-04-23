@@ -13,7 +13,7 @@ const Layout: React.FunctionComponent<Props> = ({children}) => (
             <link rel="stylesheet" href="https://bootswatch.com/4/flatly/bootstrap.min.css"/>
             <link href="../style/styles.scss" rel="stylesheet" />
         </Header>
-        <Navbar loggedin={getUserLoggedin()}/> 
+        <Navbar loggedin={getUserLoggedin() || false}/> 
         <div className="container">
             {children}
         </div>

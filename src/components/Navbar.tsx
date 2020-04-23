@@ -23,8 +23,7 @@ const Navbar: React.FunctionComponent<Props> = ({ loggedin }) => (
 
       <ul className="nav navbar-nav navbar-right">
         {/* Profile */}
-        {
-        loggedin ? (
+        {loggedin ? (
           <li className="profile">
             <Link href="/profile">
               <div>
