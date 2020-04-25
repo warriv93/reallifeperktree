@@ -1,5 +1,5 @@
 import Link from "next/link";
-import profileface from "../assets/vaultboyface.png";
+import profileface from "../assets/profilepic.png";
 
 type Props = {
   loggedin: Boolean;

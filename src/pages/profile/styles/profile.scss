@@ -8,6 +8,8 @@
   img {
     height: 100%;
     width: 10%;
+    float: left;
+    margin-right: 45px;
   }
 
   .card-body {
@@ -15,7 +17,6 @@
     
     .right {
       display: inline-block;
-      margin-left: 45px;
 
       svg.fa-pencil-alt {
         width: 15px;
@@ -37,6 +38,9 @@
         width: 50%;
         margin-top: 15px;
       }
+    }
+    .edit > .delete-user {
+      margin-top: 60px;
     }
     .logout {
       float: right;
