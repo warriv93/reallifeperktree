@@ -83,7 +83,7 @@ export default class profile extends Component<IProps, IState> {
     console.log(event, "submitted", this.state.username, this.state.password);
     event.preventDefault();
     // check if username already exist in database
-
+    
 
     // TODO: change values in database UPDATE FUNCTION
     // update localstorage userdata
