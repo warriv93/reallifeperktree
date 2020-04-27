@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Layout from "../../components/Layout";
-import { getUserLoggedin, getUserData, logout } from "../../api/user";
+import { getUserLoggedin, getUserData, setUserLoggedin } from "../../api/userlocalstorage";
+import { deleteUser, logoutUser } from "../../api/user";
 import Router from "next/router";
 import axios from "axios";
 
@@ -83,45 +84,43 @@ export default class profile extends Component<IProps, IState> {
     console.log(event, "submitted", this.state.username, this.state.password);
     event.preventDefault();
     // check if username already exist in database
-    
-
-    // TODO: change values in database UPDATE FUNCTION
-    // update localstorage userdata
-  }
-
-  updateUserdata () {
-
+    axios
+      .put(`http://127.0.0.1:1337/user/update/${this.state.username}`, {
+        username: this.state.username,
+        password: this.state.password,
+        email: this.state.email,
+        profilePicture: this.state.profilePicture
+      })
+      .then((response) => {
+        if (response) {
+          console.log("Successfully updated user", response.data);
+          // TODO: update localstorage userdata
+          delete response.data.password;
+          delete response.data._id;
+          // set the user data and boolean loggedin into localstorage
+          setUserLoggedin(response.data);
+          // let { username, email, profilePicture } = response.data;
+          // this.setState({
+          //   username,
+          //   email: email && email.length > 0 ? email : "email@email.com",
+          //   profilePicture:
+          //     profilePicture && profilePicture.length > 0
+          //       ? profilePicture
+          //       : profileface,
+          // });
+        }
+        // id not found
+      })
+      .catch((err) => {
+        console.error(err);
+        alert("User not found");
+      });
   }
 
   toggleEditMode(editMode: boolean) {
     this.setState({ editMode: !editMode });
   }
 
-  logout() {
-    axios.get("http://127.0.0.1:1337/user/logout");
-    logout();
-    Router.push("/perktree");
-  }
-
-  deleteUser() {
-    axios.get(`http://127.0.0.1:1337/user/find/${this.state.username}`).then((res) => {
-      let userid = res.data[0]._id;
-      axios.delete(`http://127.0.0.1:1337/user/delete/${userid}`).then((res) => {
-        if (res) {
-          logout();
-          Router.push("/perktree");
-        }
-        // id not found
-      }).catch((err) => {
-        console.error(err);
-        alert("User not found")
-      });
-      //username not found
-    }).catch((err) => {
-      console.error(err);
-      alert("User not found")
-    });
-  }
 
   render() {
     return (
@@ -135,7 +134,7 @@ export default class profile extends Component<IProps, IState> {
                 <div>
                   <button
                     className="btn btn-outline-primary logout"
-                    onClick={() => this.logout()}
+                    onClick={() => logoutUser()}
                   >
                     Logout
                   </button>
@@ -234,7 +233,10 @@ export default class profile extends Component<IProps, IState> {
                     data and you will have no way of logging back in without
                     making a complete new user.
                   </p>
-                  <button onClick={() => this.deleteUser()} className="btn btn-warning">
+                  <button
+                    onClick={() => deleteUser(this.state.username)}
+                    className="btn btn-warning"
+                  >
                     Delete user {this.state.username}
                   </button>
                 </div>

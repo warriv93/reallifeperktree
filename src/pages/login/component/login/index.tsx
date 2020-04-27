@@ -1,9 +1,7 @@
 import * as React from "react";
-import Router from "next/router";
 
-import axios from "axios";
 import "../../styles/index.scss";
-import { setUserLoggedin } from "../../../../api/user";
+import { authenticateUserLogin } from "../../../../api/user";
 
 type Props = {
 };
@@ -51,27 +49,10 @@ class Login extends React.Component<Props, State> {
 
     //if username and password both have strings with value run the authenticateUserLogin function otherwise show error message
     username != "" && password != ""
-      ? this.authenticateUserLogin(username, password)
+      ? authenticateUserLogin(username, password, (res) => {
+        this.setState(res);
+      })
       : this.setState({ emptyPasswordOrUsername: true });
-  }
-
-  // Request a user based on username and password, if anything is found pass it back up to parent
-  authenticateUserLogin(username: string, password: string) {
-    let self = this;
-    axios
-      .post("http://127.0.0.1:1337/user/login", {
-        username: username,
-        password: password,
-      })
-      .then((response) => {
-        // set the user data and boolean loggedin into localstorage
-        setUserLoggedin(response.data);
-        Router.push("/perktree");
-      })
-      .catch(function (error) {
-        console.error(error);
-        self.setState({ wrongPasswordOrUsername: true });
-      });
   }
 
   render() {

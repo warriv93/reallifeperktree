@@ -2,7 +2,7 @@ import * as React from 'react'
 import Navbar from '../components/Navbar';
 import Header from 'next/head';
 import "../styles/globalStyles.scss";
-import {getUserLoggedin} from "../api/user";
+import {getUserLoggedin} from "../api/userlocalstorage";
 
 type Props = {}
 

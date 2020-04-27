@@ -1,65 +1,81 @@
-// MANAGE CACHE VALUE
+import axios from "axios";
+import { setUserLoggedin, logout } from "../api/userlocalstorage";
+import Router from "next/router";
 
-import { reactLocalStorage } from "reactjs-localstorage";
-
-// reactLocalStorage.set("var", true);
-// reactLocalStorage.get("var", true);
-// reactLocalStorage.setObject("var", { test: "test" });
-// reactLocalStorage.getObject("var");
-// reactLocalStorage.remove("var");
-// reactLocalStorage.clear();
-
-// API Guide
-// --- https://www.npmjs.com/package/reactjs-localstorage
-
-// reactLocalStorage.set(key, value)
-// reactLocalStorage.get(key, deafultValue=undefined, silent=true)
-// reactLocalStorage.setObject(key, object)
-// reactLoacStorage.getObject(key, defaultValue={}, silent=true)
-// reactLocalStorage.remove(key)
-// reactLocalStorage.clear()
-
-// silent:
-// true: Will not throw exception instead will return defaultValue
-// false: Will throw exception
-
-
-function setUserLoggedin (user: object): String {
-  let loggedin: String;
-    //check so that it is run on a client
-  if (typeof window !== "undefined") {
-    reactLocalStorage.set("loggedin", true);
-    loggedin = reactLocalStorage.get("loggedin", true);
-    reactLocalStorage.setObject("userdata", user);
-    console.log(loggedin)
-    getUserData(res => console.log(res))
-    
-  }
-  return loggedin
+function authenticateUserLogin(username: string, password: string, callback: any) {
+  axios
+    .post("http://127.0.0.1:1337/user/login", {
+      username: username,
+      password: password,
+    })
+    .then((response) => {
+      // set the user data and boolean loggedin into localstorage
+      setUserLoggedin(response.data);
+      Router.push("/perktree");
+    })
+    .catch(function (error) {
+      console.error(error);
+      callback({ wrongPasswordOrUsername: true })
+    });
 }
 
-function getUserLoggedin(): Boolean {
-  let loggedin: string;
-  if (typeof window !== "undefined") {
-    loggedin = reactLocalStorage.get("loggedin", true)
+// Request a user based on username and password, if anything is found pass it back up to parent
+function createUser(username: string, password: string, email: string, callback: any) {
+    axios
+      .post("http://127.0.0.1:1337/user/new", {
+        username: username,
+        password: password,
+        email: email,
+        profilePicture: "",
+      })
+      .then((response) => {
+        if (response.data.error) {
+            callback({ error: response.data.error });
+        } 
+        else {
+          delete response.data.password;
+          delete response.data._id;
+          // set the user data and boolean loggedin into localstorage
+          setUserLoggedin(response.data);
+          Router.push("/perktree");
+        }
+      })
+      .catch(function (error) {
+        console.error(error);
+        callback({ error: error });
+      });
   }
-  return loggedin == "true" ? true : false || null;
-}
 
-function getUserData(callback) {
-  let userdata;
-  if (typeof window !== "undefined") {
-    userdata = reactLocalStorage.getObject("userdata");
+  function deleteUser(username: string) {
+    axios
+      .get(`http://127.0.0.1:1337/user/find/${username}`)
+      .then((res) => {
+        let userid = res.data[0]._id;
+        axios
+          .delete(`http://127.0.0.1:1337/user/delete/${userid}`)
+          .then((res) => {
+            if (res) {
+              logout();
+              Router.push("/perktree");
+            }
+            // id not found
+          })
+          .catch((err) => {
+            console.error(err);
+            alert("User not found");
+          });
+        //username not found
+      })
+      .catch((err) => {
+        console.error(err);
+        alert("User not found");
+      });
   }
-  callback( userdata || null);
-}
 
-function logout() {
-  if (typeof window !== "undefined") {
-    reactLocalStorage.remove("userdata");
-    reactLocalStorage.set("loggedin", false);
+  function logoutUser() {
+    axios.get("http://127.0.0.1:1337/user/logout");
+    logout();
+    Router.push("/perktree");
   }
-  return "user logged out"
-}
 
-export { setUserLoggedin, getUserLoggedin, getUserData, logout };
+export { authenticateUserLogin, createUser, deleteUser, logoutUser };
