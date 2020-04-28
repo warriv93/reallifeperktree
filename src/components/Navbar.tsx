@@ -38,7 +38,7 @@ const Navbar: React.FunctionComponent<Props> = ({ loggedin }) => (
           <li className="profile">
             <Link href="/login">
               <div>
-                <a className="nav-link"> Login</a>
+                <a className="nav-link"> Login / Create User</a>
               </div>
             </Link>
           </li>

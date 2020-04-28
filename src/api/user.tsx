@@ -32,7 +32,7 @@ function createUser(username: string, password: string, email: string, callback:
       })
       .then((response) => {
         if (response.data.error) {
-            callback({ error: response.data.error });
+          callback({ error: response.data.error });
         } 
         else {
           delete response.data._id;

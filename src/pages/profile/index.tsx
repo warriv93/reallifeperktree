@@ -27,7 +27,17 @@ interface IState {
   error: string;
 }
 
-export default class profile extends Component<IProps, IState> {
+// const [editMode, setEditMode] = useState(false);
+// const [oldUsername, setOldUsername] = useState("");
+// const [username, setUsername] = useState("");
+// const [password, setPassword] = useState("");
+// const [email, setEmail] = useState("");
+// const [profilePicture, setProfilePicture] = useState("");
+// const [hover, setHover] = useState(true);
+// const [error, setError] = useState(null);
+
+
+export default class profile extends Component <IProps, IState> {
   constructor(props: IProps) {
     super(props);
 

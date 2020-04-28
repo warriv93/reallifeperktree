@@ -25,9 +25,10 @@ const perkHeader: React.FunctionComponent<Props> = ({urlperk}) => {
   let perk = determinePerkToShow(urlperk, perkList);
   
   return (
-  <div className="perktree-container perk-header">
-    {perk && <Perk usedInPerkHeader={true} level={perk.level} title={perk.title} image={perk.image} description={perk.description} />}
-  </div>
-);}
+    <div className="perktree-container perk-header">
+      {perk && <Perk usedInPerkHeader={true} level={perk.level} title={perk.title} image={perk.image} description={perk.description} />}
+    </div>
+  );
+}
 
 export default perkHeader;
