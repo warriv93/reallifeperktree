@@ -16,7 +16,7 @@ const Perk = () => {
     return (
       perkList &&
       urlperk &&
-      perkList.map(perk => perk.title == urlperk && <PerkCard />)
+      perkList.map(perk => perk.title == urlperk && <PerkCard key={perk.level} />)
     );
   }
 

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Perklevel from "./PerkLevels";
 import "../styles/perk.scss";
+// import { perkList } from "../../../api";
 
 interface IProps {
   title: string;
@@ -43,6 +44,7 @@ export default class Perk extends Component<IProps, IState> {
     for (let index = 1; index < totalLevels + 1; index++) {
       levels.push(
         <Perklevel
+          key={index}
           usedInPerkHeader={usedInPerkHeader}
           grayscale={currentLevel < index ? "grayscale" : ""}
           image={levelAchievedImage}

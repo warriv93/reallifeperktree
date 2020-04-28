@@ -11,7 +11,8 @@ const Layout: React.FunctionComponent<Props> = ({children}) => (
         <Header>
             <title>Perktree</title>
             <link rel="stylesheet" href="https://bootswatch.com/4/flatly/bootstrap.min.css"/>
-            <link href="../style/styles.scss" rel="stylesheet" />
+            {/* <link href="../styles/globalStyles.scss" rel="stylesheet" /> */}
+            <link rel="shortcut icon" type="image/png" href="/assets/profilepic.png"/>
         </Header>
         <Navbar loggedin={getUserLoggedin() || false}/> 
         <div className="container">
