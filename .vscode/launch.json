@@ -5,11 +5,12 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "name": "Attach to url with files served from ./src",
             "type": "chrome",
-            "request": "attach",
-            "name": "Attach to Chrome",
-            "port": 3000,
-            "webRoot": "${workspaceFolder}"
+            "request": "launch",
+            "url": "http://localhost:3000/profile",
+            "webRoot": "${workspaceFolder}/src",
+            "port": 9222,
         },
      
         {

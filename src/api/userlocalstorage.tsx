@@ -29,13 +29,14 @@ function setUserLoggedin (user: object): String {
   let loggedin: String;
     //check so that it is run on a client
   if (isClient) {
-    loggedin = reactLocalStorage.get("loggedin", true);
     reactLocalStorage.set("loggedin", true);
-    
-    reactLocalStorage.remove("userdata")
+    loggedin = reactLocalStorage.get("loggedin", true);
+
+    //check if userdata is empty, if not remove content and set a new obj
+    let userdata = reactLocalStorage.getObject("userdata")
+    Object.keys(userdata).length !== 0 && userdata.constructor === Object && reactLocalStorage.remove("userdata")
     reactLocalStorage.setObject("userdata", user);
-    console.log(loggedin)
-    getUserData(res => console.log(res))
+    getUserData(res => console.info("LOCALSTORAGE: ", res, "loggedin: ", loggedin))
   }
   return loggedin
 }
@@ -53,7 +54,8 @@ function getUserData(callback) {
   if (isClient) {
     userdata = reactLocalStorage.getObject("userdata");
   }
-  callback( userdata || null);
+  //sometimes it returns as an array, since it might get overwriten / added to in the signin process
+  callback( userdata.length > 0 ? userdata[0] : userdata || null);
 }
 
 function logout() {

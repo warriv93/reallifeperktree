@@ -61,11 +61,9 @@ router.post('/new', function (req, res, next) {
 });
 
 router.put('/update/:username', function (req, res, next) {
-  console.log(req.body);
   
   UserModel.update(req.params.username, req.body, user => {
     console.log("Updated user to database: ", user);
-    //TODO rly send the whole user to frontend?
     res.send(user);
   });
 });

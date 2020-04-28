@@ -101,7 +101,7 @@ export default class profile extends Component<IProps, IState> {
         if (res && res.error) this.setState(res);
         else {
           // go bac kfrom edit view to overview
-          this.setState({ editMode: false });
+          this.state.editMode && this.setState({ editMode: false });
           // remove error text
           this.state.error && this.setState({ error: null });
           //update state
@@ -123,8 +123,6 @@ export default class profile extends Component<IProps, IState> {
 
   render() {
     if (!getUserLoggedin() && isClient) Router.push("/login");
-
-    console.log(this.state);
 
     return (
       <Layout>

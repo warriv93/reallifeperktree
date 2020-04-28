@@ -36,9 +36,6 @@ User.prototype.save = function (callback) {
 			}
 		}
 	});
-
-
-
 }
 
 User.findById = function (id, callback) {
@@ -87,14 +84,19 @@ User.findOneAndDelete = function (id, callback) {
 }
 
 User.update = function (usernameToFind, newUserData, callback) {
+	// newUserData.password = !newUserData.validPassword( newUserData.password) && DatabaseObject.generateHash(newUserData.password)
 	// Mongoose documents track changes. You can modify a document using vanilla JavaScript assignments and Mongoose will convert it into MongoDB update operators.
-	DatabaseObject.findOneAndUpdate({ username: usernameToFind }, newUserData, function (err, user) {
+	DatabaseObject.findOneAndUpdate({ username: usernameToFind }, newUserData, {new: true}, function (err, user) {
 		// res.send(user);
 		if (err) {
 			console.error("Err: ", err);
 			callback(err);
 		}
-		else callback(user);
+		else {
+			// delete user.password;
+			// delete user._id;
+			callback(user);
+		}
 	});
 }
 

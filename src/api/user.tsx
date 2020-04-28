@@ -10,8 +10,10 @@ function authenticateUserLogin(username: string, password: string, callback: any
     })
     .then((response) => {
       // set the user data and boolean loggedin into localstorage
-      setUserLoggedin(response.data);
-      Router.push("/perktree");
+      getUserbyUsername(response.data.username, (res) => {
+        setUserLoggedin(res.data);
+        Router.push("/perktree");
+      })
     })
     .catch(function (error) {
       console.error(error);
@@ -42,6 +44,19 @@ function createUser(username: string, password: string, email: string, callback:
       .catch(function (error) {
         console.error(error);
         callback({ error: error });
+      });
+  }
+
+  function getUserbyUsername(username: string, callback) {
+    axios
+      .get(`http://127.0.0.1:1337/user/find/${username}`)
+      .then((res) => {
+        callback(res)
+        //username not found
+      })
+      .catch((err) => {
+        console.error(err);
+        alert("User not found");
       });
   }
 
@@ -92,16 +107,13 @@ function createUser(username: string, password: string, email: string, callback:
           if(response && response.data.name == "MongoError" && response.data.code == 11000) {
             callback({ error: "Username already taken" })
           }
-          else if(response && response.data.error) {
+          else if(response && response.data.length <= 0 || response && response.data.error) {
             callback({ error: "Error" })
             logoutUser()
           }
           else {
-            // TODO: update localstorage userdata
-            delete response.data._id;
-            response.data.username = username
+            
             console.log("Successfully updated user", response.data);
-
             // set the user data and boolean loggedin into localstorage
             setUserLoggedin(response.data);
             callback({ data: response.data })
@@ -114,4 +126,4 @@ function createUser(username: string, password: string, email: string, callback:
       });
   }
 
-export { authenticateUserLogin, createUser, deleteUser, logoutUser, updateUser };
+export { authenticateUserLogin, createUser, deleteUser, logoutUser, updateUser, getUserbyUsername };

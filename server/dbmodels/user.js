@@ -24,25 +24,22 @@ User.methods.validPassword = function (password) {
 };
 
 User.pre('save', function (next) {
-	if (!this.password) {
-		return;
-	}
-	this.password = this.generateHash(this.password);
+	if (!this.password) return;
+	this.password = bcrypt.hashSync(this.password, bcrypt.genSaltSync(8), null);
 	next();
 });
 
-User.pre('update', function (next) {
+User.pre('findOneAndUpdate', function (next) {
 	// if update set 
-	if (this._update.$set != null) {		
+	if (this._update != null) {		
 		//check if password is to be updated
-		if (!this._update.$set.password) {
-			//console.log ("Not hashing ", this._update.$set.password);
+		if (!this._update.password) {
+			// console.log ("Not hashing ", this._update.password);
 		}
 		else {
-			this._update.$set.password = this.generateHash(this._update.$set.password);
+			this._update.password = bcrypt.hashSync(this._update.password, bcrypt.genSaltSync(8), null);
 		}
 	}
-
 	next();
 });
 
