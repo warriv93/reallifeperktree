@@ -36,9 +36,9 @@ User.prototype.save = function (callback) {
 			}
 		}
 	});
-		
 
-	
+
+
 }
 
 User.findById = function (id, callback) {
@@ -88,37 +88,14 @@ User.findOneAndDelete = function (id, callback) {
 
 User.update = function (usernameToFind, newUserData, callback) {
 	// Mongoose documents track changes. You can modify a document using vanilla JavaScript assignments and Mongoose will convert it into MongoDB update operators.
-	DatabaseObject.find({ username: usernameToFind }, function (err, res) {
+	DatabaseObject.findOneAndUpdate({ username: usernameToFind }, newUserData, function (err, user) {
+		// res.send(user);
 		if (err) {
+			console.error("Err: ", err);
 			callback(err);
 		}
-		else {
-			if (res.length <= 0) {
-				callback({ error: "Username does not exist" })
-			}
-			else {
-				let UserObject = res[0];
-				UserObject = newUserData;
-
-				var UserDBObject = new DatabaseObject(UserObject);
-
-				// // Mongoose sends a `updateOne({ _id: doc._id }, { $set: { name: 'foo' } })`
-				// // to MongoDB.
-				// // Saves the UserObject and retrieves the savedUserObject (The physical one from the DB!)
-				UserDBObject.save(function (err, savedUserObject) {
-					if (err) {
-						console.error("Err: ", err);
-						callback(err);
-					}
-					else {
-						// Returns the savedUserObject through a Callback
-						callback(savedUserObject);
-					}
-				});
-			}
-		}
+		else callback(user);
 	});
-	
 }
 
 module.exports = User;

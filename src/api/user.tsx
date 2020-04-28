@@ -33,7 +33,6 @@ function createUser(username: string, password: string, email: string, callback:
             callback({ error: response.data.error });
         } 
         else {
-          delete response.data.password;
           delete response.data._id;
           // set the user data and boolean loggedin into localstorage
           setUserLoggedin(response.data);
@@ -78,4 +77,41 @@ function createUser(username: string, password: string, email: string, callback:
     Router.push("/perktree");
   }
 
-export { authenticateUserLogin, createUser, deleteUser, logoutUser };
+  function updateUser(event: any, oldUsername: string, username: string, password: string, email:string, profilePicture: string, callback: any) {
+    console.log("before req: ", oldUsername, username, password);
+    event.preventDefault();
+    // check if username already exist in database
+    axios
+      .put(`http://127.0.0.1:1337/user/update/${oldUsername}`, {
+        username: username,
+        password: password,
+        email: email,
+        profilePicture: profilePicture
+      })
+      .then((response) => {
+          if(response && response.data.name == "MongoError" && response.data.code == 11000) {
+            callback({ error: "Username already taken" })
+          }
+          else if(response && response.data.error) {
+            callback({ error: "Error" })
+            logoutUser()
+          }
+          else {
+            // TODO: update localstorage userdata
+            delete response.data._id;
+            response.data.username = username
+            console.log("Successfully updated user", response.data);
+
+            // set the user data and boolean loggedin into localstorage
+            setUserLoggedin(response.data);
+            callback({ data: response.data })
+          }
+        // id not found
+      })
+      .catch((err) => {
+        console.error(err);
+        callback({ error: err })
+      });
+  }
+
+export { authenticateUserLogin, createUser, deleteUser, logoutUser, updateUser };

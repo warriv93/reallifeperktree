@@ -22,16 +22,17 @@ import { reactLocalStorage } from "reactjs-localstorage";
 // silent:
 // true: Will not throw exception instead will return defaultValue
 // false: Will throw exception
+const isClient = typeof document !== 'undefined'
 
 
 function setUserLoggedin (user: object): String {
   let loggedin: String;
     //check so that it is run on a client
-  if (typeof window !== "undefined") {
+  if (isClient) {
     loggedin = reactLocalStorage.get("loggedin", true);
-    console.log(loggedin)
     reactLocalStorage.set("loggedin", true);
-
+    
+    reactLocalStorage.remove("userdata")
     reactLocalStorage.setObject("userdata", user);
     console.log(loggedin)
     getUserData(res => console.log(res))
@@ -41,7 +42,7 @@ function setUserLoggedin (user: object): String {
 
 function getUserLoggedin(): Boolean {
   let loggedin: string;
-  if (typeof window !== "undefined") {
+  if (isClient) {
     loggedin = reactLocalStorage.get("loggedin", true)
   }
   return loggedin == "true" ? true : false || null;
@@ -49,14 +50,14 @@ function getUserLoggedin(): Boolean {
 
 function getUserData(callback) {
   let userdata;
-  if (typeof window !== "undefined") {
+  if (isClient) {
     userdata = reactLocalStorage.getObject("userdata");
   }
   callback( userdata || null);
 }
 
 function logout() {
-  if (typeof window !== "undefined") {
+  if (isClient) {
     reactLocalStorage.remove("userdata");
     reactLocalStorage.set("loggedin", false);
   }

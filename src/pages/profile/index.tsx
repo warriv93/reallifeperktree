@@ -1,11 +1,9 @@
 import React, { Component } from "react";
 import Layout from "../../components/Layout";
-import { getUserLoggedin, getUserData, setUserLoggedin } from "../../api/userlocalstorage";
-import { deleteUser, logoutUser } from "../../api/user";
+import { getUserLoggedin, getUserData } from "../../api/userlocalstorage";
+import { deleteUser, logoutUser, updateUser } from "../../api/user";
 import Router from "next/router";
-import axios from "axios";
 
-// import { fab } from '@fortawesome/free-brands-svg-icons'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { fab } from "@fortawesome/free-brands-svg-icons";
@@ -14,16 +12,19 @@ library.add(fab, faPencilAlt);
 
 import profileface from "../../assets/profilepic.png";
 import "./styles/profile.scss";
+const isClient = typeof document !== "undefined";
 
 interface IProps {}
 
 interface IState {
   editMode: boolean;
+  oldUsername: string;
   username: string;
   password: string;
   email: string;
   profilePicture: string;
   hover: boolean;
+  error: string;
 }
 
 export default class profile extends Component<IProps, IState> {
@@ -32,17 +33,18 @@ export default class profile extends Component<IProps, IState> {
 
     this.state = {
       editMode: false,
-      username: "____Username Placeholder____",
+      oldUsername: "",
+      username: "",
       email: "",
       profilePicture: "",
-      password: "******************",
+      password: "",
       hover: true,
+      error: null,
     };
 
     this.handleUsernameChange = this.handleUsernameChange.bind(this);
     this.handlePasswordChange = this.handlePasswordChange.bind(this);
     this.handleEmailChange = this.handleEmailChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
     this.handleHover = this.handleHover.bind(this);
   }
 
@@ -52,10 +54,12 @@ export default class profile extends Component<IProps, IState> {
     else {
       // get user obj from localstorage
       getUserData((res) => {
-        let { username, email, profilePicture } = res;
+        let { username, email, profilePicture, password } = res;
         this.setState({
           username,
-          email: email && email.length > 0 ? email : "email@email.com",
+          password,
+          oldUsername: username,
+          email,
           profilePicture:
             profilePicture && profilePicture.length > 0
               ? profilePicture
@@ -68,6 +72,7 @@ export default class profile extends Component<IProps, IState> {
   handleUsernameChange(event: any) {
     this.setState({ username: event.target.value });
   }
+
   handleEmailChange(event: any) {
     this.setState({ email: event.target.value });
   }
@@ -80,49 +85,47 @@ export default class profile extends Component<IProps, IState> {
     this.setState({ hover: !hover });
   }
 
-  handleSubmit(event: any) {
-    console.log(event, "submitted", this.state.username, this.state.password);
-    event.preventDefault();
-    // check if username already exist in database
-    axios
-      .put(`http://127.0.0.1:1337/user/update/${this.state.username}`, {
-        username: this.state.username,
-        password: this.state.password,
-        email: this.state.email,
-        profilePicture: this.state.profilePicture
-      })
-      .then((response) => {
-        if (response) {
-          console.log("Successfully updated user", response.data);
-          // TODO: update localstorage userdata
-          delete response.data.password;
-          delete response.data._id;
-          // set the user data and boolean loggedin into localstorage
-          setUserLoggedin(response.data);
-          // let { username, email, profilePicture } = response.data;
-          // this.setState({
-          //   username,
-          //   email: email && email.length > 0 ? email : "email@email.com",
-          //   profilePicture:
-          //     profilePicture && profilePicture.length > 0
-          //       ? profilePicture
-          //       : profileface,
-          // });
-        }
-        // id not found
-      })
-      .catch((err) => {
-        console.error(err);
-        alert("User not found");
-      });
-  }
-
   toggleEditMode(editMode: boolean) {
     this.setState({ editMode: !editMode });
   }
 
+  updateUserData(e: any) {
+    updateUser(
+      e,
+      this.state.oldUsername,
+      this.state.username,
+      this.state.password,
+      this.state.email,
+      this.state.profilePicture,
+      (res) => {
+        if (res && res.error) this.setState(res);
+        else {
+          // go bac kfrom edit view to overview
+          this.setState({ editMode: false });
+          // remove error text
+          this.state.error && this.setState({ error: null });
+          //update state
+          let { username, email, profilePicture, password } = res.data;
+          this.setState({
+            username,
+            password,
+            oldUsername: username,
+            email,
+            profilePicture:
+              profilePicture && profilePicture.length > 0
+                ? profilePicture
+                : profileface,
+          });
+        }
+      }
+    );
+  }
 
   render() {
+    if (!getUserLoggedin() && isClient) Router.push("/login");
+
+    console.log(this.state);
+
     return (
       <Layout>
         <div className="profile-container card border-primary mb-3">
@@ -155,10 +158,10 @@ export default class profile extends Component<IProps, IState> {
                     onMouseEnter={() => this.handleHover(this.state.hover)}
                     onMouseOut={() => this.handleHover(this.state.hover)}
                   >
-                    {this.state.password}
+                    ******************
                     {this.state.hover && <FontAwesomeIcon icon="pencil-alt" />}
                   </p>
-                  {this.state.email && this.state.email != "email@email.com" ? (
+                  {this.state.email && this.state.email != "" ? (
                     <p
                       className="card-text"
                       onClick={() => this.toggleEditMode(this.state.editMode)}
@@ -187,6 +190,9 @@ export default class profile extends Component<IProps, IState> {
               <div className="edit">
                 <div className="right">
                   <form>
+                    {this.state.error && (
+                      <p className="error">{this.state.error}</p>
+                    )}
                     <label htmlFor="username">Username</label>
                     <input
                       className="card-text form-control mr-sm-2"
@@ -196,22 +202,23 @@ export default class profile extends Component<IProps, IState> {
                       defaultValue={this.state.username}
                       autoFocus
                     />
-                    <label htmlFor="email">Email</label>
-                    <input
-                      className="card-text form-control mr-sm-2"
-                      type="text"
-                      name="email"
-                      onChange={this.handleEmailChange}
-                      defaultValue={this.state.email}
-                      autoFocus
-                    />
                     <label htmlFor="password">Password</label>
                     <input
                       className="card-text form-control mr-sm-2"
                       type="text"
                       name="password"
                       onChange={this.handlePasswordChange}
-                      defaultValue={this.state.password}
+                      placeholder={"******************"}
+                    />
+                    <label htmlFor="email">Email</label>
+                    <input
+                      className="card-text form-control mr-sm-2"
+                      type="text"
+                      name="email"
+                      onChange={this.handleEmailChange}
+                      placeholder={"email@email.com"}
+                      defaultValue={this.state.email}
+                      autoFocus
                     />
                     <input
                       className="btn btn-danger"
@@ -222,6 +229,7 @@ export default class profile extends Component<IProps, IState> {
                     <input
                       className="btn btn-success"
                       type="submit"
+                      onClick={(e) => this.updateUserData(e)}
                       value="Update"
                     />
                   </form>
