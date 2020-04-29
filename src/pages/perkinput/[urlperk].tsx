@@ -9,11 +9,9 @@ const PerkInput = () => {
    
   return (
     <Layout>
+      <PerkHeader urlperk={urlperk}/>
       <div className="perk-cards-container">
-        <PerkHeader urlperk={urlperk}/>
         <InputPerkData urlperk={urlperk}/>
-
-        <p>{urlperk}</p>
       </div>
       {/* TODO add info items containers */}
     </Layout>

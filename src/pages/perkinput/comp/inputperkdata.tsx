@@ -1,4 +1,4 @@
-import React, { Fragment, Component } from "react";
+import React, { Fragment, useState, useEffect } from "react";
 // import axios from "axios";
 import { perkList } from "../../../api";
 import { Perk as IPerk, QuestionType } from "../../../utils/types";
@@ -7,41 +7,22 @@ interface Props {
   urlperk: string | string[];
   perk?: IPerk;
 }
-interface State {
-  urlperk: string | string[];
-  perk?: IPerk;
-}
 
-class inputperkdata extends Component<State, Props> {
-  constructor(props: Props) {
-    super(props);
+export default function inputperkdata (props: Props) {
+  let originPerk: IPerk = null;
+  const [urlperk] = useState(props.urlperk)
+  const [perk, setPerk] = useState(originPerk)
 
-    this.state = {
-      urlperk: this.props.urlperk,
-      perk: null
-    };
-  }
 
-  componentDidMount() {
-    this.setState({
-      perk: this.determinePerk(this.state.urlperk, perkList)
-    });
-  }
+  useEffect(() => {
+    // check values and type of urltitle 
+    // iterate over perkList, if perk title = urlperk setPerk
+    perkList && urlperk && typeof urlperk === "string" && perkList.map(perk => perk.title == urlperk && setPerk(perk))
+  }, [perk, urlperk])
 
-  determinePerk(urlperk: string | string[], perkList: Array<IPerk>) {
-    return (
-      perkList &&
-      urlperk &&
-      // check type of urltitle
-      typeof urlperk === "string" &&
-      perkList.map(perk => perk.title == urlperk && perk)[0]
-    );
-  }
-
-  typeOfQuestion(type: QuestionType) {
+  function typeOfQuestion(type: QuestionType) {
     switch (type) {
       case 0:
-        
         break;
     
       default:
@@ -51,28 +32,26 @@ class inputperkdata extends Component<State, Props> {
           </div>
           )
     }
-   
   }
 
-  render() {
-    let { perk } = this.state;
-    console.log(perk);
-
-    return (
-      <Fragment>
-        {perk &&
-          perk.questions.map(question => (
+  return (
+    <Fragment>
+      {perk &&
+        perk.questions.map(question => {
+          console.log(question)
+          
+          return (
             <div className="perk-card">
               <div className="left">
                 <h3>{question.paragraph}</h3>
-                {this.typeOfQuestion(QuestionType["scale1-10"])}
+                {typeOfQuestion(QuestionType["scale1-10"])}
                 <button className="btn btn-outline-danger">Previous</button>
                 <button className="btn btn-outline-success">Next</button>
               </div>
             </div>
-          ))}
-      </Fragment>
-    );
-  }
+          )
+        })
+      }
+    </Fragment>
+  );
 }
-export default inputperkdata;

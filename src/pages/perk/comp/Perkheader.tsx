@@ -13,14 +13,13 @@ interface Props {
 export default function perkHeader ({urlperk}: Props) {
   let originPerk: IPerk
   const [perk, setPerk] = useState(originPerk)
-  // let perk = determinePerkToShow(urlperk, perkList);
 
   useEffect(() => {
     // check values and type of urltitle 
     // iterate over perkList, if perk title = urlperk setPerk
     perkList && urlperk && typeof urlperk === "string" && perkList.map(perk => perk.title == urlperk && setPerk(perk))
     // only when urlperk changes, run as componentDidUpdate
-  }, [urlperk])
+  }, [urlperk, perk])
   
   return (
     <div className="perktree-container perk-header">
