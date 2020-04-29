@@ -19,8 +19,6 @@ export default function Perk (props: IProps) {
   const [description] = useState(props.description);
 
   function createPerkLevels() {
-    console.log("usedInPerkHeader: ",usedInPerkHeader);
-    
     let levels = [];
     let totalLevels = 5;
 

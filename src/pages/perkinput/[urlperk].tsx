@@ -6,8 +6,6 @@ import InputPerkData from "./comp/inputperkdata";
 const PerkInput = () => {
   //fetch param from url
   const { urlperk } = useRouter().query;
-  
- 
    
   return (
     <Layout>

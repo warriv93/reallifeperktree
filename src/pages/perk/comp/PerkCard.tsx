@@ -1,4 +1,4 @@
-import React, { Fragment, Component } from "react";
+import React, { Fragment, useState, useEffect } from "react";
 import axios from "axios";
 
 interface Props {
@@ -8,37 +8,16 @@ interface Props {
     icon_url: string
   };
 }
-interface State {
-  data?: {
-    value: string
-    url: string
-    icon_url: string
-  };}
 
-class PerkCard extends Component<State, Props> {
-  constructor (props: Props){
-    super(props)
+export default function PerkCard (props: Props) {
+  const [data, SetData] = useState(props.data)
 
-    this.state = {
-      data: null
-    }
-  }
-
- componentDidMount() {
+  useEffect(() => {
     axios
       .get("https://api.chucknorris.io/jokes/random")
-      .then(response => {
-        // handle success
-        this.setState({data: response.data}) 
-      })
-      .catch(error => {
-        // handle error
-        console.log(error);
-      });
-  }
-
-render () {
-  let {data} = this.state;
+      .then(response => SetData(response.data))
+      .catch(error => console.log(error));
+  }, [!data])
 
   return (
     <Fragment>
@@ -54,9 +33,6 @@ render () {
         </div>
       </a>
       )}
-      
     </Fragment>
   );
 }
-}
-export default PerkCard;
