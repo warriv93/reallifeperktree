@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import "../../styles/index.scss";
 import { createUser } from "../../../../api/user";
 
-function Newuser (props) {
+export default function Newuser (props) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
@@ -47,6 +47,7 @@ function Newuser (props) {
           placeholder="Username"
           onChange={handleChangeUsername}
           name="username"
+          autoFocus
         />
         <input
           type="password"
@@ -65,5 +66,3 @@ function Newuser (props) {
     </div>
   );
 }
-
-export default Newuser;

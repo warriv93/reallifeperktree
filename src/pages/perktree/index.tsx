@@ -12,7 +12,6 @@ interface IProps {}
 interface IState {
   perkList: Array<IPerk>;
 }
-
 export default class perktree extends Component<IProps, IState> {
   constructor(props: IProps) {
     super(props);

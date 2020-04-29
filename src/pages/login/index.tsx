@@ -9,8 +9,7 @@ function loginContainer (props) {
   const [showCreateNew, setCreateNew] = useState(false);
   const [showLogin, setShowLogin] = useState(true);
   let loginClass, createnewClass = " ";
-
-
+  //determine css active for create user or login top buttons
   showCreateNew ? createnewClass = "active" : loginClass = "active";
     
   return (

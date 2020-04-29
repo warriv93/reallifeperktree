@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { useState, useEffect } from "react";
 import Layout from "../../components/Layout";
 import { getUserLoggedin, getUserData } from "../../api/userlocalstorage";
 import { deleteUser, logoutUser, updateUser } from "../../api/user";
@@ -14,253 +14,213 @@ import profileface from "../../assets/profilepic.png";
 import "./styles/profile.scss";
 const isClient = typeof document !== "undefined";
 
-interface IProps {}
+export default function profile (props) {
+  const [editMode, setEditMode] = useState(false);
+  const [oldUsername, setOldUsername] = useState("");
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("");
+  const [profilePicture, setProfilePicture] = useState("");
+  const [hover, setHover] = useState(true);
+  const [error, setError] = useState(null);
 
-interface IState {
-  editMode: boolean;
-  oldUsername: string;
-  username: string;
-  password: string;
-  email: string;
-  profilePicture: string;
-  hover: boolean;
-  error: string;
-}
-
-// const [editMode, setEditMode] = useState(false);
-// const [oldUsername, setOldUsername] = useState("");
-// const [username, setUsername] = useState("");
-// const [password, setPassword] = useState("");
-// const [email, setEmail] = useState("");
-// const [profilePicture, setProfilePicture] = useState("");
-// const [hover, setHover] = useState(true);
-// const [error, setError] = useState(null);
-
-
-export default class profile extends Component <IProps, IState> {
-  constructor(props: IProps) {
-    super(props);
-
-    this.state = {
-      editMode: false,
-      oldUsername: "",
-      username: "",
-      email: "",
-      profilePicture: "",
-      password: "",
-      hover: true,
-      error: null,
-    };
-
-    this.handleUsernameChange = this.handleUsernameChange.bind(this);
-    this.handlePasswordChange = this.handlePasswordChange.bind(this);
-    this.handleEmailChange = this.handleEmailChange.bind(this);
-    this.handleHover = this.handleHover.bind(this);
-  }
-
-  componentDidMount() {
+  // https://reactjs.org/docs/hooks-effect.html
+  // handles component mount and update
+  useEffect(() => {
     //if user is not logged in redirect
-    if (!getUserLoggedin()) Router.push("/login");
+    if (!getUserLoggedin() && isClient) Router.push("/login");
     else {
       // get user obj from localstorage
       getUserData((res) => {
         let { username, email, profilePicture, password } = res;
-        this.setState({
-          username,
-          password,
-          oldUsername: username,
-          email,
-          profilePicture:
-            profilePicture && profilePicture.length > 0
-              ? profilePicture
-              : profileface,
-        });
+        setUsername(username)
+        setPassword(password)
+        setOldUsername(username)
+        setEmail(email)
+        setProfilePicture(profilePicture && profilePicture.length > 0 ? profilePicture : profileface)
       });
     }
+    return () => {
+      // ComponentDidUnmount code here
+    }
+    //condition for when the update should run
+    // in this case only if userloggin variable changes (if user logout for example)
+  }, [getUserLoggedin])
+  
+  function handleUsernameChange(event) {
+    setUsername(event.target.value)
   }
 
-  handleUsernameChange(event: any) {
-    this.setState({ username: event.target.value });
+  function handleEmailChange(event) {
+    setEmail(event.target.value)
   }
 
-  handleEmailChange(event: any) {
-    this.setState({ email: event.target.value });
+  function handlePasswordChange(event) {
+    setPassword(event.target.value)
   }
 
-  handlePasswordChange(event: any) {
-    this.setState({ password: event.target.value });
+  function handleHover() {
+    setHover(!hover)
   }
 
-  handleHover(hover: boolean) {
-    this.setState({ hover: !hover });
+  function toggleEditMode() {
+    setEditMode(!editMode)
   }
 
-  toggleEditMode(editMode: boolean) {
-    this.setState({ editMode: !editMode });
-  }
-
-  updateUserData(e: any) {
+  function updateUserData(e) {
+    e.preventDefault();
+    console.log("before bef req: ", oldUsername, username, password);
+    
     updateUser(
-      e,
-      this.state.oldUsername,
-      this.state.username,
-      this.state.password,
-      this.state.email,
-      this.state.profilePicture,
+      oldUsername,
+      username,
+      password,
+      email,
+      profilePicture,
       (res) => {
-        if (res && res.error) this.setState(res);
+        if (res && res.error) setError(res.error);
         else {
           // go bac kfrom edit view to overview
-          this.state.editMode && this.setState({ editMode: false });
+          editMode && setEditMode(false)
           // remove error text
-          this.state.error && this.setState({ error: null });
+          error && setError(null);
           //update state
           let { username, email, profilePicture, password } = res.data;
-          this.setState({
-            username,
-            password,
-            oldUsername: username,
-            email,
-            profilePicture:
-              profilePicture && profilePicture.length > 0
-                ? profilePicture
-                : profileface,
-          });
+          setUsername(username)
+          setPassword(password)
+          setOldUsername(username)
+          setEmail(email)
+          setProfilePicture(profilePicture && profilePicture.length > 0 ? profilePicture : profileface)
         }
       }
     );
   }
 
-  render() {
-    if (!getUserLoggedin() && isClient) Router.push("/login");
+  return (
+    <Layout>
+      <div className="profile-container card border-primary mb-3">
+        <div className="card-body">
+          {!editMode ? (
+            <div>
+              <img src={profileface} alt="Profilememes" />
 
-    return (
-      <Layout>
-        <div className="profile-container card border-primary mb-3">
-          <div className="card-body">
-            {!this.state.editMode ? (
               <div>
-                <img src={profileface} alt="Profilememes" />
-
-                <div>
-                  <button
-                    className="btn btn-outline-primary logout"
-                    onClick={() => logoutUser()}
-                  >
-                    Logout
-                  </button>
-                </div>
-                <div className="right">
-                  <h4
-                    className="card-title"
-                    onClick={() => this.toggleEditMode(this.state.editMode)}
-                    onMouseEnter={() => this.handleHover(this.state.hover)}
-                    onMouseOut={() => this.handleHover(this.state.hover)}
-                  >
-                    {this.state.username}
-                    {this.state.hover && <FontAwesomeIcon icon="pencil-alt" />}
-                  </h4>
+                <button
+                  className="btn btn-outline-primary logout"
+                  onClick={logoutUser}
+                >
+                  Logout
+                </button>
+              </div>
+              <div className="right">
+                <h4
+                  className="card-title"
+                  onClick={toggleEditMode}
+                  onMouseEnter={handleHover}
+                  onMouseOut={handleHover}
+                >
+                  {username}
+                  {hover && <FontAwesomeIcon icon="pencil-alt" />}
+                </h4>
+                <p
+                  className="card-text"
+                  onClick={toggleEditMode}
+                  onMouseEnter={handleHover}
+                  onMouseOut={handleHover}
+                >
+                  ******************
+                  {hover && <FontAwesomeIcon icon="pencil-alt" />}
+                </p>
+                {email && email != "" ? (
                   <p
                     className="card-text"
-                    onClick={() => this.toggleEditMode(this.state.editMode)}
-                    onMouseEnter={() => this.handleHover(this.state.hover)}
-                    onMouseOut={() => this.handleHover(this.state.hover)}
+                    onClick={toggleEditMode}
+                    onMouseEnter={handleHover}
+                    onMouseOut={handleHover}
                   >
-                    ******************
-                    {this.state.hover && <FontAwesomeIcon icon="pencil-alt" />}
-                  </p>
-                  {this.state.email && this.state.email != "" ? (
-                    <p
-                      className="card-text"
-                      onClick={() => this.toggleEditMode(this.state.editMode)}
-                      onMouseEnter={() => this.handleHover(this.state.hover)}
-                      onMouseOut={() => this.handleHover(this.state.hover)}
-                    >
-                      {this.state.email}
-                      {this.state.hover && (
-                        <FontAwesomeIcon icon="pencil-alt" />
-                      )}
-                    </p>
-                  ) : (
-                    <p
-                      className="card-text"
-                      onClick={() => this.toggleEditMode(this.state.editMode)}
-                      onMouseEnter={() => this.handleHover(this.state.hover)}
-                      onMouseOut={() => this.handleHover(this.state.hover)}
-                    >
-                      Set an email now and gain glory and fortunes
+                    {email}
+                    {hover && (
                       <FontAwesomeIcon icon="pencil-alt" />
-                    </p>
-                  )}
-                </div>
-              </div>
-            ) : (
-              <div className="edit">
-                <div className="right">
-                  <form>
-                    {this.state.error && (
-                      <p className="error">{this.state.error}</p>
                     )}
-                    <label htmlFor="username">Username</label>
-                    <input
-                      className="card-text form-control mr-sm-2"
-                      type="text"
-                      name="username"
-                      onChange={this.handleUsernameChange}
-                      defaultValue={this.state.username}
-                      autoFocus
-                    />
-                    <label htmlFor="password">Password</label>
-                    <input
-                      className="card-text form-control mr-sm-2"
-                      type="text"
-                      name="password"
-                      onChange={this.handlePasswordChange}
-                      placeholder={"******************"}
-                    />
-                    <label htmlFor="email">Email</label>
-                    <input
-                      className="card-text form-control mr-sm-2"
-                      type="text"
-                      name="email"
-                      onChange={this.handleEmailChange}
-                      placeholder={"email@email.com"}
-                      defaultValue={this.state.email}
-                      autoFocus
-                    />
-                    <input
-                      className="btn btn-danger"
-                      type="cancel"
-                      onClick={() => this.toggleEditMode(this.state.editMode)}
-                      value="Cancel"
-                    />
-                    <input
-                      className="btn btn-success"
-                      type="submit"
-                      onClick={(e) => this.updateUserData(e)}
-                      value="Update"
-                    />
-                  </form>
-                </div>
-                <div className="delete-user">
-                  <h4>Delete user</h4>
-                  <p>
-                    By deleting your user you remove it completely with all its
-                    data and you will have no way of logging back in without
-                    making a complete new user.
                   </p>
-                  <button
-                    onClick={() => deleteUser(this.state.username)}
-                    className="btn btn-warning"
+                ) : (
+                  <p
+                    className="card-text"
+                    onClick={toggleEditMode}
+                    onMouseEnter={handleHover}
+                    onMouseOut={handleHover}
                   >
-                    Delete user {this.state.username}
-                  </button>
-                </div>
+                    Set an email now and gain glory and fortunes
+                    <FontAwesomeIcon icon="pencil-alt" />
+                  </p>
+                )}
               </div>
-            )}
-          </div>
+            </div>
+          ) : (
+            <div className="edit">
+              <div className="right">
+                <form>
+                  {error && (
+                    <p className="error">{error}</p>
+                  )}
+                  <label htmlFor="username">Username</label>
+                  <input
+                    className="card-text form-control mr-sm-2"
+                    type="text"
+                    name="username"
+                    onChange={handleUsernameChange}
+                    defaultValue={username}
+                  />
+                  <label htmlFor="password">Password</label>
+                  <input
+                    className="card-text form-control mr-sm-2"
+                    type="text"
+                    name="password"
+                    onChange={handlePasswordChange}
+                    placeholder={"******************"}
+                  />
+                  <label htmlFor="email">Email</label>
+                  <input
+                    className="card-text form-control mr-sm-2"
+                    type="text"
+                    name="email"
+                    onChange={handleEmailChange}
+                    placeholder={"email@email.com"}
+                    defaultValue={email}
+                    autoFocus
+                  />
+                  <input
+                    className="btn btn-danger"
+                    type="cancel"
+                    onClick={toggleEditMode}
+                    value="Cancel"
+                  />
+                  <input
+                    className="btn btn-success"
+                    type="submit"
+                    onClick={updateUserData}
+                    value="Update"
+                  />
+                </form>
+              </div>
+              <div className="delete-user">
+                <h4>Delete user</h4>
+                <p>
+                  By deleting your user you remove it completely with all its
+                  data and you will have no way of logging back in without
+                  making a complete new user.
+                </p>
+                <button
+                  onClick={() => deleteUser(username)}
+                  className="btn btn-warning"
+                >
+                  Delete user {username}
+                </button>
+              </div>
+            </div>
+          )}
         </div>
-      </Layout>
-    );
-  }
+      </div>
+    </Layout>
+  );
 }

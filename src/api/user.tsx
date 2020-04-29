@@ -92,9 +92,8 @@ function createUser(username: string, password: string, email: string, callback:
     Router.push("/perktree");
   }
 
-  function updateUser(event: any, oldUsername: string, username: string, password: string, email:string, profilePicture: string, callback: any) {
+  function updateUser(oldUsername: string, username: string, password: string, email:string, profilePicture: string, callback: any) {
     console.log("before req: ", oldUsername, username, password);
-    event.preventDefault();
     // check if username already exist in database
     axios
       .put(`http://127.0.0.1:1337/user/update/${oldUsername}`, {

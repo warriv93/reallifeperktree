@@ -3,7 +3,7 @@ import React, {useState} from "react";
 import "../../styles/index.scss";
 import { authenticateUserLogin } from "../../../../api/user";
 
-function Login (props) {
+export default function Login (props) {
   const [wrongPasswordOrUsername, setWrongPasswordOrUsername] = useState(false);
   const [emptyPasswordOrUsername, setEmptyPasswordOrUsername] = useState(false);
   const [username, setUsername] = useState("");
@@ -52,6 +52,7 @@ function Login (props) {
           name="username"
           onChange={handleChangeUsername}
           value={username}
+          autoFocus
         />
         <input
           type="password"
@@ -65,5 +66,3 @@ function Login (props) {
     </div>
   );
 }
-
-export default Login;
