@@ -8,11 +8,13 @@ type Props = {
   grayscale: string;
   title: string;
   usedInPerkHeader: boolean;
+  currentLevel: number;
 };
 
-const PerkLevel: React.FunctionComponent<Props> = ({grayscale, image, title, usedInPerkHeader}) => (
+const PerkLevel: React.FunctionComponent<Props> = ({grayscale, image, title, usedInPerkHeader, currentLevel}) => (
   <li className="perk-level tooltip">
-    <Link href={usedInPerkHeader ? `/perkinput/${title}` : `/perk/${title}`}>
+    {/* If perklevels are in the header or the user has not pregressed the perk -> perkinput, otherwise perk learn more */}
+    <Link href={usedInPerkHeader || currentLevel <= 0 ? `/perkinput/${title}` : `/perk/${title}`}>
       <img src={image} alt="perk-image" className={`perk-image ${grayscale}`}  />
     </Link>
     {/* if the perk level is not yet aquired show a tooltip on hover */}

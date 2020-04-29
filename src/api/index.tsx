@@ -13,7 +13,7 @@ let intDesc = "The ability to acquire, understand, and use knowledge.";
 
 export const perkList: Array<Perk> = [
   { level: 2, title: "Strength", image:  strPerkImage, description: strDesc, questions: []},
-  { level: 1, title: "Endurance", image:  endPerkImage, description: endDesc, questions: [] },
+  { level: 0, title: "Endurance", image:  endPerkImage, description: endDesc, questions: [] },
   { level: 1, title: "Agility", image:  agiPerkImage, description: agiDesc, questions: [] },
   { level: 3, title: "Charisma", image:  chaPerkImage, description: chaDesc, questions: [] },
   { level: 1, title: "Intelligence", image:  intPerkImage, description: intDesc, questions: [
