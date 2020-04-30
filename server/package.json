@@ -7,7 +7,8 @@
   "license": "MIT",
   "scripts": {
     "dev": "nodemon index.js",
-    "test": "make test"
+    "test": "make test",
+    "start": "node index.js"
   },
   "dependencies": {
     "bcrypt-nodejs": "^0.0.3",

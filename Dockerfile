@@ -12,22 +12,42 @@ WORKDIR /app
 RUN npm install
 RUN npm run-script build
 
+
+#prepare nginx
+FROM nginx:1.16.0-alpine
+
+# COPY /app /usr/share/nginx/html
+RUN ln -s /app /var/www/html
+RUN rm /etc/nginx/conf.d/default.conf
+COPY nginx/nginx.conf /etc/nginx/conf.d
+
+
 # Expose Docker container API port to the outside
-EXPOSE 3000
+EXPOSE 80 
+#fire up nginx
+CMD ["nginx","-g","daemon off;"]
+
+
 
 # Run the specified command within the container.
 # Launch application
-CMD [ "npm", "start" ]
+# CMD [ "npm", "start" ]
 
-# Create the image -> docker build -t reallifeperktree .
+
+
+
+
+# Create the image -> docker build -t warriv93/reallifeperktree .
+
+# TO RUN -> docker run --publish 80:80 --detach --name rlpt warriv93/reallifeperktree
+
+# Stop -> docker stop tlpt
+# Delete -> docker rm --force tlpt
 
 # List all images available on the Docker host -> docker images
 
-# To push docker.hub -> docker push warriv93/reallifeperktree:tagname
+# To push docker.hub -> docker push warriv93/reallifeperktree
 
-# TO RUN -> docker run --publish 3000:80 --detach --name rlpt reallifeperktree:reallifeperktree
-# Stop -> docker stop tlpt
-# Delete -> docker rm --force tlpt
 
 
 # _________
