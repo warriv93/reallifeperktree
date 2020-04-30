@@ -4,7 +4,6 @@ import PerkHeader from "./comp/PerkHeader";
 import PerkCard from "./comp/PerkCard";
 import { perkList } from "../../api";
 
-import "./styles/perkPage.scss";
 import "./styles/perkCard.scss";
 
 const Perk = () => {
@@ -16,13 +15,15 @@ const Perk = () => {
     return (
       perkList &&
       urlperk &&
-      perkList.map(perk => perk.title == urlperk && <PerkCard key={perk.level} />)
+      perkList.map(
+        (perk) => perk.title == urlperk && <PerkCard key={perk.level} />
+      )
     );
   }
 
   return (
     <Layout>
-      <PerkHeader urlperk={urlperk}/>
+      <PerkHeader urlperk={urlperk} />
       <div className="perk-cards-container">
         {createPerkCard()}
         {createPerkCard()}

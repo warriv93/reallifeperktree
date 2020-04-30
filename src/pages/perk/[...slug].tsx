@@ -1,7 +1,5 @@
 import { useRouter } from "next/router";
 import Layout from "../../components/Layout";
-import "./styles/perkpage.scss";
-
 
 //catches wrong urls
 //Dynamic routes can be extended to catch all paths by adding three dots (...) inside the brackets. For example:
@@ -10,7 +8,7 @@ import "./styles/perkpage.scss";
 const Slug = () => {
   const router = useRouter();
   const { slug } = router.query;
-  
+
   return (
     <Layout>
       <p>Page {slug} does not exist</p>

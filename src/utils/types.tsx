@@ -17,7 +17,6 @@ export enum QuestionType {
 }
 
 export type User = {
-  id: number;
   username: string;
   password: string;
 };

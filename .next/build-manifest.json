@@ -1,36 +1,167 @@
 {
-  "devFiles": [
-    "static/development/dll/dll_dc8ac110ce5d8530b237.js",
-    "static/development/dll/dll_dc8ac110ce5d8530b237.js.map"
-  ],
+  "devFiles": [],
   "lowPriorityFiles": [
-    "static/development/_buildManifest.js",
-    "static/development/_ssgManifest.js"
+    "static/rkNO_vrfOc8f8FPhlTRrQ/_buildManifest.js",
+    "static/rkNO_vrfOc8f8FPhlTRrQ/_ssgManifest.js"
   ],
   "pages": {
+    "/": [
+      "static/runtime/webpack-9369c5c69dbf6d4912cb.js",
+      "static/chunks/framework.01fb8c9091ebbaaf6515.js",
+      "static/chunks/94bd49cd0c8d7105419815c1e1e932530185f051.2912d8ed0d72548e96b5.js",
+      "static/chunks/5546da099069eb241203ccafe0ef04f86e574130.b0d9415f6342f0fd8fcf.js",
+      "static/css/styles.595ef74e.chunk.css",
+      "static/chunks/styles.0bc437ad12f611c46e24.js",
+      "static/runtime/main-cb515761b1a2cfbd2d7e.js"
+    ],
     "/_app": [
-      "static/runtime/webpack.js",
-      "static/runtime/main.js"
+      "static/runtime/webpack-9369c5c69dbf6d4912cb.js",
+      "static/chunks/framework.01fb8c9091ebbaaf6515.js",
+      "static/chunks/94bd49cd0c8d7105419815c1e1e932530185f051.2912d8ed0d72548e96b5.js",
+      "static/runtime/main-cb515761b1a2cfbd2d7e.js"
     ],
     "/_error": [
-      "static/runtime/webpack.js",
-      "static/runtime/main.js"
+      "static/runtime/webpack-9369c5c69dbf6d4912cb.js",
+      "static/chunks/framework.01fb8c9091ebbaaf6515.js",
+      "static/runtime/main-cb515761b1a2cfbd2d7e.js"
     ],
     "/_polyfills": [
-      "static/runtime/polyfills.js",
-      "static/runtime/polyfills.js.map"
+      "static/runtime/polyfills-e8a67dd7d670b2147438.js"
+    ],
+    "/index": [
+      "static/runtime/webpack-9369c5c69dbf6d4912cb.js",
+      "static/chunks/framework.01fb8c9091ebbaaf6515.js",
+      "static/chunks/94bd49cd0c8d7105419815c1e1e932530185f051.2912d8ed0d72548e96b5.js",
+      "static/chunks/5546da099069eb241203ccafe0ef04f86e574130.b0d9415f6342f0fd8fcf.js",
+      "static/css/styles.595ef74e.chunk.css",
+      "static/chunks/styles.0bc437ad12f611c46e24.js",
+      "static/runtime/main-cb515761b1a2cfbd2d7e.js"
+    ],
+    "/login": [
+      "static/runtime/webpack-9369c5c69dbf6d4912cb.js",
+      "static/chunks/framework.01fb8c9091ebbaaf6515.js",
+      "static/chunks/94bd49cd0c8d7105419815c1e1e932530185f051.2912d8ed0d72548e96b5.js",
+      "static/chunks/5546da099069eb241203ccafe0ef04f86e574130.b0d9415f6342f0fd8fcf.js",
+      "static/chunks/b7ae89e5b194e570ec28db8d604f35d569174a88.ed3a9bd45249691b5476.js",
+      "static/css/styles.595ef74e.chunk.css",
+      "static/chunks/styles.0bc437ad12f611c46e24.js",
+      "static/runtime/main-cb515761b1a2cfbd2d7e.js"
+    ],
+    "/login/component/login": [
+      "static/runtime/webpack-9369c5c69dbf6d4912cb.js",
+      "static/chunks/framework.01fb8c9091ebbaaf6515.js",
+      "static/chunks/94bd49cd0c8d7105419815c1e1e932530185f051.2912d8ed0d72548e96b5.js",
+      "static/chunks/b7ae89e5b194e570ec28db8d604f35d569174a88.ed3a9bd45249691b5476.js",
+      "static/css/styles.595ef74e.chunk.css",
+      "static/chunks/styles.0bc437ad12f611c46e24.js",
+      "static/runtime/main-cb515761b1a2cfbd2d7e.js"
+    ],
+    "/login/component/newuser": [
+      "static/runtime/webpack-9369c5c69dbf6d4912cb.js",
+      "static/chunks/framework.01fb8c9091ebbaaf6515.js",
+      "static/chunks/94bd49cd0c8d7105419815c1e1e932530185f051.2912d8ed0d72548e96b5.js",
+      "static/chunks/b7ae89e5b194e570ec28db8d604f35d569174a88.ed3a9bd45249691b5476.js",
+      "static/css/styles.595ef74e.chunk.css",
+      "static/chunks/styles.0bc437ad12f611c46e24.js",
+      "static/runtime/main-cb515761b1a2cfbd2d7e.js"
+    ],
+    "/perk/[...slug]": [
+      "static/runtime/webpack-9369c5c69dbf6d4912cb.js",
+      "static/chunks/framework.01fb8c9091ebbaaf6515.js",
+      "static/chunks/94bd49cd0c8d7105419815c1e1e932530185f051.2912d8ed0d72548e96b5.js",
+      "static/chunks/5546da099069eb241203ccafe0ef04f86e574130.b0d9415f6342f0fd8fcf.js",
+      "static/css/styles.595ef74e.chunk.css",
+      "static/chunks/styles.0bc437ad12f611c46e24.js",
+      "static/runtime/main-cb515761b1a2cfbd2d7e.js"
+    ],
+    "/perk/[urlperk]": [
+      "static/runtime/webpack-9369c5c69dbf6d4912cb.js",
+      "static/chunks/framework.01fb8c9091ebbaaf6515.js",
+      "static/chunks/94bd49cd0c8d7105419815c1e1e932530185f051.2912d8ed0d72548e96b5.js",
+      "static/chunks/5546da099069eb241203ccafe0ef04f86e574130.b0d9415f6342f0fd8fcf.js",
+      "static/chunks/b7ae89e5b194e570ec28db8d604f35d569174a88.ed3a9bd45249691b5476.js",
+      "static/chunks/f48f96c3ed9e5b0b34bf41ffe33b9786d86e3026.a2d3b118131e07436aba.js",
+      "static/css/styles.595ef74e.chunk.css",
+      "static/chunks/styles.0bc437ad12f611c46e24.js",
+      "static/runtime/main-cb515761b1a2cfbd2d7e.js"
+    ],
+    "/perk/comp/PerkCard": [
+      "static/runtime/webpack-9369c5c69dbf6d4912cb.js",
+      "static/chunks/framework.01fb8c9091ebbaaf6515.js",
+      "static/chunks/b7ae89e5b194e570ec28db8d604f35d569174a88.ed3a9bd45249691b5476.js",
+      "static/runtime/main-cb515761b1a2cfbd2d7e.js"
+    ],
+    "/perk/comp/PerkHeader": [
+      "static/runtime/webpack-9369c5c69dbf6d4912cb.js",
+      "static/chunks/framework.01fb8c9091ebbaaf6515.js",
+      "static/chunks/94bd49cd0c8d7105419815c1e1e932530185f051.2912d8ed0d72548e96b5.js",
+      "static/chunks/f48f96c3ed9e5b0b34bf41ffe33b9786d86e3026.a2d3b118131e07436aba.js",
+      "static/css/styles.595ef74e.chunk.css",
+      "static/chunks/styles.0bc437ad12f611c46e24.js",
+      "static/runtime/main-cb515761b1a2cfbd2d7e.js"
+    ],
+    "/perkinput/[...slug]": [
+      "static/runtime/webpack-9369c5c69dbf6d4912cb.js",
+      "static/chunks/framework.01fb8c9091ebbaaf6515.js",
+      "static/chunks/94bd49cd0c8d7105419815c1e1e932530185f051.2912d8ed0d72548e96b5.js",
+      "static/chunks/5546da099069eb241203ccafe0ef04f86e574130.b0d9415f6342f0fd8fcf.js",
+      "static/css/styles.595ef74e.chunk.css",
+      "static/chunks/styles.0bc437ad12f611c46e24.js",
+      "static/runtime/main-cb515761b1a2cfbd2d7e.js"
     ],
     "/perkinput/[urlperk]": [
-      "static/runtime/webpack.js",
-      "static/css/styles.chunk.css",
-      "static/chunks/styles.js",
-      "static/runtime/main.js"
+      "static/runtime/webpack-9369c5c69dbf6d4912cb.js",
+      "static/chunks/framework.01fb8c9091ebbaaf6515.js",
+      "static/chunks/94bd49cd0c8d7105419815c1e1e932530185f051.2912d8ed0d72548e96b5.js",
+      "static/chunks/5546da099069eb241203ccafe0ef04f86e574130.b0d9415f6342f0fd8fcf.js",
+      "static/chunks/f48f96c3ed9e5b0b34bf41ffe33b9786d86e3026.a2d3b118131e07436aba.js",
+      "static/css/styles.595ef74e.chunk.css",
+      "static/chunks/styles.0bc437ad12f611c46e24.js",
+      "static/runtime/main-cb515761b1a2cfbd2d7e.js"
+    ],
+    "/perkinput/comp/inputperkdata": [
+      "static/runtime/webpack-9369c5c69dbf6d4912cb.js",
+      "static/chunks/framework.01fb8c9091ebbaaf6515.js",
+      "static/chunks/f48f96c3ed9e5b0b34bf41ffe33b9786d86e3026.a2d3b118131e07436aba.js",
+      "static/runtime/main-cb515761b1a2cfbd2d7e.js"
     ],
     "/perktree": [
-      "static/runtime/webpack.js",
-      "static/css/styles.chunk.css",
-      "static/chunks/styles.js",
-      "static/runtime/main.js"
+      "static/runtime/webpack-9369c5c69dbf6d4912cb.js",
+      "static/chunks/framework.01fb8c9091ebbaaf6515.js",
+      "static/chunks/94bd49cd0c8d7105419815c1e1e932530185f051.2912d8ed0d72548e96b5.js",
+      "static/chunks/5546da099069eb241203ccafe0ef04f86e574130.b0d9415f6342f0fd8fcf.js",
+      "static/chunks/f48f96c3ed9e5b0b34bf41ffe33b9786d86e3026.a2d3b118131e07436aba.js",
+      "static/css/styles.595ef74e.chunk.css",
+      "static/chunks/styles.0bc437ad12f611c46e24.js",
+      "static/runtime/main-cb515761b1a2cfbd2d7e.js"
+    ],
+    "/perktree/comp/Perk": [
+      "static/runtime/webpack-9369c5c69dbf6d4912cb.js",
+      "static/chunks/framework.01fb8c9091ebbaaf6515.js",
+      "static/chunks/94bd49cd0c8d7105419815c1e1e932530185f051.2912d8ed0d72548e96b5.js",
+      "static/css/styles.595ef74e.chunk.css",
+      "static/chunks/styles.0bc437ad12f611c46e24.js",
+      "static/runtime/main-cb515761b1a2cfbd2d7e.js"
+    ],
+    "/perktree/comp/PerkLevels": [
+      "static/runtime/webpack-9369c5c69dbf6d4912cb.js",
+      "static/chunks/framework.01fb8c9091ebbaaf6515.js",
+      "static/chunks/94bd49cd0c8d7105419815c1e1e932530185f051.2912d8ed0d72548e96b5.js",
+      "static/css/styles.595ef74e.chunk.css",
+      "static/chunks/styles.0bc437ad12f611c46e24.js",
+      "static/runtime/main-cb515761b1a2cfbd2d7e.js"
+    ],
+    "/profile": [
+      "static/runtime/webpack-9369c5c69dbf6d4912cb.js",
+      "static/chunks/framework.01fb8c9091ebbaaf6515.js",
+      "static/chunks/a9a7754c.74c226533684ed75479b.js",
+      "static/chunks/cb1608f2.3361828e3b3779b14bd0.js",
+      "static/chunks/94bd49cd0c8d7105419815c1e1e932530185f051.2912d8ed0d72548e96b5.js",
+      "static/chunks/5546da099069eb241203ccafe0ef04f86e574130.b0d9415f6342f0fd8fcf.js",
+      "static/chunks/b7ae89e5b194e570ec28db8d604f35d569174a88.ed3a9bd45249691b5476.js",
+      "static/css/styles.595ef74e.chunk.css",
+      "static/chunks/styles.0bc437ad12f611c46e24.js",
+      "static/runtime/main-cb515761b1a2cfbd2d7e.js"
     ]
   }
 }
