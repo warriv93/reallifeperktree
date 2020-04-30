@@ -9,9 +9,12 @@ export type Perk = {
 export type Question = {
   paragraph: string;
   type: QuestionType;
+};
+export enum QuestionType {
+  "1-5",
+  "input",
+  "rarely-often",
 }
-export enum QuestionType {"scale1-10",}
-
 
 export type User = {
   id: number;

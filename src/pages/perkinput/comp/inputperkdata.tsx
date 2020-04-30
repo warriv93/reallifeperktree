@@ -19,15 +19,66 @@ export default function inputperkdata({ urlperk }: Props) {
     }
   }, [urlperk, perk]);
 
+  function radioButtons(label: Array<String>) {
+    let buttons = [];
+    for (let index = 0; index < label.length; index++) {
+      buttons.push(
+        <Fragment>
+          <label className="form-check-label">{label[index]}</label>
+          <input className="form-check-input" type="radio" value={index} />
+        </Fragment>
+      );
+    }
+    return buttons;
+  }
+
   function typeOfQuestion(type: QuestionType) {
+    console.log(type);
     switch (type) {
       case 0:
-        break;
+        //   type: QuestionType["1-5"],
+        return (
+          <Fragment>
+            <fieldset className="form-group">
+              <div className="form-check">
+                {radioButtons([
+                  "Not at all",
+                  "Not really",
+                  "Maybe",
+                  "Often",
+                  "Absolutely",
+                ])}
+              </div>
+            </fieldset>
+          </Fragment>
+        );
+      case 1:
+        //   type: QuestionType["input"],
+        return (
+          <Fragment>
+            <input type="number" className="form-control" placeholder="cm" />
+          </Fragment>
+        );
 
+      case 2:
+        //   type: QuestionType["rarely-often"],
+        return (
+          <Fragment>
+            {radioButtons([
+              "Not at all",
+              "Very rarely",
+              "Some times",
+              "Often",
+              "All the time",
+            ])}
+          </Fragment>
+        );
       default:
-        return <div>1</div>;
+        return <Fragment></Fragment>;
     }
   }
+
+  function onSubmit(e) {}
 
   return (
     <Fragment>
@@ -45,21 +96,25 @@ export default function inputperkdata({ urlperk }: Props) {
           </p>
         </Fragment>
       )}
-      {perk &&
-        perk.questions.map((question) => {
-          console.log(question);
+      <form onSubmit={onSubmit}>
+        {perk &&
+          perk.questions.map((question) => {
+            console.log(question);
 
-          return (
-            <div className="perk-card">
-              <div className="left">
-                <h3>{question.paragraph}</h3>
-                {typeOfQuestion(QuestionType["scale1-10"])}
-                <button className="btn btn-outline-danger">Previous</button>
-                <button className="btn btn-outline-success">Next</button>
+            return (
+              <div className="perk-card">
+                <div className="left">
+                  <h3>{question.paragraph}</h3>
+                  <div className="question-type">
+                    {typeOfQuestion(question.type)}
+                  </div>
+                  <button className="btn btn-outline-danger">Previous</button>
+                  <button className="btn btn-outline-success">Next</button>
+                </div>
               </div>
-            </div>
-          );
-        })}
+            );
+          })}
+      </form>
     </Fragment>
   );
 }
