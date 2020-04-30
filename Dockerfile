@@ -9,10 +9,11 @@ WORKDIR /app
 
 # Run the command inside your image filesystem.
 # RUN npm install --silent
-# RUN npm install
-RUN npm build
+RUN npm install
+RUN npm run-script build
+
 # Expose Docker container API port to the outside
-EXPOSE 80
+EXPOSE 3000
 
 # Run the specified command within the container.
 # Launch application
@@ -24,7 +25,7 @@ CMD [ "npm", "start" ]
 
 # To push docker.hub -> docker push warriv93/reallifeperktree:tagname
 
-# TO RUN -> docker run --publish 3000:80 --detach --name tlpt reallifeperktree:latest
+# TO RUN -> docker run --publish 3000:80 --detach --name rlpt reallifeperktree:reallifeperktree
 # Stop -> docker stop tlpt
 # Delete -> docker rm --force tlpt
 
