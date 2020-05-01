@@ -1,1 +1,0 @@
-{"ast":null,"code":"import React from \"react\";\nvar __jsx = React.createElement;\nexport default (props => __jsx(\"li\", {\n  onClick: props.onClick,\n  className: \"perk-level\"\n}, __jsx(\"img\", {\n  src: props.image,\n  alt: \"perk-image\",\n  className: \"perk-image\"\n})));","map":null,"metadata":{},"sourceType":"module"}

@@ -1,20 +1,22 @@
 version: "3"
 services:
-  api:
-    build: ./server
-    # volumes:
-    #   - ./server:/app
-    ports:
-      # app port : publicly exposed port
-      - "1337:1337"
+  # api:
+  #   build: ./server
+  #   # volumes:
+  #   #   - ./server:/app
+  #   ports:
+  #     # app port : publicly exposed port
+  #     - "1337:1337"
   website:
-    build: ./
+    build:
+      context: .
+      dockerfile: Dockerfile
     # volumes:
     #   - ./:/app
     ports:
-      - 3000:80
-    depends_on:
-      # Depends on api container
-      - api
+      - 3000
+    # depends_on:
+    #   # Depends on api container
+    #   - api
 # TO RUN -> docker-compose up
 # starts all containers

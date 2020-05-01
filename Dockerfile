@@ -1,37 +1,37 @@
 # Use the official image as a parent image.
 FROM node:12.16.3
+LABEL authors="warriv93"
 
-# Copy the files from your host to your current location.
-COPY . /app
+ENV APP=/app/
+RUN mkdir -p $APP
 
 # Set the working directory.
-WORKDIR /app
+WORKDIR $APP
+ADD package.json yarn.lock $APP
 
 # Run the command inside your image filesystem.
-# RUN npm install --silent
-RUN npm install
-RUN npm run-script build
-
+RUN yarn install
 
 #prepare nginx
-FROM nginx:1.16.0-alpine
+# FROM nginx:1.16.0-alpine
 
-# COPY /app /usr/share/nginx/html
-RUN ln -s /app /var/www/html
-RUN rm /etc/nginx/conf.d/default.conf
-COPY nginx/nginx.conf /etc/nginx/conf.d
-
+# COPY $APP /usr/share/nginx/html
+# RUN ln -s /app /usr/share/nginx/html
+# RUN rm /etc/nginx/conf.d/default.conf
+# COPY nginx/nginx.conf /etc/nginx/sites-available/default
+# COPY nginx/nginx.conf /etc/nginx/conf.d/default.conf
 
 # Expose Docker container API port to the outside
-EXPOSE 80 
+# EXPOSE 80
 #fire up nginx
-CMD ["nginx","-g","daemon off;"]
+# CMD ["nginx","-g","daemon off;"]
 
-
+# Copy the files from your host to your current location.
+COPY . $APP
 
 # Run the specified command within the container.
 # Launch application
-# CMD [ "npm", "start" ]
+CMD [ "yarn", "start" ]
 
 
 
@@ -39,10 +39,10 @@ CMD ["nginx","-g","daemon off;"]
 
 # Create the image -> docker build -t warriv93/reallifeperktree .
 
-# TO RUN -> docker run --publish 80:80 --detach --name rlpt warriv93/reallifeperktree
+# TO RUN -> docker run --publish 3000:80 --detach --name rlpt warriv93/reallifeperktree
 
-# Stop -> docker stop tlpt
-# Delete -> docker rm --force tlpt
+# Stop -> docker stop rlpt
+# Delete -> docker rm --force rlpt
 
 # List all images available on the Docker host -> docker images
 

@@ -1,8 +1,9 @@
 // next.config.js
 const withSass = require('@zeit/next-sass')
 module.exports = withSass({
+  distDir: 'dist/.next',
   /* config options here */
-  webpack (config, options) {
+  webpack(config, options) {
     config.module.rules.push({
       test: /\.(png|jpg|gif|svg|eot|ttf|woff|woff2)$/,
       use: {
@@ -15,4 +16,3 @@ module.exports = withSass({
     return config
   }
 })
-
