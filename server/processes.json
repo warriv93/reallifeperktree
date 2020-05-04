@@ -1,0 +1,11 @@
+{
+  "apps": [
+    {
+      "name": "node-express-api",
+      "script": "index.js",
+      "watch": true,
+      "max_memory_restart": "200M",
+      "node_args": ["--inspect=0.0.0.0:9232"]
+    }
+  ]
+}

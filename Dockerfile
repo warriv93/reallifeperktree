@@ -28,7 +28,7 @@ RUN yarn install
 
 # Copy the files from your host to your current location.
 COPY . $APP
-
+EXPOSE 3000
 # Run the specified command within the container.
 # Launch application
 CMD [ "yarn", "start" ]

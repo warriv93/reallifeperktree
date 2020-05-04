@@ -1,22 +1,28 @@
 version: "3"
 services:
-  # api:
-  #   build: ./server
-  #   # volumes:
-  #   #   - ./server:/app
-  #   ports:
-  #     # app port : publicly exposed port
-  #     - "1337:1337"
-  website:
+  api:
+    container_name: api-reallifeperktree
+    restart: always
     build:
-      context: .
+      context: ./server/
       dockerfile: Dockerfile
-    # volumes:
-    #   - ./:/app
     ports:
-      - 3000
-    # depends_on:
-    #   # Depends on api container
-    #   - api
+      # app port : publicly exposed port
+      - "8080:8000"
+    environment:
+      - NODE_ENV=production
+      - PORT=8000
+    volumes:
+      - "./server:/app"
+  # website:
+  #    container_name: web-reallifeperktree
+  #   build:
+  # context: .
+  #      dockerfile: Dockerfile
+  #   ports:
+  #     - "3000:3000"
+  # depends_on:
+  #   # Depends on api container
+  #   - api
 # TO RUN -> docker-compose up
 # starts all containers
