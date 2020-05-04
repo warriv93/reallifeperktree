@@ -1,25 +1,29 @@
-import * as React from 'react'
-import Navbar from '../components/Navbar';
-import Header from 'next/head';
+import * as React from "react";
+import Navbar from "../components/Navbar";
+import Header from "next/head";
 import "../styles/globalStyles.scss";
-import {getUserLoggedin} from "../api/userlocalstorage";
+import { getUserLoggedin } from "../api/userlocalstorage";
 
-type Props = {}
+type Props = {};
 
-const Layout: React.FunctionComponent<Props> = ({children}) => (
-    <div>
-        <Header>
-            <title>Perktree</title>
-            <link rel="stylesheet" href="https://bootswatch.com/4/flatly/bootstrap.min.css"/>
-            {/* <link href="../styles/globalStyles.scss" rel="stylesheet" /> */}
-            <link rel="shortcut icon" type="image/png" href="/assets/profilepic.png"/>
-        </Header>
-        <Navbar loggedin={getUserLoggedin() || false}/> 
-        <div className="container">
-            {children}
-        </div>
-    </div>
-  );
-  
-  export default Layout;
-  
+const Layout: React.FunctionComponent<Props> = ({ children }) => (
+  <div>
+    <Header>
+      <title>Perktree</title>
+      <link
+        rel="stylesheet"
+        href="https://bootswatch.com/4/flatly/bootstrap.min.css"
+      />
+      {/* <link href="../styles/globalStyles.scss" rel="stylesheet" /> */}
+      <link
+        rel="shortcut icon"
+        type="image/png"
+        href="/assets/profilepic.png"
+      />
+    </Header>
+    <Navbar loggedin={getUserLoggedin() || false} />
+    <div className="container">{children}</div>
+  </div>
+);
+
+export default Layout;

@@ -1,0 +1,13 @@
+.fdb-block {
+  padding: 3.5rem 0;
+  .box-container {
+    .box {
+      background-color: white;
+      border-radius: 3px;
+    }
+  }
+}
+
+.fdb-block .box.fdb-touch {
+  padding-bottom: 25px;
+}

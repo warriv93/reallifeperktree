@@ -19,6 +19,11 @@ const Navbar: React.FunctionComponent<Props> = ({ loggedin }) => (
             <a className="nav-link">Perktree</a>
           </Link>
         </li>
+        <li className="nav-item">
+          <Link href="/subscription">
+            <a className="nav-link">Pricing</a>
+          </Link>
+        </li>
       </ul>
 
       <ul className="nav navbar-nav navbar-right">
