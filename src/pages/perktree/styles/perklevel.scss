@@ -42,6 +42,10 @@
   }
 }
 
+.tooltip {
+  position: relative;
+}
+
 .tooltip:hover .perktooltiptext {
   visibility: visible;
   opacity: 1;

@@ -2,6 +2,7 @@ import * as React from "react";
 import Navbar from "../components/Navbar";
 import Header from "next/head";
 import "../styles/globalStyles.scss";
+import "../styles/bootstrap.css";
 import { getUserLoggedin } from "../api/userlocalstorage";
 
 import { library } from "@fortawesome/fontawesome-svg-core";
@@ -15,10 +16,10 @@ const Layout: React.FunctionComponent<Props> = ({ children }) => (
   <div>
     <Header>
       <title>Perktree</title>
-      <link
+      {/* <link
         rel="stylesheet"
         href="https://bootswatch.com/4/flatly/bootstrap.min.css"
-      />
+      /> */}
       {/* <link href="../styles/globalStyles.scss" rel="stylesheet" /> */}
       <link
         rel="shortcut icon"
