@@ -4,6 +4,11 @@ import Header from "next/head";
 import "../styles/globalStyles.scss";
 import { getUserLoggedin } from "../api/userlocalstorage";
 
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { fab } from "@fortawesome/free-brands-svg-icons";
+import { faPencilAlt } from "@fortawesome/free-solid-svg-icons";
+library.add(fab, faPencilAlt);
+
 type Props = {};
 
 const Layout: React.FunctionComponent<Props> = ({ children }) => (

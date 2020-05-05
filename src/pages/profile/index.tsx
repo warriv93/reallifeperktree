@@ -3,18 +3,12 @@ import Layout from "../../components/Layout";
 import { getUserLoggedin, getUserData } from "../../api/userlocalstorage";
 import { deleteUser, logoutUser, updateUser } from "../../api/user";
 import Router from "next/router";
-
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { library } from "@fortawesome/fontawesome-svg-core";
-import { fab } from "@fortawesome/free-brands-svg-icons";
-import { faPencilAlt } from "@fortawesome/free-solid-svg-icons";
-library.add(fab, faPencilAlt);
-
 import profileface from "../../assets/profilepic.png";
 import "./styles/profile.scss";
 const isClient = typeof document !== "undefined";
 
-export default function profile (props) {
+export default function profile(props) {
   const [editMode, setEditMode] = useState(false);
   const [oldUsername, setOldUsername] = useState("");
   const [username, setUsername] = useState("");
@@ -33,44 +27,48 @@ export default function profile (props) {
       // get user obj from localstorage
       getUserData((res) => {
         let { username, email, profilePicture, password } = res;
-        setUsername(username)
-        setPassword(password)
-        setOldUsername(username)
-        setEmail(email)
-        setProfilePicture(profilePicture && profilePicture.length > 0 ? profilePicture : profileface)
+        setUsername(username);
+        setPassword(password);
+        setOldUsername(username);
+        setEmail(email);
+        setProfilePicture(
+          profilePicture && profilePicture.length > 0
+            ? profilePicture
+            : profileface
+        );
       });
     }
     return () => {
       // ComponentDidUnmount code here
-    }
+    };
     //condition for when the update should run
     // in this case only if userloggin variable changes (if user logout for example)
-  }, [getUserLoggedin])
-  
+  }, [getUserLoggedin]);
+
   function handleUsernameChange(event) {
-    setUsername(event.target.value)
+    setUsername(event.target.value);
   }
 
   function handleEmailChange(event) {
-    setEmail(event.target.value)
+    setEmail(event.target.value);
   }
 
   function handlePasswordChange(event) {
-    setPassword(event.target.value)
+    setPassword(event.target.value);
   }
 
   function handleHover() {
-    setHover(!hover)
+    setHover(!hover);
   }
 
   function toggleEditMode() {
-    setEditMode(!editMode)
+    setEditMode(!editMode);
   }
 
   function updateUserData(e) {
     e.preventDefault();
     console.log("before bef req: ", oldUsername, username, password);
-    
+
     updateUser(
       oldUsername,
       username,
@@ -81,16 +79,20 @@ export default function profile (props) {
         if (res && res.error) setError(res.error);
         else {
           // go bac kfrom edit view to overview
-          editMode && setEditMode(false)
+          editMode && setEditMode(false);
           // remove error text
           error && setError(null);
           //update state
           let { username, email, profilePicture, password } = res.data;
-          setUsername(username)
-          setPassword(password)
-          setOldUsername(username)
-          setEmail(email)
-          setProfilePicture(profilePicture && profilePicture.length > 0 ? profilePicture : profileface)
+          setUsername(username);
+          setPassword(password);
+          setOldUsername(username);
+          setEmail(email);
+          setProfilePicture(
+            profilePicture && profilePicture.length > 0
+              ? profilePicture
+              : profileface
+          );
         }
       }
     );
@@ -139,9 +141,7 @@ export default function profile (props) {
                     onMouseOut={handleHover}
                   >
                     {email}
-                    {hover && (
-                      <FontAwesomeIcon icon="pencil-alt" />
-                    )}
+                    {hover && <FontAwesomeIcon icon="pencil-alt" />}
                   </p>
                 ) : (
                   <p
@@ -160,9 +160,7 @@ export default function profile (props) {
             <div className="edit">
               <div className="right">
                 <form>
-                  {error && (
-                    <p className="error">{error}</p>
-                  )}
+                  {error && <p className="error">{error}</p>}
                   <label htmlFor="username">Username</label>
                   <input
                     className="card-text form-control mr-sm-2"
