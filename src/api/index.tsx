@@ -31,8 +31,20 @@ export const perkList: Array<Perk> = [
         type: QuestionType["rarely-often"],
       },
       {
-        paragraph: "Do you train yourself to hold your breath underwater?",
+        paragraph: "Do you hold your breath underwater?",
         type: QuestionType["rarely-often"],
+      },
+      {
+        paragraph: "Do you run for exercise?",
+        type: QuestionType["rarely-often"],
+      },
+      {
+        paragraph: "Do you attend a sport?",
+        type: QuestionType["rarely-often"],
+      },
+      {
+        paragraph: "Do you feel healthy and alert?",
+        type: QuestionType["1-5"],
       },
     ],
   },

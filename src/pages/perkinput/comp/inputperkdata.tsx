@@ -31,7 +31,7 @@ export default function inputperkdata({ urlperk }: Props) {
 
   function settempanswer(answer) {
     // console.log("settempanswer", answer);
-    answer != false && setTempAnswer(answer);
+    typeof answer === "number" && setTempAnswer(answer);
     setTempAnswer(answer);
   }
 
@@ -94,13 +94,7 @@ export default function inputperkdata({ urlperk }: Props) {
               answer={exisitingAnswer ? exisitingAnswer : null}
               questionID={activePerkQuestionIndex}
               settempanswer={settempanswer}
-              labels={[
-                "Not at all",
-                "Not really",
-                "Maybe",
-                "Often",
-                "Absolutely",
-              ]}
+              labels={["No", "Not really", "Kind of", "Yes", "Absolutely"]}
             />
           </Fragment>
         );

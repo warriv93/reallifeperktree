@@ -10,7 +10,7 @@ export default function radioButtons(props: Iprops) {
   const [checked, setChecked] = useState([null, null]);
 
   function handleChange(i) {
-    if (i != false) {
+    if (typeof i === "number") {
       setChecked([i, true]);
       props.settempanswer(i);
     }
