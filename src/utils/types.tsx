@@ -9,7 +9,10 @@ export type Perk = {
 export type Question = {
   paragraph: string;
   type: QuestionType;
+  placeholder?: string;
+  section?: string;
 };
+
 export enum QuestionType {
   "1-5",
   "input",

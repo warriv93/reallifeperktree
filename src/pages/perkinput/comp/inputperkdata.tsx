@@ -4,11 +4,15 @@ import { perkList } from "../../../api";
 import { Perk as IPerk, QuestionType } from "../../../utils/types";
 import RadioButtons from "./radiobtns";
 import "../../perk/styles/perkCard.scss";
-interface Props {
+type Props = {
   urlperk: string | string[];
-}
+  setPerkDataSubmitted: Function;
+};
 
-export default function inputperkdata({ urlperk }: Props) {
+export default function inputperkdata({
+  urlperk,
+  setPerkDataSubmitted,
+}: Props) {
   let originPerk: IPerk;
   // let originQuestion: Question;
   const [perk, setPerk] = useState(originPerk);
@@ -102,7 +106,11 @@ export default function inputperkdata({ urlperk }: Props) {
         //   type: QuestionType["input"],
         return (
           <Fragment>
-            <input type="number" className="form-control" placeholder="cm" />
+            <input
+              type="number"
+              className="form-control"
+              placeholder={question.placeholder}
+            />
           </Fragment>
         );
 
@@ -129,9 +137,9 @@ export default function inputperkdata({ urlperk }: Props) {
     }
   }
 
-  function onSubmit(e) {
+  function onSubmit() {
     saveAnswer();
-
+    setPerkDataSubmitted(true);
     console.info("onSubmit: ", answers);
   }
 
@@ -154,6 +162,7 @@ export default function inputperkdata({ urlperk }: Props) {
       {perk && (
         <div className="perk-card">
           <div className="left">
+            <p>{question.section && question.section}</p>
             <h3>{question.paragraph}</h3>
             <div className="question-type">{typeOfQuestion(question.type)}</div>
             {activePerkQuestionIndex != 0 && (

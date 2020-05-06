@@ -1,31 +1,35 @@
 import "../styles/radiobtn.scss";
 import { useState, useEffect } from "react";
-type Iprops = {
+type Props = {
   labels: Array<String>;
   settempanswer: Function;
   answer: any;
   questionID: number;
 };
-export default function radioButtons(props: Iprops) {
+
+export default function radioButtons({
+  labels,
+  settempanswer,
+  answer,
+  questionID,
+}: Props) {
   const [checked, setChecked] = useState([null, null]);
 
   function handleChange(i) {
     if (typeof i === "number") {
       setChecked([i, true]);
-      props.settempanswer(i);
+      settempanswer(i);
     }
   }
 
   useEffect(() => {
-    // console.log("useEffect", props.answer);
-    props.answer
-      ? setChecked([props.answer.answer, true])
-      : setChecked([null, null]);
-  }, [props.questionID]);
+    // console.log("useEffect", answer);
+    answer ? setChecked([answer.answer, true]) : setChecked([null, null]);
+  }, [questionID]);
 
   return (
     <form className="container">
-      {props.labels.map((label, index) => (
+      {labels.map((label, index) => (
         <div
           className="radio-container"
           key={index}
