@@ -9,21 +9,26 @@ const PerkInput = () => {
   //fetch param from url
   const { urlperk } = useRouter().query;
   const [perkDataSubmitted, setPerkDataSubmitted] = useState(false);
+  const [answers, setAnswers] = useState([]);
+
+  function setFinalAnswersFromInput(answers) {
+    setAnswers(answers);
+  }
 
   return (
     <Layout>
       <PerkHeader urlperk={urlperk} />
       <div className="perk-cards-container">
         {perkDataSubmitted ? (
-          <Summary />
+          <Summary answers={answers} />
         ) : (
           <InputPerkData
             setPerkDataSubmitted={setPerkDataSubmitted}
+            setFinalAnswersFromInput={setFinalAnswersFromInput}
             urlperk={urlperk}
           />
         )}
       </div>
-      {/* TODO add info items containers */}
     </Layout>
   );
 };

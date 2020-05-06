@@ -4,14 +4,17 @@ import { perkList } from "../../../api";
 import { Perk as IPerk, QuestionType } from "../../../utils/types";
 import RadioButtons from "./radiobtns";
 import "../../perk/styles/perkCard.scss";
+
 type Props = {
   urlperk: string | string[];
   setPerkDataSubmitted: Function;
+  setFinalAnswersFromInput: Function;
 };
 
 export default function inputperkdata({
   urlperk,
   setPerkDataSubmitted,
+  setFinalAnswersFromInput,
 }: Props) {
   let originPerk: IPerk;
   // let originQuestion: Question;
@@ -43,7 +46,7 @@ export default function inputperkdata({
     let answerMatch = answers.filter(
       (answer) => answer.question == activePerkQuestionIndex
     )[0];
-    console.log(answerMatch);
+    // console.log(answerMatch);
 
     if (!answerMatch) {
       // console.log("SAVE ANSWER", activePerkQuestionIndex, answers);
@@ -140,6 +143,7 @@ export default function inputperkdata({
   function onSubmit() {
     saveAnswer();
     setPerkDataSubmitted(true);
+    setFinalAnswersFromInput(answers);
     console.info("onSubmit: ", answers);
   }
 
