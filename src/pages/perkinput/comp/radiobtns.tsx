@@ -17,12 +17,10 @@ export default function radioButtons(props: Iprops) {
   }
 
   useEffect(() => {
-    console.log("useEffect", props.answer);
-    if (props.answer) {
-      setChecked([props.answer.answer, true]);
-    } else {
-      setChecked([null, null]);
-    }
+    // console.log("useEffect", props.answer);
+    props.answer
+      ? setChecked([props.answer.answer, true])
+      : setChecked([null, null]);
   }, [props.questionID]);
 
   return (
