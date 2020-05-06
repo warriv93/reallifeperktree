@@ -25,7 +25,16 @@ export const perkList: Array<Perk> = [
     title: "Endurance",
     image: endPerkImage,
     description: endDesc,
-    questions: [],
+    questions: [
+      {
+        paragraph: "Do you exercise, for example at a gym?",
+        type: QuestionType["rarely-often"],
+      },
+      {
+        paragraph: "Do you train yourself to hold your breath underwater?",
+        type: QuestionType["rarely-often"],
+      },
+    ],
   },
   {
     level: 1,
@@ -48,16 +57,59 @@ export const perkList: Array<Perk> = [
     description: intDesc,
     questions: [
       {
-        paragraph: "Brukar du lära dig ny information relativt snabbt?",
+        paragraph: "Do you learn new information relatively quickly?",
         type: QuestionType["1-5"],
       },
       {
-        paragraph: "Hur lång är du?",
-        type: QuestionType["input"],
+        paragraph: "Do you read books?",
+        type: QuestionType["rarely-often"],
       },
       {
-        paragraph: "Läser du böcker?",
+        paragraph: "How often do you seek out to learn new information?",
         type: QuestionType["rarely-often"],
+      },
+      {
+        paragraph: "How often do you seek out to learn new skills?",
+        type: QuestionType["rarely-often"],
+      },
+      {
+        paragraph: "Are you open to learn new fields?",
+        type: QuestionType["1-5"],
+      },
+      {
+        paragraph:
+          "Do you challenge your self, by for example driving without an GPS?",
+        type: QuestionType["rarely-often"],
+      },
+      {
+        paragraph:
+          "Do you converse/network with other people with the goal of learning new things?",
+        type: QuestionType["rarely-often"],
+      },
+      {
+        paragraph:
+          "Do you like to solve problems which arise at work and in the everyday?",
+        type: QuestionType["1-5"],
+      },
+      {
+        paragraph: "Do you actively meditate / think deeply on a subject?",
+        type: QuestionType["rarely-often"],
+      },
+      {
+        paragraph: "Do you use / study a second language?",
+        type: QuestionType["rarely-often"],
+      },
+      {
+        paragraph: "Do you keep up with what happens in the world?",
+        type: QuestionType["rarely-often"],
+      },
+      {
+        paragraph: "Do you like to study the world?",
+        type: QuestionType["1-5"],
+      },
+      {
+        paragraph: "Do you like to learn about subjects, like history?",
+        type: QuestionType["1-5"],
       },
     ],
   },
