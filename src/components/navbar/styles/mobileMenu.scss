@@ -1,0 +1,113 @@
+@import "../../../styles/globals";
+
+// General state of Menu
+#menu {
+  position: fixed;
+  left: -100vw;
+  height: 100vh;
+  width: 100vw;
+  top: 70px;
+  z-index: 6;
+  transition: left 0.3s ease-in-out;
+
+  a {
+    font-size: 14px;
+    text-decoration: none;
+  }
+
+  section.main {
+    width: 100%;
+    overflow: hidden;
+
+    span {
+      display: block;
+      width: 100%;
+      height: 45px;
+      background: white;
+      border-bottom: 1px solid $almostwhite;
+      transition: background 0.3s ease-in-out;
+
+      a {
+        padding-left: 20px;
+        line-height: 30px;
+        height: 45px;
+        display: block;
+        color: black;
+
+        .fa {
+          float: right;
+          width: 8px;
+          line-height: 30px;
+          margin-right: 20px;
+          height: 30px;
+        }
+      }
+    }
+
+    span.create-book {
+      background: $green2;
+    }
+
+    span.login {
+      background: #1c1c1c;
+      border-bottom: unset;
+
+      a {
+        color: white;
+      }
+    }
+
+    span.active,
+    span.active.create-book,
+    span.active.login {
+      background: $green;
+    }
+  }
+
+  #close-menu {
+    opacity: 0;
+    transition: all 0.3s ease-in-out;
+    position: fixed;
+    right: -20vw;
+    top: 60px;
+    width: 13vw;
+    height: 100vh;
+    padding-top: 2vh;
+    padding-left: 7vw;
+
+    i {
+      font-size: 30px;
+    }
+  }
+}
+
+// Open state of Menu
+#menu.open {
+  left: 0;
+
+  #close-menu {
+    opacity: 1;
+    right: 0;
+  }
+}
+
+// Open state of menu for whole Application
+.App.open-menu {
+  .create-book-container {
+    opacity: 0.1;
+  }
+}
+
+// Standalone Elements
+.menu-container {
+  @include box-shadow();
+  width: 100vw;
+  height: 100vh;
+  background: $almostwhite2;
+}
+
+@media only screen and (min-width: 880px) {
+  .menu-container {
+    width: 30vw;
+  }
+}

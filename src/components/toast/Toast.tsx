@@ -1,6 +1,6 @@
 import { toast, Slide } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import "../styles/toast.scss";
+import "./styles/toast.scss";
 
 // Call it once in your app. At the root of your app is the best place
 toast.configure({

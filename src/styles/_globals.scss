@@ -1,0 +1,48 @@
+$green: #96d7ce;
+$green2: #b6efe6;
+$almostwhite: #f0f0f0;
+$almostwhite2: #fbfbfb;
+$pink: #e8baca;
+$errorred: #ff8080;
+
+$text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.4);
+
+@import url("https://fonts.googleapis.com/css?family=Playfair+Display|Raleway:200,300,400,400i,700");
+
+body {
+  font-family: "Raleway", sans-serif !important;
+  letter-spacing: 0.4px;
+
+  input,
+  button,
+  textarea,
+  select {
+    font-family: "Raleway", sans-serif !important;
+  }
+}
+
+@mixin box-shadow() {
+  -webkit-box-shadow: 3px 0px 14px 0px rgba(0, 0, 0, 0.06);
+  -moz-box-shadow: 3px 0px 14px 0px rgba(0, 0, 0, 0.06);
+  box-shadow: 3px 0px 14px 0px rgba(0, 0, 0, 0.06);
+}
+
+@mixin box-shadow-deep() {
+  -webkit-box-shadow: 0px 0px 54px 0px rgba(0, 0, 0, 0.16);
+  -moz-box-shadow: 0px 0px 54px 0px rgba(0, 0, 0, 0.16);
+  box-shadow: 0px 0px 54px 0px rgba(0, 0, 0, 0.16);
+}
+
+@media only screen and (min-width: 880px) {
+  body {
+    background: white;
+  }
+
+  // #menu #close-menu {
+  //   top: 51px;
+  //   width: 70px;
+  //   height: 100vh;
+  //   padding-top: 30px;
+  //   padding-left: 30px;
+  // }
+}

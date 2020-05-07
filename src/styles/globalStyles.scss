@@ -1,79 +1,68 @@
-.navbar-dark .navbar-nav .nav-link {
-  display: inline;
-}
-
-.nav .profile .image {
-  max-height: 35px;
-  max-width: 30px;
-  margin-left: 5px;
-  display: inline-block;
-
-  img {
-    height: 100%;
-    width: 100%;
-  }
-}
-
 body {
   background: white;
-}
 
-.error {
-  color: red;
-}
+  li {
+    list-style: none;
+  }
 
-.tooltip {
-  position: relative;
-  display: inline-block;
-  opacity: 1;
+  .error {
+    color: red;
+  }
 
-  .tooltiptext {
-    visibility: hidden;
-    width: 120px;
-    background-color: darkgray;
-    color: #fff;
-    text-align: center;
-    border-radius: 6px;
-    padding: 5px 0;
-    position: absolute;
+  .tooltip {
+    position: relative;
+    display: inline-block;
+    opacity: 1;
     z-index: 1;
-    bottom: 110%;
-    left: 40%;
-    margin-left: -60px;
-    opacity: 0;
-    transition: opacity 0.3s;
+
+    .tooltiptext {
+      visibility: hidden;
+      width: 120px;
+      background-color: darkgray;
+      color: #fff;
+      text-align: center;
+      border-radius: 6px;
+      padding: 5px 0;
+      position: absolute;
+      z-index: 1;
+      bottom: 110%;
+      left: 40%;
+      margin-left: -60px;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .tooltiptext::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      margin-left: -5px;
+      border-width: 5px;
+      border-style: solid;
+      border-color: #555 transparent transparent transparent;
+    }
   }
 
-  .tooltiptext::after {
-    content: "";
-    position: absolute;
-    top: 100%;
-    left: 50%;
-    margin-left: -5px;
-    border-width: 5px;
-    border-style: solid;
-    border-color: #555 transparent transparent transparent;
+  .fdb-block {
+    padding-top: 40px;
   }
-}
 
-.fdb-block {
-  padding-top: 40px;
-}
+  .text-center {
+    text-align: center;
+  }
 
-.text-center {
-  text-align: center;
-}
+  .tooltip:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
+  }
 
-.tooltip:hover .tooltiptext {
-  visibility: visible;
-  opacity: 1;
-}
+  .perk-cards-container .progressbar-container {
+    margin-bottom: 20px;
+  }
 
-.perk-cards-container .progressbar-container {
-  margin-bottom: 20px;
-}
-
-.progressbar-progress {
-  border-top-right-radius: 5px;
-  border-bottom-right-radius: 5px;
+  .progressbar-progress {
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+  }
 }

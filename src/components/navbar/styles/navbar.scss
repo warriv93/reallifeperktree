@@ -1,0 +1,34 @@
+.navbar-dark .navbar-nav .nav-link {
+  display: inline;
+}
+
+.nav .profile .image {
+  max-height: 35px;
+  max-width: 30px;
+  margin-left: 5px;
+  display: inline-block;
+
+  img {
+    height: 100%;
+    width: 100%;
+  }
+  a {
+    color: white;
+  }
+}
+
+.navbar-toggler {
+  border: none;
+
+  .navbar-close-icon {
+    display: inline-block;
+    width: 20px;
+    height: 1.5em;
+    vertical-align: middle;
+  }
+}
+
+.navbar-toggler:focus {
+  box-shadow: none;
+  outline: none;
+}

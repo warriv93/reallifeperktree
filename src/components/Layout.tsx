@@ -1,5 +1,5 @@
 import * as React from "react";
-import Navbar from "../components/Navbar";
+import Navbar from "./navbar/Navbar";
 import Header from "next/head";
 import "../styles/globalStyles.scss";
 import "../styles/bootstrap.css";
@@ -7,8 +7,12 @@ import { getUserLoggedin } from "../api/userlocalstorage";
 
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { fab } from "@fortawesome/free-brands-svg-icons";
-import { faPencilAlt } from "@fortawesome/free-solid-svg-icons";
-library.add(fab, faPencilAlt);
+import {
+  faPencilAlt,
+  faTimes,
+  faAngleRight,
+} from "@fortawesome/free-solid-svg-icons";
+library.add(fab, faPencilAlt, faAngleRight, faTimes);
 
 type Props = {};
 
