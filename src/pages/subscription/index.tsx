@@ -62,7 +62,7 @@ export default function subscription() {
               </div>
             </div>
 
-            <div className="box col-12 col-sm-10 col-md-8 ml-auto mr-auto col-lg-4 text-center mt-4 mt-lg-0 shadow">
+            <div className="box col-12 col-sm-10 col-md-8 ml-auto mr-auto col-lg-4 text-center shadow">
               <div className="bg-white pb-5 pt-5 pl-4 pr-4 rounded-right">
                 <h2 className="font-weight-light">Family</h2>
 

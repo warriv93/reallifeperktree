@@ -1,0 +1,45 @@
+@media (max-width: 1000px) {
+  body .container {
+    max-width: unset !important;
+  }
+  .perk {
+    padding-left: 0;
+
+    .perk-level .perk-image {
+      padding-left: 0;
+    }
+  }
+}
+@media (max-width: 780px) {
+  body .perk-container .perk {
+    display: block;
+    width: 100%;
+
+    .title {
+      height: 50px;
+    }
+
+    .tooltip {
+      width: 15vw;
+    }
+  }
+}
+@media (max-width: 420px) {
+  body .perk-container .perk {
+    .tooltip {
+      width: 12vw;
+    }
+
+    .perk-level .perk-image {
+      width: 50px;
+      height: 50px;
+    }
+  }
+}
+@media (max-width: 350px) {
+  body .perk-container .perk {
+    .tooltip {
+      width: 10vw;
+    }
+  }
+}
