@@ -1,9 +1,10 @@
 import React, { Fragment, useState, useEffect } from "react";
-// import axios from "axios";
+import Progress from "react-progressbar";
 import { perkList } from "../../../api";
 import { Perk as IPerk, QuestionType } from "../../../utils/types";
 import RadioButtons from "./radiobtns";
 import "../../perk/styles/perkCard.scss";
+import "../styles/inputperkdata.scss";
 
 type Props = {
   urlperk: string | string[];
@@ -149,22 +150,16 @@ export default function inputperkdata({
 
   return (
     <Fragment>
-      {perk && perk.level > 0 ? (
-        <Fragment>
-          <h3>Progress perk further</h3>
-          <p>Update answers to progress perk further</p>
-        </Fragment>
-      ) : (
-        <Fragment>
-          <h3>Initilization</h3>
-          <p>
-            Go ahead and fill out the form as honestly as possible to initialize
-            the perk level
-          </p>
-        </Fragment>
+      {perk && activePerkQuestionIndex != 0 && (
+        <Progress
+          className="progressbar-container shadow"
+          completed={Math.round(
+            (activePerkQuestionIndex * 100) / perk.questions.length
+          )}
+        />
       )}
       {perk && (
-        <div className="perk-card">
+        <div className="perk-card question">
           <div className="left">
             <p>{question.section && question.section}</p>
             <h3>{question.paragraph}</h3>
@@ -201,6 +196,10 @@ export default function inputperkdata({
           </div>
         </div>
       )}
+      <p>
+        Try to be as honestly as possible to get an accurate perk level
+        representation
+      </p>
     </Fragment>
   );
 }

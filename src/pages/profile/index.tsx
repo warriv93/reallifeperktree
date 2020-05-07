@@ -6,6 +6,7 @@ import Router from "next/router";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import profileface from "../../assets/profilepic.png";
 import "./styles/profile.scss";
+
 const isClient = typeof document !== "undefined";
 
 export default function profile(props) {
@@ -100,7 +101,7 @@ export default function profile(props) {
 
   return (
     <Layout>
-      <div className="profile-container card border-primary mb-3">
+      <div className="profile-container card border-primary mb-3 shadow">
         <div className="card-body">
           {!editMode ? (
             <div>
