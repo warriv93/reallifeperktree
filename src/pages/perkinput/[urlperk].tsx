@@ -20,7 +20,7 @@ const PerkInput = () => {
       <PerkHeader urlperk={urlperk} />
       <div className="perk-cards-container">
         {perkDataSubmitted ? (
-          <Summary answers={answers} />
+          <Summary answers={answers} urlperk={urlperk} />
         ) : (
           <InputPerkData
             setPerkDataSubmitted={setPerkDataSubmitted}

@@ -38,8 +38,6 @@ export default function inputperkdata({
   }, [urlperk]);
 
   function settempanswer(answer) {
-    // console.log("settempanswer", answer);
-    typeof answer === "number" && setTempAnswer(answer);
     setTempAnswer(answer);
   }
 
@@ -113,6 +111,7 @@ export default function inputperkdata({
             <input
               type="number"
               className="form-control"
+              onChange={(e) => settempanswer(e.target.value)}
               placeholder={question.placeholder}
             />
           </Fragment>
@@ -145,7 +144,6 @@ export default function inputperkdata({
     saveAnswer();
     setPerkDataSubmitted(true);
     setFinalAnswersFromInput(answers);
-    console.info("onSubmit: ", answers);
   }
 
   return (
@@ -161,9 +159,22 @@ export default function inputperkdata({
       {perk && (
         <div className="perk-card question">
           <div className="left">
-            <p>{question.section && question.section}</p>
-            <h3>{question.paragraph}</h3>
-            <div className="question-type">{typeOfQuestion(question.type)}</div>
+            {/* when no more questions show thank you instead to give time for setAnswer to run, otherwise its to fast when going to summary page */}
+            {perk.questions.length - 1 >= activePerkQuestionIndex ? (
+              <Fragment>
+                <p>{question.section && question.section}</p>
+                <h3>{question.paragraph}</h3>
+                <div className="question-type">
+                  {typeOfQuestion(question.type)}
+                </div>
+              </Fragment>
+            ) : (
+              <p>
+                Thank you for answering as honestly as possible, click "Progress
+                perk" to proceed.
+              </p>
+            )}
+
             {activePerkQuestionIndex != 0 && (
               <button
                 className="btn btn-outline-danger"
@@ -176,7 +187,8 @@ export default function inputperkdata({
                 Previous
               </button>
             )}
-            {perk.questions.length - 1 > activePerkQuestionIndex ? (
+            {/* when no more questions show progress perk btn instead */}
+            {perk.questions.length - 1 >= activePerkQuestionIndex ? (
               <button
                 className="btn btn-outline-success"
                 onClick={(e) => {

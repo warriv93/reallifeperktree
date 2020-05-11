@@ -40,7 +40,7 @@ export default function Navbar({ loggedin }: Props) {
             <li className="profile">
               <Link href="/profile">
                 <div>
-                  <a className="nav-link"> Profile</a>
+                  <a className="nav-link">Profile</a>
                   <div className="image">
                     <img src={profileface} alt="Profilememes" />
                   </div>
