@@ -29,23 +29,24 @@ export default function radioButtons({
 
   return (
     <form className="container">
-      {labels.map((label, index) => (
-        <div
-          className="radio-container"
-          key={index}
-          onClick={() => handleChange(index)}
-        >
-          <input
-            className="radio"
-            type="radio"
-            checked={checked[0] == index ? checked[1] : null}
-            name="abc"
-            onChange={() => handleChange(index)}
-            value={index}
-          />
-          <label>{label}</label>
-        </div>
-      ))}
+      {labels &&
+        labels.map((label, index) => (
+          <div
+            className="radio-container"
+            key={index}
+            onClick={() => handleChange(index)}
+          >
+            <input
+              className="radio"
+              type="radio"
+              checked={checked[0] == index ? checked[1] : null}
+              name="abc"
+              onChange={() => handleChange(index)}
+              value={index}
+            />
+            <label>{label}</label>
+          </div>
+        ))}
     </form>
   );
 }
