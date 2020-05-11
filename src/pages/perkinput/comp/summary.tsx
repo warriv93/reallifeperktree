@@ -33,12 +33,17 @@ export default function summary({ answers, urlperk }: Props) {
     let newScore = 0,
       input = 0,
       inputQuestiontype: boolean,
-      perkSection: string;
+      perkSection: string,
+      perkPlaceholder: string,
+      tempTallness = 0;
 
     answers.map((answer, index) => {
       inputQuestiontype = perk.questions[answer.question].type == 1 && true;
       perkSection = perk.questions[answer.question].section
         ? perk.questions[answer.question].section
+        : "";
+      perkPlaceholder = perk.questions[answer.question].placeholder
+        ? perk.questions[answer.question].placeholder
         : "";
       input = Number(answer.answer);
 
@@ -48,7 +53,28 @@ export default function summary({ answers, urlperk }: Props) {
       if (inputQuestiontype) {
         switch (perkSection) {
           case "BMI":
-            console.log(perkSection);
+            // source: https://www.nhlbi.nih.gov/health/educational/lose_wt/BMI/bmi-m.htm
+            // https://www.thecalculatorsite.com/articles/health/bmi-formula-for-bmi-calculations.php
+            // Underweight = <18.5
+            // Normal weight = 18.5–24.9
+            // Overweight = 25–29.9
+            // Obesity = BMI of 30 or greater
+            // console.log(perkSection, input, perkPlaceholder);
+            if (perkPlaceholder == "cm" && tempTallness == 0)
+              tempTallness = Math.abs(input / 100);
+
+            if (tempTallness > 0 && perkPlaceholder == "kg") {
+              let weight = input;
+              let bmi = Math.abs(weight / Math.pow(tempTallness, 2));
+
+              // obese and underweight
+              newScore = bmi >= 30 && 1;
+              newScore = bmi < 18 && 1;
+
+              // since there are 2 questions here and the score will be devided by amount of questions we need to return double score
+              newScore += bmi >= 25 ? 2 : 0;
+              newScore += bmi >= 18 && bmi < 25 ? 8 : 0;
+            }
 
             break;
           case "Build":
@@ -67,8 +93,13 @@ export default function summary({ answers, urlperk }: Props) {
             break;
 
           case "Stamina":
-            console.log(perkSection);
-
+            // console.log(perkSection, input);
+            // scoring taken from my ass
+            newScore += input >= 1 ? 1 : 0;
+            newScore += input >= 3 ? 1 : 0;
+            newScore += input >= 5 ? 1 : 0;
+            newScore += input >= 10 ? 1 : 0;
+            newScore += input >= 20 ? 1 : 0;
             break;
           default:
             newScore = newScore + answer.answer;
@@ -78,7 +109,8 @@ export default function summary({ answers, urlperk }: Props) {
       } else newScore = newScore + answer.answer;
     });
     console.log(score, newScore);
-    newScore = Math.round(newScore / answers.length);
+    // + 1 beacuse answeres return 0-4 and score perks are calculated 1-5
+    newScore = Math.round((newScore + 1) / answers.length);
     setScore(newScore);
   }
 

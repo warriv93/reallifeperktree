@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Perk from "../../perktree/comp/perk";
+import Perk from "../../perktree/comp/Perk";
 import { Perk as IPerk } from "../../../utils/types";
 import { perkList } from "../../../api";
 

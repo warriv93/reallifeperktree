@@ -37,16 +37,16 @@ export const perkQuestions = {
     },
   ],
   strength: [
-    {
-      paragraph: "Do you exercise, for example at a gym?",
-      type: QuestionType["rarely-often"],
-    },
-    {
-      section: "Build",
-      paragraph: "What is the maximum weight you can lift on a bench press?",
-      type: QuestionType.input,
-      placeholder: "kg",
-    },
+    // {
+    //   paragraph: "Do you exercise, for example at a gym?",
+    //   type: QuestionType["rarely-often"],
+    // },
+    // {
+    //   section: "Build",
+    //   paragraph: "What is the maximum weight you can lift on a bench press?",
+    //   type: QuestionType.input,
+    //   placeholder: "kg",
+    // },
     {
       section: "BMI",
       paragraph: "How tall are you?",
@@ -59,24 +59,24 @@ export const perkQuestions = {
       type: QuestionType.input,
       placeholder: "kg",
     },
-    {
-      section: "Build",
-      paragraph: "How much does your biceps measure around?",
-      type: QuestionType.input,
-      placeholder: "cm",
-    },
-    {
-      section: "Build",
-      paragraph: "What does your shoulder measure across?",
-      type: QuestionType.input,
-      placeholder: "cm",
-    },
-    {
-      section: "Build",
-      paragraph: "How much does your neck measure around?",
-      type: QuestionType.input,
-      placeholder: "cm",
-    },
+    // {
+    //   section: "Build",
+    //   paragraph: "How much does your biceps measure around?",
+    //   type: QuestionType.input,
+    //   placeholder: "cm",
+    // },
+    // {
+    //   section: "Build",
+    //   paragraph: "What does your shoulder measure across?",
+    //   type: QuestionType.input,
+    //   placeholder: "cm",
+    // },
+    // {
+    //   section: "Build",
+    //   paragraph: "How much does your neck measure around?",
+    //   type: QuestionType.input,
+    //   placeholder: "cm",
+    // },
   ],
   endurance: [
     {
@@ -224,61 +224,61 @@ export const perkQuestions = {
     },
   ],
   intelligence: [
-    // {
-    //   paragraph: "Do you learn new information relatively quickly?",
-    //   type: QuestionType["1-5"],
-    // },
-    // {
-    //   paragraph: "Do you read books?",
-    //   type: QuestionType["rarely-often"],
-    // },
-    // {
-    //   paragraph: "How often do you seek out to learn new information?",
-    //   type: QuestionType["rarely-often"],
-    // },
-    // {
-    //   paragraph: "How often do you seek out to learn new skills?",
-    //   type: QuestionType["rarely-often"],
-    // },
-    // {
-    //   paragraph: "Are you open to learning new fields / subjects?",
-    //   type: QuestionType["1-5"],
-    // },
-    // {
-    //   paragraph:
-    //     "Do you challenge your self, by for example driving without an GPS?",
-    //   type: QuestionType["rarely-often"],
-    // },
-    // {
-    //   paragraph:
-    //     "Do you converse/network with other people with the goal of learning new things?",
-    //   type: QuestionType["rarely-often"],
-    // },
-    // {
-    //   paragraph:
-    //     "Do you like to solve problems which arise at work and in the everyday?",
-    //   type: QuestionType["1-5"],
-    // },
-    // {
-    //   paragraph: "Do you actively meditate / think deeply on a subject?",
-    //   type: QuestionType["rarely-often"],
-    // },
-    // {
-    //   paragraph: "Do you use / study a second language?",
-    //   type: QuestionType["rarely-often"],
-    // },
-    // {
-    //   paragraph: "Do you keep up with what happens in the world?",
-    //   type: QuestionType["rarely-often"],
-    // },
-    // {
-    //   paragraph: "Do you like to study the world?",
-    //   type: QuestionType["1-5"],
-    // },
-    // {
-    //   paragraph: "Do you like to learn about subjects, like history?",
-    //   type: QuestionType["1-5"],
-    // },
+    {
+      paragraph: "Do you learn new information relatively quickly?",
+      type: QuestionType["1-5"],
+    },
+    {
+      paragraph: "Do you read books?",
+      type: QuestionType["rarely-often"],
+    },
+    {
+      paragraph: "How often do you seek out to learn new information?",
+      type: QuestionType["rarely-often"],
+    },
+    {
+      paragraph: "How often do you seek out to learn new skills?",
+      type: QuestionType["rarely-often"],
+    },
+    {
+      paragraph: "Are you open to learning new fields / subjects?",
+      type: QuestionType["1-5"],
+    },
+    {
+      paragraph:
+        "Do you challenge your self, by for example driving without an GPS?",
+      type: QuestionType["rarely-often"],
+    },
+    {
+      paragraph:
+        "Do you converse/network with other people with the goal of learning new things?",
+      type: QuestionType["rarely-often"],
+    },
+    {
+      paragraph:
+        "Do you like to solve problems which arise at work and in the everyday?",
+      type: QuestionType["1-5"],
+    },
+    {
+      paragraph: "Do you actively meditate / think deeply on a subject?",
+      type: QuestionType["rarely-often"],
+    },
+    {
+      paragraph: "Do you use / study a second language?",
+      type: QuestionType["rarely-often"],
+    },
+    {
+      paragraph: "Do you keep up with what happens in the world?",
+      type: QuestionType["rarely-often"],
+    },
+    {
+      paragraph: "Do you like to study the world?",
+      type: QuestionType["1-5"],
+    },
+    {
+      paragraph: "Do you like to learn about subjects, like history?",
+      type: QuestionType["1-5"],
+    },
     {
       section: "IQ",
       paragraph: "What is your IQ? (if you don't know just leave it blank)",

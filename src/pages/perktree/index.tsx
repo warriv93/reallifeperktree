@@ -1,5 +1,5 @@
 import Layout from "../../components/Layout";
-import Perk from "./comp/perk";
+import Perk from "./comp/Perk";
 
 import "./styles/index.scss";
 import { perkList } from "../../api";
