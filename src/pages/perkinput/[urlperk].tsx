@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useRouter } from "next/router";
 import Layout from "../../components/Layout";
-import PerkHeader from "../perk/comp/PerkHeader";
+import PerkHeader from "../perk/comp/perkHeader";
 import InputPerkData from "./comp/inputperkdata";
 import Summary from "./comp/summary";
 

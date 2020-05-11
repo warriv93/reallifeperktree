@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import Layout from "../../components/Layout";
-import PerkHeader from "./comp/PerkHeader";
-import PerkCard from "./comp/PerkCard";
+import PerkHeader from "./comp/perkHeader";
+import PerkCard from "./comp/perkCard";
 import { perkList } from "../../api";
 
 import "./styles/perkCard.scss";
