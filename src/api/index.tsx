@@ -1,8 +1,8 @@
-import strPerkImage from "../assets/perks/strPerk.png";
-import endPerkImage from "../assets/perks/EndurancePerk.png";
-import agiPerkImage from "../assets/perks/AgilityPerk.png";
-import chaPerkImage from "../assets/perks/CharismaPerk.png";
-import intPerkImage from "../assets/perks/intPerk.png";
+import strperkImage from "../assets/perks/strperk.png";
+import endPerkImage from "../assets/perks/enduranceperk.png";
+import agiPerkImage from "../assets/perks/agilityperk.png";
+import chaPerkImage from "../assets/perks/charismaperk.png";
+import intPerkImage from "../assets/perks/intperk.png";
 import { Perk, QuestionType } from "../utils/types";
 
 let strDesc =
@@ -286,7 +286,7 @@ export const perkList: Array<Perk> = [
   {
     level: 0,
     title: "Strength",
-    image: strPerkImage,
+    image: strperkImage,
     description: strDesc,
     questions: perkQuestions.strength,
   },

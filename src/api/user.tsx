@@ -1,7 +1,7 @@
 import axios from "axios";
 import { setUserLoggedin, logout } from "../api/userlocalstorage";
 import Router from "next/router";
-import Toast from "../components/toast/Toast";
+import Toast from "../components/toast";
 
 function authenticateUserLogin(
   username: string,

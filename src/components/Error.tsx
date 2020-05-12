@@ -1,5 +1,5 @@
 import * as React from "react";
-import "../styles/globalStyles.scss";
+import "../styles/globalstyles.scss";
 
 interface Props {
   error: string;

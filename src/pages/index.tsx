@@ -1,4 +1,4 @@
-import Layout from "../components/Layout";
+import Layout from "../components/layout";
 import image from "../assets/perks/CharismaPerk.png";
 import Link from "next/link";
 

@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
-import Layout from "../../components/Layout";
+import Layout from "../../components/layout";
 import { getUserLoggedin, getUserData } from "../../api/userlocalstorage";
 import { deleteUser, logoutUser, updateUser } from "../../api/user";
 import Router from "next/router";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import profileface from "../../assets/profilepic.png";
-import "./styles/profile.scss";
+import "./styles/index.scss";
 
 const isClient = typeof document !== "undefined";
 
