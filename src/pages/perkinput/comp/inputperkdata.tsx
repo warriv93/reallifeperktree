@@ -3,6 +3,7 @@ import Progress from "react-progressbar";
 import { perkList } from "../../../api";
 import { Perk as IPerk, QuestionType } from "../../../utils/types";
 import RadioButtons from "./radiobtns";
+import Input from "./input";
 import "../../perk/styles/perkCard.scss";
 import "../styles/inputperkdata.scss";
 
@@ -108,10 +109,9 @@ export default function inputperkdata({
         //   type: QuestionType["input"],
         return (
           <Fragment>
-            <input
-              type="number"
-              className="form-control"
-              onChange={(e) => settempanswer(e.target.value)}
+            <Input
+              questionID={activePerkQuestionIndex}
+              settempanswer={settempanswer}
               placeholder={question.placeholder}
             />
           </Fragment>
