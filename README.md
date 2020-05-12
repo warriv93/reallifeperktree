@@ -32,6 +32,8 @@ yarn dev
 
 (Test user: test / test)
 
-## DEPLOYED
+## LIVE DEPLOYMENT
+
+(API NOT YET LIVE)
 
 LIVE at: https://reallifeperktree.warriv93.now.sh/
