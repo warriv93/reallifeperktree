@@ -34,4 +34,4 @@ yarn dev
 
 ## DEPLOYED
 
-LIVE at: https://reallifeperktree-gc68xw92n.now.sh/perktree
+LIVE at: https://reallifeperktree.warriv93.now.sh/
