@@ -3,13 +3,20 @@ import { setUserLoggedin, logout } from "../api/userlocalstorage";
 import Router from "next/router";
 import Toast from "../components/toast";
 
+let url =
+  process.env.NODE_ENV && process.env.NODE_ENV == "production"
+    ? "https://api-reallifeperktree.herokuapp.com/"
+    : "http://127.0.0.1:1337/";
+
 function authenticateUserLogin(
   username: string,
   password: string,
   callback: any
 ) {
+  console.log(url);
+
   axios
-    .post("http://127.0.0.1:1337/user/login", {
+    .post(url + "user/login", {
       username: username,
       password: password,
     })
@@ -35,7 +42,7 @@ function createUser(
   callback: any
 ) {
   axios
-    .post("http://127.0.0.1:1337/user/new", {
+    .post(url + "user/new", {
       username: username,
       password: password,
       email: email,
@@ -60,7 +67,7 @@ function createUser(
 
 function getUserbyUsername(username: string, callback) {
   axios
-    .get(`http://127.0.0.1:1337/user/find/${username}`)
+    .get(url + `user/find/${username}`)
     .then((res) => {
       callback(res);
       //username not found
@@ -73,11 +80,11 @@ function getUserbyUsername(username: string, callback) {
 
 function deleteUser(username: string) {
   axios
-    .get(`http://127.0.0.1:1337/user/find/${username}`)
+    .get(url + `user/find/${username}`)
     .then((res) => {
       let userid = res.data[0]._id;
       axios
-        .delete(`http://127.0.0.1:1337/user/delete/${userid}`)
+        .delete(url + `user/delete/${userid}`)
         .then((res) => {
           if (res) {
             logout();
@@ -98,7 +105,7 @@ function deleteUser(username: string) {
 }
 
 function logoutUser() {
-  axios.get("http://127.0.0.1:1337/user/logout");
+  axios.get(url + "user/logout");
   logout();
   Router.push("/perktree");
   Toast("Successfully logged out");
@@ -115,7 +122,7 @@ function updateUser(
   console.log("before req: ", oldUsername, username, password);
   // check if username already exist in database
   axios
-    .put(`http://127.0.0.1:1337/user/update/${oldUsername}`, {
+    .put(url + `user/update/${oldUsername}`, {
       username: username,
       password: password,
       email: email,
