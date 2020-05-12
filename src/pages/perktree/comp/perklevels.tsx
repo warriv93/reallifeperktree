@@ -2,7 +2,7 @@ import * as React from "react";
 import Link from "next/link";
 import { getUserLoggedin } from "../../../api/userlocalstorage";
 
-import "../styles/perkLevel.scss";
+import "../styles/perklevel.scss";
 
 interface Props {
   image: string;

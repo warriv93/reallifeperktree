@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { Fragment, useState } from "react";
 import profileface from "../../assets/profilepic.png";
-import MobileMenu from "./mobileMenu";
+import MobileMenu from "./mobilemenu";
 import Menuitems from "./menuitems";
 import "./styles/navbar.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";

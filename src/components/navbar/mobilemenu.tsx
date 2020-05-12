@@ -1,4 +1,4 @@
-import "./styles/mobileMenu.scss";
+import "./styles/mobilemenu.scss";
 import Menuitems from "./menuitems";
 
 interface Props {

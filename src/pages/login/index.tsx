@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Layout from "../../components/Layout";
+import Layout from "../../components/layout";
 
 import Login from "./component/login/index";
 import CreateNew from "./component/newuser/index";

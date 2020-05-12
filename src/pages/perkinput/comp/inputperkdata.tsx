@@ -4,7 +4,7 @@ import { perkList } from "../../../api";
 import { Perk as IPerk, QuestionType } from "../../../utils/types";
 import RadioButtons from "./radiobtns";
 import Input from "./input";
-import "../../perk/styles/perkCard.scss";
+import "../../perk/styles/perkcard.scss";
 import "../styles/inputperkdata.scss";
 
 interface Props {

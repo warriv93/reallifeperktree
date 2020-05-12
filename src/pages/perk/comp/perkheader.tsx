@@ -3,7 +3,7 @@ import Perk from "../../perktree/comp/perk";
 import { Perk as IPerk } from "../../../utils/types";
 import { perkList } from "../../../api";
 
-import "../styles/perkHeader.scss";
+import "../styles/perkheader.scss";
 
 interface Props {
   urlperk: string | string[];

@@ -1,10 +1,10 @@
 import { useRouter } from "next/router";
-import Layout from "../../components/Layout";
+import Layout from "../../components/layout";
 import PerkHeader from "./comp/perkheader";
 import PerkCard from "./comp/perkcard";
 import { perkList } from "../../api";
 
-import "./styles/perkCard.scss";
+import "./styles/perkcard.scss";
 
 const Perk = () => {
   //fetch param from url

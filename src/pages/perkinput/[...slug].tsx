@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import Layout from "../../components/Layout";
+import Layout from "../../components/layout";
 
 //catches wrong urls
 //Dynamic routes can be extended to catch all paths by adding three dots (...) inside the brackets. For example:

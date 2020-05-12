@@ -1,7 +1,7 @@
 import * as React from "react";
-import Navbar from "./navbar/Navbar";
+import Navbar from "./navbar";
 import Header from "next/head";
-import "../styles/globalStyles.scss";
+import "../styles/globalstyles.scss";
 import "../styles/bootstrap.css";
 import { getUserLoggedin } from "../api/userlocalstorage";
 
@@ -24,12 +24,12 @@ const Layout: React.FunctionComponent<Props> = ({ children }) => (
         rel="stylesheet"
         href="https://bootswatch.com/4/flatly/bootstrap.min.css"
       /> */}
-      {/* <link href="../styles/globalStyles.scss" rel="stylesheet" /> */}
-      <link
+      {/* <link href="../styles/globalstyles.scss" rel="stylesheet" /> */}
+      {/* <link
         rel="shortcut icon"
         type="image/png"
         href="/assets/profilepic.png"
-      />
+      /> */}
     </Header>
     <Navbar loggedin={getUserLoggedin() || false} />
     <div className="container">{children}</div>
