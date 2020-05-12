@@ -6,9 +6,9 @@ import Menuitems from "./menuitems";
 import "./styles/navbar.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-type Props = {
+interface Props {
   loggedin: Boolean;
-};
+}
 
 export default function Navbar({ loggedin }: Props) {
   const [open, setOpen] = useState(false);

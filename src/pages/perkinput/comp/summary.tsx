@@ -3,10 +3,10 @@ import { useEffect, useState } from "react";
 import { perkList } from "../../../api";
 import { Perk as IPerk } from "../../../utils/types";
 
-type Props = {
+interface Props {
   answers: any[];
   urlperk: string | string[];
-};
+}
 
 export default function summary({ answers, urlperk }: Props) {
   const [score, setScore] = useState(0);

@@ -1,11 +1,12 @@
 import "../styles/radiobtn.scss";
 import { useState, useEffect } from "react";
-type Props = {
+
+interface Props {
   labels: Array<String>;
   settempanswer: Function;
   answer: any;
   questionID: number;
-};
+}
 
 export default function radioButtons({
   labels,

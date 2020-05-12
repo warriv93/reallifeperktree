@@ -14,7 +14,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 library.add(fab, faPencilAlt, faAngleRight, faTimes);
 
-type Props = {};
+interface Props {}
 
 const Layout: React.FunctionComponent<Props> = ({ children }) => (
   <div>

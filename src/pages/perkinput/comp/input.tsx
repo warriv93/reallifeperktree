@@ -1,11 +1,12 @@
 import "../styles/radiobtn.scss";
-import { useEffect, useState } from "react";
-type Props = {
+import { useEffect, useRef } from "react";
+
+interface Props {
   settempanswer: Function;
   questionID: number;
   answer: any;
   placeholder: string;
-};
+}
 
 export default function radioButtons({
   settempanswer,
@@ -13,28 +14,23 @@ export default function radioButtons({
   questionID,
   placeholder,
 }: Props) {
-  const [value, setValue] = useState();
+  const inputRef = useRef(null);
 
   function handleChange(i) {
-    if (typeof i === "number") {
-      settempanswer(i);
-    }
+    settempanswer(i);
   }
 
-  //TODO: FIXME: when clicking from an input -> input, the value carries over -
-
   useEffect(() => {
-    // console.log("useEffect", answer);
-    answer ? setValue(answer.answer) : setValue();
+    inputRef.current.value = answer ? answer.answer : null;
   }, [questionID]);
 
   return (
     <input
       type="number"
+      ref={inputRef}
       className="form-control"
       onChange={(e) => handleChange(e.target.value)}
       placeholder={placeholder}
-      defaultValue={value}
       autoFocus={true}
     />
   );

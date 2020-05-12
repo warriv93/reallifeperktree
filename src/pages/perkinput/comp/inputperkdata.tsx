@@ -7,11 +7,11 @@ import Input from "./input";
 import "../../perk/styles/perkCard.scss";
 import "../styles/inputperkdata.scss";
 
-type Props = {
+interface Props {
   urlperk: string | string[];
   setPerkDataSubmitted: Function;
   setFinalAnswersFromInput: Function;
-};
+}
 
 export default function inputperkdata({
   urlperk,
@@ -112,6 +112,7 @@ export default function inputperkdata({
             <Input
               questionID={activePerkQuestionIndex}
               settempanswer={settempanswer}
+              answer={exisitingAnswer ? exisitingAnswer : null}
               placeholder={question.placeholder}
             />
           </Fragment>

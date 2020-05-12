@@ -4,13 +4,13 @@ import { getUserLoggedin } from "../../../api/userlocalstorage";
 
 import "../styles/perkLevel.scss";
 
-type Props = {
+interface Props {
   image: string;
   grayscale: string;
   title: string;
   usedInPerkHeader: boolean;
   currentLevel: number;
-};
+}
 
 const PerkLevel: React.FunctionComponent<Props> = ({
   grayscale,

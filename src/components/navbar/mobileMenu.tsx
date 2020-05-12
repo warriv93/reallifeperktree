@@ -1,9 +1,9 @@
 import "./styles/mobileMenu.scss";
 import Menuitems from "./menuitems";
 
-type Props = {
+interface Props {
   toggle: string;
-};
+}
 
 const menu: React.FunctionComponent<Props> = ({ toggle }) => (
   <aside id="menu" className={toggle}>
