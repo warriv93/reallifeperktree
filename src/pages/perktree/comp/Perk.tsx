@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Perklevel from "./PerkLevels";
+import Perklevel from "./perklevels";
 import "../styles/perk.scss";
 
 interface IProps {
