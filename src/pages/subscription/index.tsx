@@ -6,10 +6,7 @@ import Layout from "../../components/layout";
 export default function subscription() {
   return (
     <Layout>
-      <section
-        className="fdb-block"
-        //   style="background-image: url(imgs/shapes/8.svg);"
-      >
+      <section className="fdb-block">
         <div className="container">
           <div className="row text-center">
             <div className="col">
