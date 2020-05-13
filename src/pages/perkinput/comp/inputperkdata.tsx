@@ -32,7 +32,7 @@ export default function inputperkdata({
     // check values and type of urltitle
     // iterate over perkList, if perk title = urlperk setPerk
     if (perkList && urlperk && typeof urlperk === "string") {
-      let perk = perkList.filter((perk) => perk.title == urlperk)[0];
+      let perk = perkList.find((perk) => perk.title == urlperk);
       setPerk(perk);
       setQuestion(perk.questions[0]);
     }
@@ -43,9 +43,9 @@ export default function inputperkdata({
   }
 
   function saveAnswer() {
-    let answerMatch = answers.filter(
+    let answerMatch = answers.find(
       (answer) => answer.question == activePerkQuestionIndex
-    )[0];
+    );
     // console.log(answerMatch);
 
     if (!answerMatch) {
@@ -87,9 +87,9 @@ export default function inputperkdata({
   }
 
   function typeOfQuestion(type: QuestionType) {
-    let exisitingAnswer = answers.filter(
+    let exisitingAnswer = answers.find(
       (answer) => answer.question == activePerkQuestionIndex
-    )[0];
+    );
 
     // console.log("typeOfQuestion, EXISTS: ", exisitingAnswer, tempAnswer);
     switch (type) {

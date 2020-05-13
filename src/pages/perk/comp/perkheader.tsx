@@ -20,7 +20,7 @@ export default function perkHeader({ urlperk }: Props) {
     perkList &&
       urlperk &&
       typeof urlperk === "string" &&
-      perkList.map((perk) => perk.title == urlperk && setPerk(perk));
+      perkList.find((perk) => perk.title == urlperk && setPerk(perk));
     // only when urlperk changes, run as componentDidUpdate
   }, [urlperk, perk]);
 

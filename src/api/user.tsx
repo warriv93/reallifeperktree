@@ -1,8 +1,10 @@
 import axios from "axios";
-import { setUserLoggedin, logout } from "../api/userlocalstorage";
+import { setUserLoggedin, logout, getUserData } from "../api/userlocalstorage";
+import { perkList } from "../api/";
 import Router from "next/router";
 import Toast from "../components/toast";
 
+// check if production live, or dev
 let url =
   process.env.NODE_ENV && process.env.NODE_ENV == "production"
     ? "https://api-reallifeperktree.herokuapp.com/"
@@ -13,8 +15,6 @@ function authenticateUserLogin(
   password: string,
   callback: any
 ) {
-  console.log(url);
-
   axios
     .post(url + "user/login", {
       username: username,
@@ -47,6 +47,7 @@ function createUser(
       password: password,
       email: email,
       profilePicture: "",
+      perks: perkList,
     })
     .then((response) => {
       if (response.data.error) {
@@ -156,6 +157,38 @@ function updateUser(
     });
 }
 
+function updatePerk(perklevel, callback) {
+  getUserData((user) => {
+    console.log(user.username);
+
+    axios
+      .put(url + `user/updateperk/${user.username}`, {
+        perk: perklevel,
+      })
+      .then((response) => {
+        if (
+          (response && response.data.length <= 0) ||
+          (response && response.data.error)
+        ) {
+          callback({ error: "Error" });
+        } else {
+          console.log("Successfully updated user", response.data);
+          Toast("Perk level increased to ");
+          // set the user data and boolean loggedin into localstorage
+          setUserLoggedin(response.data);
+          callback({ data: response.data });
+
+          // update local storage user -> new perk level
+        }
+        // id not found
+      })
+      .catch((err) => {
+        console.error(err);
+        callback({ error: err });
+      });
+  });
+}
+
 export {
   authenticateUserLogin,
   createUser,
@@ -163,4 +196,5 @@ export {
   logoutUser,
   updateUser,
   getUserbyUsername,
+  updatePerk,
 };

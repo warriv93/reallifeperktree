@@ -2,6 +2,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { perkList } from "../../../api";
 import { Perk as IPerk } from "../../../utils/types";
+import { updatePerk } from "../../../api/user";
 
 interface Props {
   answers: any[];
@@ -9,28 +10,29 @@ interface Props {
 }
 
 export default function summary({ answers, urlperk }: Props) {
-  const [score, setScore] = useState(0);
+  const [level, setLevel] = useState(0);
 
   useEffect(() => {
-    console.log(
-      urlperk,
-      perkList,
-      perkList.filter((perk) => perk.title == urlperk)[0]
-    );
-
     // check values and type of urltitle
     // iterate over perkList, if perk title = urlperk setPerk
     let perk =
       perkList &&
       urlperk &&
       typeof urlperk === "string" &&
-      perkList.filter((perk) => perk.title == urlperk)[0];
+      perkList.find((perk) => perk.title == urlperk);
 
     calculateScore(perk);
   }, [urlperk]);
 
+  useEffect(() => {
+    level != 0 &&
+      updatePerk(level, (res) => {
+        console.log("CALLBACK: ", res);
+      });
+  }, [level]);
+
   function calculateScore(perk: IPerk) {
-    let newScore = 0,
+    let newLevel = 0,
       input = 0,
       inputQuestiontype: boolean,
       perkSection: string,
@@ -47,9 +49,6 @@ export default function summary({ answers, urlperk }: Props) {
         : "";
       input = Number(answer.answer);
 
-      console.log(answer);
-
-      // TODO: SCORE from LEVEL 1-5
       if (inputQuestiontype) {
         switch (perkSection) {
           case "BMI":
@@ -68,58 +67,62 @@ export default function summary({ answers, urlperk }: Props) {
               let bmi = Math.abs(weight / Math.pow(tempTallness, 2));
 
               // obese and underweight
-              newScore = bmi >= 30 && 1;
-              newScore = bmi < 18 && 1;
+              newLevel = bmi >= 30 && 1;
+              newLevel = bmi < 18 && 1;
 
               // since there are 2 questions here and the score will be devided by amount of questions we need to return double score
-              newScore += bmi >= 25 ? 2 : 0;
-              newScore += bmi >= 18 && bmi < 25 ? 8 : 0;
+              newLevel += bmi >= 25 ? 2 : 0;
+              newLevel += bmi >= 18 && bmi < 25 ? 8 : 0;
             }
 
             break;
           case "Build":
-            console.log(perkSection);
+            // push ups and pull ups
+            // console.log(perkSection);
+            newLevel += input >= 1 ? 1 : 0;
+            newLevel += input >= 10 ? 1 : 0;
+            newLevel += input >= 20 ? 1 : 0;
+            newLevel += input >= 40 ? 1 : 0;
+            newLevel += input >= 60 ? 1 : 0;
+
+            console.log("calced", newLevel);
 
             break;
 
           case "IQ":
             //SOURCE - IQ RANGE BELL CURVE https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fiqtestprep.com%2Fwp-content%2Fuploads%2F2018%2F06%2Fiq-distribution-curve-1.png&f=1&nofb=1
             // console.log(perkSection, " Answer: ", input);
-            newScore += input >= 70 ? 1 : 0;
-            newScore += input >= 85 ? 1 : 0;
-            newScore += input >= 100 ? 1 : 0;
-            newScore += input >= 115 ? 1 : 0;
-            newScore += input >= 130 ? 1 : 0;
+            newLevel += input >= 70 ? 1 : 0;
+            newLevel += input >= 85 ? 1 : 0;
+            newLevel += input >= 100 ? 1 : 0;
+            newLevel += input >= 115 ? 1 : 0;
+            newLevel += input >= 130 ? 1 : 0;
             break;
 
           case "Stamina":
             // console.log(perkSection, input);
             // scoring taken from my ass
-            newScore += input >= 1 ? 1 : 0;
-            newScore += input >= 3 ? 1 : 0;
-            newScore += input >= 5 ? 1 : 0;
-            newScore += input >= 10 ? 1 : 0;
-            newScore += input >= 20 ? 1 : 0;
+            newLevel += input >= 1 ? 1 : 0;
+            newLevel += input >= 3 ? 1 : 0;
+            newLevel += input >= 5 ? 1 : 0;
+            newLevel += input >= 10 ? 1 : 0;
+            newLevel += input >= 20 ? 1 : 0;
             break;
           default:
-            newScore = newScore + answer.answer;
+            newLevel = newLevel + answer.answer;
 
             break;
         }
-      } else newScore = newScore + answer.answer;
+        // + 1 beacuse answeres return 0-4 and score perks are calculated 1-5
+      } else newLevel = newLevel + answer.answer + 1;
     });
-    console.log(score, newScore);
-    // + 1 beacuse answeres return 0-4 and score perks are calculated 1-5
-    newScore = Math.round((newScore + 1) / answers.length);
-    setScore(newScore);
+    newLevel = Math.round(newLevel / answers.length);
+    setLevel(newLevel);
   }
 
   return (
-    <div className="perk-card">
-      <h3>Summary score: {score}</h3>
-      {/* {answers.map((answer, index) => {
-        return <p>{answer.answer}</p>;
-      })} */}
+    <div className="perk-card score">
+      <h3>Your calculated level is: {level}</h3>
       <Link href="/perktree">
         <a className="btn btn-success"> Perktree </a>
       </Link>

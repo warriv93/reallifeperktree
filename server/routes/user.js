@@ -55,14 +55,20 @@ router.post('/new', function (req, res, next) {
   let newUser = new UserModel(req.body);
   newUser.save(user => {
     console.log("Saved user to database: ", user);
-    //TODO rly send the whole user to frontend?
+    //TODO: rly send the whole user to frontend?
     res.send(user);
   });
 });
 
 router.put('/update/:username', function (req, res, next) {
-  
   UserModel.update(req.params.username, req.body, user => {
+    console.log("Updated user to database: ", user);
+    res.send(user);
+  });
+});
+
+router.put('/updateperk/:username', function (req, res, next) {
+  UserModel.updatePerk(req.params.username, req.body, user => {
     console.log("Updated user to database: ", user);
     res.send(user);
   });

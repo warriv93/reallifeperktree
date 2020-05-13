@@ -68,6 +68,7 @@ export default function profile(props) {
     setEditMode(!editMode);
   }
 
+  //TODO: set button loading while updaing database
   function updateUserData(e) {
     e.preventDefault();
     console.log("before bef req: ", oldUsername, username, password);

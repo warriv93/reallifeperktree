@@ -37,28 +37,28 @@ export const perkQuestions = {
     },
   ],
   strength: [
-    // {
-    //   paragraph: "Do you exercise, for example at a gym?",
-    //   type: QuestionType["rarely-often"],
-    // },
-    // {
-    //   section: "Build",
-    //   paragraph: "What is the maximum weight you can lift on a bench press?",
-    //   type: QuestionType.input,
-    //   placeholder: "kg",
-    // },
-    // {
-    //   section: "BMI",
-    //   paragraph: "How tall are you?",
-    //   type: QuestionType.input,
-    //   placeholder: "cm",
-    // },
-    // {
-    //   section: "BMI",
-    //   paragraph: "How much do you weigh?",
-    //   type: QuestionType.input,
-    //   placeholder: "kg",
-    // },
+    {
+      paragraph: "Do you exercise, for example at a gym?",
+      type: QuestionType["rarely-often"],
+    },
+    {
+      section: "Build",
+      paragraph: "What is the maximum weight you can lift on a bench press?",
+      type: QuestionType.input,
+      placeholder: "kg",
+    },
+    {
+      section: "BMI",
+      paragraph: "How tall are you?",
+      type: QuestionType.input,
+      placeholder: "cm",
+    },
+    {
+      section: "BMI",
+      paragraph: "How much do you weigh?",
+      type: QuestionType.input,
+      placeholder: "kg",
+    },
     {
       section: "Build",
       paragraph: "How many push ups can you do?",

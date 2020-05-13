@@ -3,12 +3,14 @@ var mongoose = require("mongoose");
 var bcrypt = require('bcrypt-nodejs');
 var passportLocalMongoose = require('passport-local-mongoose');
 
+
 var User = mongoose.Schema({
 	username: String,
 	email: String,
 	password: String,
 	profilePicture: String,
 	isAdmin: Boolean,
+	perks: Array
 });
 
 // encrypt password
@@ -31,7 +33,7 @@ User.pre('save', function (next) {
 
 User.pre('findOneAndUpdate', function (next) {
 	// if update set 
-	if (this._update != null) {		
+	if (this._update != null) {
 		//check if password is to be updated
 		if (!this._update.password) {
 			// console.log ("Not hashing ", this._update.password);
