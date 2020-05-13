@@ -1,5 +1,10 @@
 import axios from "axios";
-import { setUserLoggedin, logout, getUserData } from "../api/userlocalstorage";
+import {
+  setUserLoggedin,
+  logout,
+  getUserData,
+  updateUserData,
+} from "../api/userlocalstorage";
 import { perkList } from "../api/";
 import Router from "next/router";
 import Toast from "../components/toast";
@@ -183,8 +188,8 @@ function updatePerk(title, level, callback) {
                     newUserdata.perks.find((perk) => perk.title == title).level
                 );
                 callback({ data: newUserdata });
+                updateUserData(newUserdata);
               }
-              // TODO: update local storage user -> new perk level
             })
             .catch((err) => {
               console.error(err);
