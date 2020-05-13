@@ -10,7 +10,9 @@ interface Props {
 }
 
 export default function summary({ answers, urlperk }: Props) {
+  let originPerk: IPerk;
   const [level, setLevel] = useState(0);
+  const [perk, setPerk] = useState(originPerk);
 
   useEffect(() => {
     // check values and type of urltitle
@@ -22,15 +24,18 @@ export default function summary({ answers, urlperk }: Props) {
       perkList.find((perk) => perk.title == urlperk);
 
     calculateScore(perk);
+    setPerk(perk);
   }, [urlperk]);
 
+  // after the level has been calculated, update the users perklevel
   useEffect(() => {
     level != 0 &&
-      updatePerk(level, (res) => {
-        console.log("CALLBACK: ", res);
+      updatePerk(perk.title, level, (res) => {
+        console.log("updatePerk CALLBACK: ", res);
       });
   }, [level]);
 
+  // perk level algorithm calculates a score based on the answers
   function calculateScore(perk: IPerk) {
     let newLevel = 0,
       input = 0,

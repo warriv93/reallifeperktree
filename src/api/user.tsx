@@ -157,13 +157,14 @@ function updateUser(
     });
 }
 
-function updatePerk(perklevel, callback) {
+function updatePerk(title, level, callback) {
   getUserData((user) => {
-    console.log(user.username);
+    console.log(user.username, title, level);
 
     axios
       .put(url + `user/updateperk/${user.username}`, {
-        perk: perklevel,
+        title: title,
+        level: level,
       })
       .then((response) => {
         if (
@@ -172,15 +173,24 @@ function updatePerk(perklevel, callback) {
         ) {
           callback({ error: "Error" });
         } else {
-          console.log("Successfully updated user", response.data);
-          Toast("Perk level increased to ");
-          // set the user data and boolean loggedin into localstorage
-          setUserLoggedin(response.data);
-          callback({ data: response.data });
-
-          // update local storage user -> new perk level
+          axios
+            .get(url + `user/find/${user.username}`)
+            .then((res) => {
+              if (res.data && res.data.length > 0) {
+                let newUserdata = res.data[0];
+                Toast(
+                  "Perk level increased to " +
+                    newUserdata.perks.find((perk) => perk.title == title).level
+                );
+                callback({ data: newUserdata });
+              }
+              // TODO: update local storage user -> new perk level
+            })
+            .catch((err) => {
+              console.error(err);
+              callback({ error: err });
+            });
         }
-        // id not found
       })
       .catch((err) => {
         console.error(err);
