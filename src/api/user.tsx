@@ -28,7 +28,7 @@ function authenticateUserLogin(
     .then((response) => {
       // set the user data and boolean loggedin into localstorage
       getUserbyUsername(response.data.username, (res) => {
-        setUserLoggedin(res.data);
+        setUserLoggedin(res.data[0]);
         Router.push("/perktree");
         Toast("Successfully logged in");
       });
