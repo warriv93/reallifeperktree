@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { perkList } from "../../../api";
+import { getUserPerk } from "../../../api/userlocalstorage";
 import { Perk as IPerk } from "../../../utils/types";
 import { updatePerk } from "../../../api/user";
 
@@ -17,14 +17,12 @@ export default function summary({ answers, urlperk }: Props) {
   useEffect(() => {
     // check values and type of urltitle
     // iterate over perkList, if perk title = urlperk setPerk
-    let perk =
-      perkList &&
-      urlperk &&
-      typeof urlperk === "string" &&
-      perkList.find((perk) => perk.title == urlperk);
-
-    calculateScore(perk);
-    setPerk(perk);
+    if (urlperk && typeof urlperk === "string") {
+      getUserPerk(urlperk, (perk) => {
+        calculateScore(perk);
+        setPerk(perk);
+      });
+    }
   }, [urlperk]);
 
   // after the level has been calculated, update the users perklevel
@@ -127,7 +125,7 @@ export default function summary({ answers, urlperk }: Props) {
 
   return (
     <div className="perk-card score">
-      <h3>Your calculated level is: {level}</h3>
+      <h3>Your new perk level is: {level}</h3>
       <Link href="/perktree">
         <a className="btn btn-success"> Perktree </a>
       </Link>

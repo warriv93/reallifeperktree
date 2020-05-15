@@ -184,8 +184,10 @@ function updatePerk(title, level, callback) {
               if (res.data && res.data.length > 0) {
                 let newUserdata = res.data[0];
                 Toast(
-                  "Perk level increased to " +
+                  `Your ${title} perk is now level  
+                  ${
                     newUserdata.perks.find((perk) => perk.title == title).level
+                  }`
                 );
                 callback({ data: newUserdata });
                 updateUserData(newUserdata);

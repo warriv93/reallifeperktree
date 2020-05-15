@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import Perklevel from "./perklevels";
 import "../styles/perk.scss";
 
@@ -11,12 +10,6 @@ interface IProps {
 }
 
 export default function Perk(props: IProps) {
-  const [title] = useState(props.title);
-  const [currentLevel] = useState(props.level);
-  const [image] = useState(props.image);
-  const [usedInPerkHeader] = useState(props.usedInPerkHeader || false);
-  const [description] = useState(props.description);
-
   function renderPerkLevels() {
     let levels = [];
     let totalLevels = 5;
@@ -26,11 +19,11 @@ export default function Perk(props: IProps) {
       levels.push(
         <Perklevel
           key={index}
-          usedInPerkHeader={usedInPerkHeader}
-          grayscale={currentLevel < index ? "grayscale" : ""}
-          currentLevel={currentLevel}
-          image={image}
-          title={title}
+          usedInPerkHeader={props.usedInPerkHeader || false}
+          grayscale={props.level < index ? "grayscale" : ""}
+          currentLevel={props.level}
+          image={props.image}
+          title={props.title}
         />
       );
     }
@@ -41,13 +34,13 @@ export default function Perk(props: IProps) {
     <div className="perk-container">
       <ul className="perk">
         <li className="perk-level title">
-          <span>{title}</span>
+          <span>{props.title}</span>
         </li>
         {renderPerkLevels()}
       </ul>
-      {usedInPerkHeader && description && (
+      {props.usedInPerkHeader && props.description && (
         <div className="perk-description">
-          <p>{description}</p>
+          <p>{props.description}</p>
         </div>
       )}
     </div>

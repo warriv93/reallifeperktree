@@ -1,7 +1,7 @@
 // MANAGE CACHE VALUE
 
 import { reactLocalStorage } from "reactjs-localstorage";
-
+import { getPerk } from "./index";
 // reactLocalStorage.set("var", true);
 // reactLocalStorage.get("var", true);
 // reactLocalStorage.setObject("var", { test: "test" });
@@ -70,7 +70,7 @@ function logout(): String {
 }
 
 function updateUserData(user: Object) {
-  //check if userdata is empty, if not remove content and set a new obj
+  //check if userdata obj exists, if exists remove content and set a new obj
   let userdata = reactLocalStorage.getObject("userdata");
   Object.keys(userdata).length !== 0 &&
     userdata.constructor === Object &&
@@ -79,10 +79,32 @@ function updateUserData(user: Object) {
   getUserData((res) => console.info("LOCALSTORAGE: ", res));
 }
 
+function getUserPerks(callback) {
+  //check if userdata obj exists, if exists remove content and set a new obj
+  let userdata = reactLocalStorage.getObject("userdata");
+  Object.keys(userdata).length !== 0 &&
+    userdata.constructor === Object &&
+    getUserData((userData) => {
+      // return the perks array from an existing user
+      callback(userData.perks);
+    });
+}
+
+function getUserPerk(title, callback) {
+  getUserPerks((perks) => {
+    let perk = perks
+      ? perks.find((userPerk) => userPerk.title == title)
+      : getPerk(title);
+    callback(perk);
+  });
+}
+
 export {
   setUserLoggedin,
   getUserLoggedin,
   getUserData,
   logout,
   updateUserData,
+  getUserPerks,
+  getUserPerk,
 };

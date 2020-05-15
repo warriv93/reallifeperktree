@@ -13,11 +13,13 @@ export default function PerkCard(props: Props) {
   const [data, SetData] = useState(props.data);
 
   useEffect(() => {
+    console.log("kja");
+
     axios
       .get("https://api.chucknorris.io/jokes/random")
       .then((response) => SetData(response.data))
       .catch((error) => console.log(error));
-  }, [!data]);
+  }, []);
 
   return (
     <Fragment>
@@ -25,7 +27,7 @@ export default function PerkCard(props: Props) {
         <a href={data.url}>
           <div className="perk-card">
             <div className="left">
-              <h3>{"perk.title"}</h3>
+              <h3>{"INFO PAGE TITLE"}</h3>
               <p>{data.value}</p>
               <button className="btn btn-outline-success">Learn</button>
             </div>

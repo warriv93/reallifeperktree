@@ -1,6 +1,6 @@
 import React, { Fragment, useState, useEffect } from "react";
 import Progress from "react-progressbar";
-import { perkList } from "../../../api";
+import { getUserPerk } from "../../../api/userlocalstorage";
 import { Perk as IPerk, QuestionType } from "../../../utils/types";
 import RadioButtons from "./radiobtns";
 import Input from "./input";
@@ -18,9 +18,8 @@ export default function inputperkdata({
   setPerkDataSubmitted,
   setFinalAnswersFromInput,
 }: Props) {
-  let originPerk: IPerk;
   // let originQuestion: Question;
-  const [perk, setPerk] = useState(originPerk);
+  const [perk, setPerk] = useState<IPerk>();
   const [activePerkQuestionIndex, setActivePerkQuestionIndex] = useState(0);
   const [question, setQuestion] = useState(
     perk && perk.questions[activePerkQuestionIndex]
@@ -31,10 +30,11 @@ export default function inputperkdata({
   useEffect(() => {
     // check values and type of urltitle
     // iterate over perkList, if perk title = urlperk setPerk
-    if (perkList && urlperk && typeof urlperk === "string") {
-      let perk = perkList.find((perk) => perk.title == urlperk);
-      setPerk(perk);
-      setQuestion(perk.questions[0]);
+    if (urlperk && typeof urlperk === "string") {
+      getUserPerk(urlperk, (perk) => {
+        setPerk(perk);
+        setQuestion(perk.questions[0]);
+      });
     }
   }, [urlperk]);
 

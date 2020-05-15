@@ -4,6 +4,7 @@ import agiPerkImage from "../assets/perks/AgilityPerk.png";
 import chaPerkImage from "../assets/perks/CharismaPerk.png";
 import intPerkImage from "../assets/perks/intPerk.png";
 import { Perk, QuestionType } from "../utils/types";
+// import { getUserData } from "../api/userlocalstorage";
 
 let strDesc =
   "The state or quality of being strong; physical power or have a capacity to resist strain or stress; durability.";
@@ -73,89 +74,89 @@ export const perkQuestions = {
     },
   ],
   endurance: [
-    {
-      section: "Stamina",
-      paragraph: "Do you exercise, for example at a gym?",
-      type: QuestionType["rarely-often"],
-    },
-    {
-      section: "Stamina",
-      paragraph: "Do you hold your breath underwater?",
-      type: QuestionType["rarely-often"],
-    },
-    {
-      section: "Stamina",
-      paragraph: "Do you run for exercise?",
-      type: QuestionType["rarely-often"],
-    },
-    {
-      section: "Stamina",
-      paragraph: "How far can you run before getting exhausted?",
-      type: QuestionType["input"],
-      placeholder: "km",
-    },
-    {
-      section: "Stamina",
-      paragraph: "Do you attend a sport?",
-      type: QuestionType["rarely-often"],
-    },
-    {
-      section: "Stamina",
-      paragraph: "Do you feel healthy and alert?",
-      type: QuestionType["1-5"],
-    },
-    {
-      section: "Mental health",
-      paragraph: "Do you read books or similar for entertainment?",
-      type: QuestionType["rarely-often"],
-    },
-    {
-      section: "Mental health",
-      paragraph: "Do you watch movies or similar entertainment?",
-      type: QuestionType["rarely-often"],
-    },
-    {
-      section: "Mental health",
-      paragraph: "Do you play games, for example board games or computer game?",
-      type: QuestionType["rarely-often"],
-    },
-    {
-      section: "Mental health",
-      paragraph: "Do you meet friends or other people?",
-      type: QuestionType["rarely-often"],
-    },
-    {
-      section: "Mental health",
-      paragraph: "Do you travel and expose yourself to new cultures?",
-      type: QuestionType["rarely-often"],
-    },
-    {
-      section: "Diet",
-      paragraph:
-        "Do you eat all the three meals breakfast, lunch and dinner every day?",
-      type: QuestionType["rarely-often"],
-    },
-    {
-      section: "Diet",
-      paragraph: "Do you eat homecooked food / healthy food?",
-      type: QuestionType["rarely-often"],
-    },
-    {
-      section: "Diet",
-      paragraph: "Do you eat fastfood?",
-      type: QuestionType["rarely-often"],
-    },
-    {
-      section: "Diet",
-      paragraph: "Do you have normal blood preasure?",
-      type: QuestionType["1-5"],
-    },
-    {
-      section: "Diet",
-      paragraph:
-        "Do you have any serious illness, allergies, for example pollen or diabetes?",
-      type: QuestionType["1-5"],
-    },
+    // {
+    //   section: "Stamina",
+    //   paragraph: "Do you exercise, for example at a gym?",
+    //   type: QuestionType["rarely-often"],
+    // },
+    // {
+    //   section: "Stamina",
+    //   paragraph: "Do you hold your breath underwater?",
+    //   type: QuestionType["rarely-often"],
+    // },
+    // {
+    //   section: "Stamina",
+    //   paragraph: "Do you run for exercise?",
+    //   type: QuestionType["rarely-often"],
+    // },
+    // {
+    //   section: "Stamina",
+    //   paragraph: "How far can you run before getting exhausted?",
+    //   type: QuestionType["input"],
+    //   placeholder: "km",
+    // },
+    // {
+    //   section: "Stamina",
+    //   paragraph: "Do you attend a sport?",
+    //   type: QuestionType["rarely-often"],
+    // },
+    // {
+    //   section: "Stamina",
+    //   paragraph: "Do you feel healthy and alert?",
+    //   type: QuestionType["1-5"],
+    // },
+    // {
+    //   section: "Mental health",
+    //   paragraph: "Do you read books or similar for entertainment?",
+    //   type: QuestionType["rarely-often"],
+    // },
+    // {
+    //   section: "Mental health",
+    //   paragraph: "Do you watch movies or similar entertainment?",
+    //   type: QuestionType["rarely-often"],
+    // },
+    // {
+    //   section: "Mental health",
+    //   paragraph: "Do you play games, for example board games or computer game?",
+    //   type: QuestionType["rarely-often"],
+    // },
+    // {
+    //   section: "Mental health",
+    //   paragraph: "Do you meet friends or other people?",
+    //   type: QuestionType["rarely-often"],
+    // },
+    // {
+    //   section: "Mental health",
+    //   paragraph: "Do you travel and expose yourself to new cultures?",
+    //   type: QuestionType["rarely-often"],
+    // },
+    // {
+    //   section: "Diet",
+    //   paragraph:
+    //     "Do you eat all the three meals breakfast, lunch and dinner every day?",
+    //   type: QuestionType["rarely-often"],
+    // },
+    // {
+    //   section: "Diet",
+    //   paragraph: "Do you eat homecooked food / healthy food?",
+    //   type: QuestionType["rarely-often"],
+    // },
+    // {
+    //   section: "Diet",
+    //   paragraph: "Do you eat fastfood?",
+    //   type: QuestionType["rarely-often"],
+    // },
+    // {
+    //   section: "Diet",
+    //   paragraph: "Do you have normal blood preasure?",
+    //   type: QuestionType["1-5"],
+    // },
+    // {
+    //   section: "Diet",
+    //   paragraph:
+    //     "Do you have any serious illness, allergies, for example pollen or diabetes?",
+    //   type: QuestionType["1-5"],
+    // },
     {
       section: "Diet",
       paragraph:
@@ -319,6 +320,10 @@ export const perkList: Array<Perk> = [
     questions: perkQuestions.intelligence,
   },
 ];
+
+export function getPerk(title): Perk {
+  return perkList.find((perk) => perk.title == title && perk);
+}
 
 // Intelligence - "The ability to acquire, understand, and use knowledge."
 // - skala 1-10

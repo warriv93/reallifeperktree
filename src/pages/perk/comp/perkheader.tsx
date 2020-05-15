@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import Perk from "../../perktree/comp/perk";
 import { Perk as IPerk } from "../../../utils/types";
-import { perkList } from "../../../api";
+// import { getPerk } from "../../../api";
+import { getUserPerk } from "../../../api/userlocalstorage";
 
 import "../styles/perkheader.scss";
 
@@ -17,12 +18,11 @@ export default function perkHeader({ urlperk }: Props) {
   useEffect(() => {
     // check values and type of urltitle
     // iterate over perkList, if perk title = urlperk setPerk
-    perkList &&
-      urlperk &&
+    urlperk &&
       typeof urlperk === "string" &&
-      perkList.find((perk) => perk.title == urlperk && setPerk(perk));
+      getUserPerk(urlperk, (perk) => setPerk(perk));
     // only when urlperk changes, run as componentDidUpdate
-  }, [urlperk, perk]);
+  }, [urlperk]);
 
   return (
     <div className="perktree-container perk-header">
