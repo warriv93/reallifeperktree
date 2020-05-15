@@ -3,7 +3,7 @@ import {
   setUserLoggedin,
   logout,
   getUserData,
-  updateUserData,
+  setUserData,
 } from "../api/userlocalstorage";
 import { perkList } from "../api/";
 import Router from "next/router";
@@ -190,7 +190,7 @@ function updatePerk(title, level, callback) {
                   }`
                 );
                 callback({ data: newUserdata });
-                updateUserData(newUserdata);
+                setUserData(newUserdata);
               }
             })
             .catch((err) => {

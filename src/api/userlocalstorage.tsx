@@ -35,7 +35,7 @@ function setUserLoggedin(user: object): String {
     loggedin = reactLocalStorage.get("loggedin", true);
 
     // set userdata updated with the logged in user
-    updateUserData(user);
+    setUserData(user);
     getUserData((res) =>
       console.info("LOCALSTORAGE: ", res, "loggedin: ", loggedin)
     );
@@ -70,7 +70,7 @@ function logout(): String {
   return "user logged out";
 }
 
-function updateUserData(user: Object) {
+function setUserData(user: Object) {
   //check if userdata obj exists, if exists remove content and set a new obj
   let userdata = reactLocalStorage.getObject("userdata");
   Object.keys(userdata) &&
@@ -105,7 +105,7 @@ export {
   getUserLoggedin,
   getUserData,
   logout,
-  updateUserData,
+  setUserData,
   getUserPerks,
   getUserPerk,
 };
