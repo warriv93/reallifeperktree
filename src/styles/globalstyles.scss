@@ -1,6 +1,15 @@
 body {
   background: white;
 
+  #page-container {
+    position: relative;
+    min-height: 100vh;
+  }
+
+  .container {
+    padding-bottom: 2.5rem;
+  }
+
   li {
     list-style: none;
   }
