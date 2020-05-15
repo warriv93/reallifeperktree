@@ -10,9 +10,8 @@ interface Props {
 }
 
 export default function summary({ answers, urlperk }: Props) {
-  let originPerk: IPerk;
   const [level, setLevel] = useState(0);
-  const [perk, setPerk] = useState(originPerk);
+  const [perk, setPerk] = useState<IPerk>();
 
   useEffect(() => {
     // check values and type of urltitle

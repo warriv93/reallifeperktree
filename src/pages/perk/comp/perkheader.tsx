@@ -12,8 +12,7 @@ interface Props {
 // TODO: urltitle: string | string[] hur gör man så detta bara är en string?
 
 export default function perkHeader({ urlperk }: Props) {
-  let originPerk: IPerk;
-  const [perk, setPerk] = useState(originPerk);
+  const [perk, setPerk] = useState<IPerk>();
 
   useEffect(() => {
     // check values and type of urltitle
