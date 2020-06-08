@@ -68,6 +68,11 @@ app.use('/', index);
 app.use('/user', user);
 
 
+
+let webScraper = require('./services/webscraper');
+console.log(webScraper().then(res => console.log(res)));
+
+
 // error handlers
 // development error handler
 // will print stacktrace
