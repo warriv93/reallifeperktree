@@ -1,42 +1,36 @@
 import React, { Fragment, useState, useEffect } from "react";
-import axios from "axios";
+import { getArticles } from "../api/resource";
 
 interface Props {
-  data?: {
-    value: string;
-    url: string;
-    icon_url: string;
-  };
+  urlperk: string | string[];
 }
 
 export default function PerkCard(props: Props) {
-  const [data, SetData] = useState(props.data);
+  const [articles, SetArticles] = useState<Array<{ href; text; img }>>();
 
   useEffect(() => {
-    console.log("kja");
-
-    axios
-      .get("https://api.chucknorris.io/jokes/random")
-      .then((response) => SetData(response.data))
-      .catch((error) => console.log(error));
-  }, []);
+    console.log("kja", props.urlperk);
+    getArticles(props.urlperk).then((res) => SetArticles(res));
+  }, [props.urlperk]);
 
   return (
     <Fragment>
-      {data && (
-        <a href={data.url}>
+      {articles?.map((article) => (
+        <a href={article.href}>
           <div className="perk-card">
             <div className="left">
-              <h3>{"INFO PAGE TITLE"}</h3>
-              <p>{data.value}</p>
+              <h3>{article.text}</h3>
+              {/* <p>{ele.text}</p> */}
               <button className="btn btn-outline-success">Learn</button>
             </div>
-            <div className="right">
-              <img src={data.icon_url} alt="image" />
-            </div>
+            {article.img && (
+              <div className="right">
+                <img src={article.img} alt="image" />
+              </div>
+            )}
           </div>
         </a>
-      )}
+      ))}
     </Fragment>
   );
 }

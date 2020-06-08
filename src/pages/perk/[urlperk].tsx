@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import Layout from "../../components/layout";
 import PerkHeader from "./comp/perkheader";
-import PerkCard from "./comp/perkcard";
+import PerkCards from "./comp/perkcard";
 
 import "./styles/perkcard.scss";
 
@@ -13,11 +13,8 @@ const Perk = () => {
     <Layout>
       <PerkHeader urlperk={urlperk} />
       <div className="perk-cards-container">
-        <PerkCard />
-        <PerkCard />
-        <PerkCard />
+        <PerkCards urlperk={urlperk} />
       </div>
-      {/* TODO add info items containers */}
     </Layout>
   );
 };
