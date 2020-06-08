@@ -10,27 +10,28 @@ export default function PerkCard(props: Props) {
 
   useEffect(() => {
     console.log("kja", props.urlperk);
-    getArticles(props.urlperk).then((res) => SetArticles(res));
+    getArticles("strength").then((res) => SetArticles(res));
   }, [props.urlperk]);
 
   return (
     <Fragment>
-      {articles?.map((article) => (
-        <a href={article.href}>
-          <div className="perk-card">
-            <div className="left">
-              <h3>{article.text}</h3>
-              {/* <p>{ele.text}</p> */}
-              <button className="btn btn-outline-success">Learn</button>
-            </div>
-            {article.img && (
-              <div className="right">
-                <img src={article.img} alt="image" />
+      {articles &&
+        articles.map((article) => (
+          <a href={article.href}>
+            <div className="perk-card">
+              <div className="left">
+                <h3>{article.text}</h3>
+                {/* <p>{ele.text}</p> */}
+                <button className="btn btn-outline-success">Learn</button>
               </div>
-            )}
-          </div>
-        </a>
-      ))}
+              {article.img && (
+                <div className="right">
+                  <img src={article.img} alt="image" />
+                </div>
+              )}
+            </div>
+          </a>
+        ))}
     </Fragment>
   );
 }

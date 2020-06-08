@@ -13,7 +13,8 @@ module.exports = () => request(url)
         let listOfArticles = [];
 
         for (let i = 0; i < res.length; i++) {
-            if (!res[i].attribs) return;
+            if (!res[i].attribs || listOfArticles.find((e) => res[i].attribs.href == e.href)) continue;
+
             listOfArticles.push({
                 href: res[i].attribs.href,
                 text: res[i].attribs["data-tracking-content-headline"],
