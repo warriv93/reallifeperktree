@@ -23,6 +23,7 @@ var mongodb = require('./services/connectMongoDB');
 // ROUTES
 var index = require('./routes/index');
 var user = require('./routes/user');
+var resource = require('./routes/resource');
 
 
 // Create "APP" as an instance of Express
@@ -66,11 +67,8 @@ app.use(function (req, res, next) {
 //ROUTES
 app.use('/', index);
 app.use('/user', user);
-
-
-
-let webScraper = require('./services/webscraper');
-console.log(webScraper().then(res => console.log(res)));
+// LATER - break up and merge all categories of articles into one -> [[str], [int], [agi]...]
+require('./services/webscraper')().then(strArticles => app.use('/resource', resource(strArticles)));
 
 
 // error handlers
