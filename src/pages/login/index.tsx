@@ -3,7 +3,7 @@ import Layout from "../../components/layout";
 
 import Login from "./component/login/index";
 import CreateNew from "./component/newuser/index";
-import "./styles/index.scss";
+import "./styles/login.scss";
 
 function loginContainer(props) {
   const [showCreateNew, setCreateNew] = useState(false);

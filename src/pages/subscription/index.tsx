@@ -1,6 +1,6 @@
-import "../../styles/froala_blocks.scss";
-import "../../styles/globalstyles.scss";
 import "./style/style.scss";
+import "../../styles/froala_blocks.scss";
+
 import Layout from "../../components/layout";
 
 export default function subscription() {

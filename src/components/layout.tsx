@@ -4,6 +4,7 @@ import Footer from "./footer";
 import Header from "next/head";
 import "../styles/globalstyles.scss";
 import "../styles/bootstrap.css";
+
 import { getUserLoggedin } from "../api/userlocalstorage";
 
 import { library } from "@fortawesome/fontawesome-svg-core";

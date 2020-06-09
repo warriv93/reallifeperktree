@@ -1,8 +1,7 @@
-import React, {useState} from "react";
-import "../../styles/index.scss";
+import React, { useState } from "react";
 import { createUser } from "../../../../api/user";
 
-export default function Newuser (props) {
+export default function Newuser(props) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
@@ -29,8 +28,8 @@ export default function Newuser (props) {
     //if username and password both have strings with value run the authenticateUserLogin function otherwise show error message
     username != "" && password != ""
       ? createUser(username, password, email, (res) => {
-        res.error && setError(res.error);
-      })
+          res.error && setError(res.error);
+        })
       : setError("Please fill out username and password");
   }
 
@@ -38,9 +37,7 @@ export default function Newuser (props) {
     <div className="login-container">
       {/* <h3>Welcome!</h3>
       <p>Create a new user</p> */}
-      {error.length > 0 && (
-        <p className="error">{error}</p>
-      )}
+      {error.length > 0 && <p className="error">{error}</p>}
       <form onSubmit={onSubmit}>
         <input
           type="username"
