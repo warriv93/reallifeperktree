@@ -24,7 +24,6 @@ export default function radioButtons({
   }
 
   useEffect(() => {
-    // console.log("useEffect", answer);
     answer ? setChecked([answer.answer, true]) : setChecked([null, null]);
   }, [questionID]);
 

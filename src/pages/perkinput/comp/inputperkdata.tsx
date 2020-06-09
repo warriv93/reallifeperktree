@@ -78,7 +78,6 @@ export default function inputperkdata({
       answers.length - 1 > activePerkQuestionIndex &&
         setTempAnswer(answers[activePerkQuestionIndex + 1].answer);
     } else {
-      // console.log("nothing happens");
       // IF NOTHING IS UPDATED OR SAVED -> and previous answer exists on next question
       // sets tempanswer to the next questions answer (otherwise the update will be triggered even tho there is no change)
       answers.length - 1 > activePerkQuestionIndex &&

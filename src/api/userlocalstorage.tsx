@@ -1,16 +1,15 @@
-// MANAGE CACHE VALUE
-
+// MANAGE CACHED VALUES
 import { reactLocalStorage } from "reactjs-localstorage";
 import { getPerk } from "./index";
+
+// API Guide
+// --- https://www.npmjs.com/package/reactjs-localstorage
 // reactLocalStorage.set("var", true);
 // reactLocalStorage.get("var", true);
 // reactLocalStorage.setObject("var", { test: "test" });
 // reactLocalStorage.getObject("var");
 // reactLocalStorage.remove("var");
 // reactLocalStorage.clear();
-
-// API Guide
-// --- https://www.npmjs.com/package/reactjs-localstorage
 
 // reactLocalStorage.set(key, value)
 // reactLocalStorage.get(key, deafultValue=undefined, silent=true)

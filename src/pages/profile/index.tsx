@@ -22,8 +22,6 @@ export default function profile(props) {
   // https://reactjs.org/docs/hooks-effect.html
   // handles component mount and update
   useEffect(() => {
-    console.log();
-
     //if user is not logged in redirect
     if (!getUserLoggedin() && isClient) Router.push("/login");
     else {

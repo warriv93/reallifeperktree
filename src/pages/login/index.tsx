@@ -39,7 +39,6 @@ function loginContainer(props) {
         {showLogin && <Login />}
         {showCreateNew && <CreateNew />}
       </div>
-      {/* TODO add info items containers */}
     </Layout>
   );
 }

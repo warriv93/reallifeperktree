@@ -23,11 +23,6 @@ const Layout: React.FunctionComponent<Props> = ({ children }) => (
     <Header>
       <title>Perktree</title>
       {/* <link
-        rel="stylesheet"
-        href="https://bootswatch.com/4/flatly/bootstrap.min.css"
-      /> */}
-      {/* <link href="../styles/globalstyles.scss" rel="stylesheet" /> */}
-      {/* <link
         rel="shortcut icon"
         type="image/png"
         href="/assets/profilepic.png"
