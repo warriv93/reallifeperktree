@@ -7,12 +7,12 @@ Gamify life
 
 - In a video game looking up your characters stats, traits and skills is simple, just click on a button and there it is a beautiful screen listing everything intuetively for you.
 - IRL it is complicated, but here it’s simple, click the trait, learn, progress.
-  <img align="right" width="200" height="183" src="https://raw.githubusercontent.com/warriv93/reallifeperktree/master/screenshots/perktree.png">
-  <img align="left" width="200" height="183" src="https://raw.githubusercontent.com/warriv93/reallifeperktree/master/screenshots/1.png">
+  <img  height="400" src="https://raw.githubusercontent.com/warriv93/reallifeperktree/master/screenshots/perktree.png">
+  <img   height="400" src="https://raw.githubusercontent.com/warriv93/reallifeperktree/master/screenshots/1.png">
 
-  <img align="right" width="200" height="183" src="https://raw.githubusercontent.com/warriv93/reallifeperktree/master/screenshots/pricing.png">
-  <img align="left" width="200" height="183" src="https://raw.githubusercontent.com/warriv93/reallifeperktree/master/screenshots/login.png">
-  <img align="left" width="200" height="183" src="https://raw.githubusercontent.com/warriv93/reallifeperktree/master/screenshots/profile.png">
+  <img  height="400" src="https://raw.githubusercontent.com/warriv93/reallifeperktree/master/screenshots/pricing.png">
+  <img height="400" src="https://raw.githubusercontent.com/warriv93/reallifeperktree/master/screenshots/login.png">
+  <img height="400" src="https://raw.githubusercontent.com/warriv93/reallifeperktree/master/screenshots/profile.png">
 
 ## Build
 
