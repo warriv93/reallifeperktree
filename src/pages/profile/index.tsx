@@ -18,6 +18,7 @@ export default function profile(props) {
   const [profilePicture, setProfilePicture] = useState("");
   const [hover, setHover] = useState(true);
   const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   // https://reactjs.org/docs/hooks-effect.html
   // handles component mount and update
@@ -26,7 +27,7 @@ export default function profile(props) {
     if (!getUserLoggedin() && isClient) Router.push("/login");
     else {
       // get user obj from localstorage
-      getUserData((res) => {
+      getUserData().then((res) => {
         let { username, email, profilePicture, password } = res;
         setUsername(username);
         setPassword(password);
@@ -66,17 +67,12 @@ export default function profile(props) {
     setEditMode(!editMode);
   }
 
-  //TODO: set button loading while updaing database
+  //Update user data to Mongodb and localstorage
   function updateUserData(e) {
     e.preventDefault();
-    console.log("before bef req: ", oldUsername, username, password);
+    setLoading(true);
 
-    updateUser(
-      oldUsername,
-      username,
-      password,
-      email,
-      profilePicture,
+    updateUser(oldUsername, username, password, email, profilePicture).then(
       (res) => {
         if (res && res.error) setError(res.error);
         else {
@@ -85,7 +81,7 @@ export default function profile(props) {
           // remove error text
           error && setError(null);
           //update state
-          let { username, email, profilePicture, password } = res.data;
+          let { username, email, profilePicture, password } = res;
           setUsername(username);
           setPassword(password);
           setOldUsername(username);
@@ -95,6 +91,7 @@ export default function profile(props) {
               ? profilePicture
               : profileface
           );
+          setLoading(false);
         }
       }
     );
@@ -199,7 +196,7 @@ export default function profile(props) {
                     className="btn btn-success"
                     type="submit"
                     onClick={updateUserData}
-                    value="Update"
+                    value={loading ? "Loading..." : "Update"}
                   />
                 </form>
               </div>

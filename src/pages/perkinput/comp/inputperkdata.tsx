@@ -4,6 +4,7 @@ import { getUserPerk } from "../../../api/userlocalstorage";
 import { Perk as IPerk, QuestionType } from "../../../utils/types";
 import RadioButtons from "./radiobtns";
 import Input from "./input";
+import PrevNextButtons from "./buttons";
 import "../../perk/styles/perkcard.scss";
 import "../styles/inputperkdata.scss";
 
@@ -13,6 +14,8 @@ interface Props {
   setFinalAnswersFromInput: Function;
 }
 
+// TODO: FIX SO THAT IT IS A CONTROLLED COMPONENT - input value controlled by react
+// TODO: bryt ner o fixa statefulness, inget clusterfuck plzzzz
 export default function inputperkdata({
   urlperk,
   setPerkDataSubmitted,
@@ -31,7 +34,7 @@ export default function inputperkdata({
     // check values and type of urltitle
     // iterate over perkList, if perk title = urlperk setPerk
     if (urlperk && typeof urlperk === "string") {
-      getUserPerk(urlperk, (perk) => {
+      getUserPerk(urlperk).then((perk) => {
         setPerk(perk);
         setQuestion(perk.questions[0]);
       });
@@ -136,7 +139,7 @@ export default function inputperkdata({
           </Fragment>
         );
       default:
-        return <Fragment></Fragment>;
+        return <Fragment />;
     }
   }
 
@@ -160,7 +163,8 @@ export default function inputperkdata({
         <div className="perk-card question">
           <div className="left">
             {/* when no more questions show thank you instead to give time for setAnswer to run, otherwise its to fast when going to summary page */}
-            {perk.questions.length - 1 >= activePerkQuestionIndex ? (
+            {question &&
+            perk.questions.length - 1 >= activePerkQuestionIndex ? (
               <Fragment>
                 <p>{question.section && question.section}</p>
                 <h3>{question.paragraph}</h3>
@@ -174,37 +178,14 @@ export default function inputperkdata({
                 perk" to proceed.
               </p>
             )}
-
-            {activePerkQuestionIndex != 0 && (
-              <button
-                className="btn btn-outline-danger"
-                onClick={(e) => {
-                  e.preventDefault();
-                  setQuestion(perk.questions[activePerkQuestionIndex - 1]);
-                  setActivePerkQuestionIndex(activePerkQuestionIndex - 1);
-                }}
-              >
-                Previous
-              </button>
-            )}
-            {/* when no more questions show progress perk btn instead */}
-            {perk.questions.length - 1 >= activePerkQuestionIndex ? (
-              <button
-                className="btn btn-outline-success"
-                onClick={(e) => {
-                  e.preventDefault();
-                  setQuestion(perk.questions[activePerkQuestionIndex + 1]);
-                  setActivePerkQuestionIndex(activePerkQuestionIndex + 1);
-                  saveAnswer();
-                }}
-              >
-                Next
-              </button>
-            ) : (
-              <button className="btn btn-outline-success" onClick={onSubmit}>
-                Progress perk
-              </button>
-            )}
+            <PrevNextButtons
+              activePerkQuestionIndex={activePerkQuestionIndex}
+              setActivePerkQuestionIndex={setActivePerkQuestionIndex}
+              setQuestion={setQuestion}
+              saveAnswer={saveAnswer}
+              onSubmit={onSubmit}
+              questions={perk.questions}
+            />
           </div>
         </div>
       )}

@@ -1,6 +1,7 @@
 // MANAGE CACHED VALUES
 import { reactLocalStorage } from "reactjs-localstorage";
 import { getPerk } from "./index";
+import { Perk as IPerk } from "../utils/types";
 
 // API Guide
 // --- https://www.npmjs.com/package/reactjs-localstorage
@@ -26,7 +27,7 @@ const isClient = typeof document !== "undefined";
 // login user
 // if frontend check,
 // set new "loggedin", set userdata object (if already exist remove and set new one)
-function setUserLoggedin(user: object): String {
+export function setUserLoggedin(user: object): String {
   let loggedin: String;
   //check so that it is run on a client
   if (isClient) {
@@ -35,7 +36,7 @@ function setUserLoggedin(user: object): String {
 
     // set userdata updated with the logged in user
     setUserData(user);
-    getUserData((res) =>
+    getUserData().then((res) =>
       console.info("LOCALSTORAGE: ", res, "loggedin: ", loggedin)
     );
   }
@@ -43,7 +44,7 @@ function setUserLoggedin(user: object): String {
 }
 
 // Check if user is logged in -> returns a boolean
-function getUserLoggedin(): Boolean {
+export function getUserLoggedin(): Boolean {
   let loggedin: string;
   if (isClient) {
     loggedin = reactLocalStorage.get("loggedin", true);
@@ -52,59 +53,45 @@ function getUserLoggedin(): Boolean {
 }
 
 // get userdata, returns an object or null
-function getUserData(callback) {
-  let userdata;
-  if (isClient) {
-    userdata = reactLocalStorage.getObject("userdata");
-  }
-  //sometimes it returns as an array, since it might get overwriten / added to in the signin process
-  callback(userdata || null);
+export async function getUserData() {
+  return isClient ? await reactLocalStorage.getObject("userdata") : null;
 }
 
-function logout(): String {
+export function logout(): String {
   if (isClient) {
     reactLocalStorage.remove("userdata");
     reactLocalStorage.set("loggedin", false);
-  }
-  return "user logged out";
+    return "user logged out";
+  } else return "You are not a client";
 }
 
-function setUserData(user: Object) {
+export function setUserData(user: Object) {
   //check if userdata obj exists, if exists remove content and set a new obj
   let userdata = reactLocalStorage.getObject("userdata");
   Object.keys(userdata) &&
     userdata.constructor === Object &&
     reactLocalStorage.remove("userdata");
   reactLocalStorage.setObject("userdata", user);
-  getUserData((res) => console.info("LOCALSTORAGE: ", res));
+  getUserData().then((res) => console.info("LOCALSTORAGE: ", res));
 }
 
-function getUserPerks(callback) {
+export async function getUserPerks(): Promise<Array<IPerk>> {
   //check if userdata obj exists, if exists remove content and set a new obj
   let userdata = reactLocalStorage.getObject("userdata");
+  let perks = null;
   Object.keys(userdata).length !== 0 &&
     userdata.constructor === Object &&
-    getUserData((userData) => {
+    getUserData().then((userData) => {
       // return the perks array from an existing user
-      callback(userData.perks);
+      perks = userData.perks;
     });
+  return perks;
 }
 
-function getUserPerk(title, callback) {
-  getUserPerks((perks) => {
-    let perk = perks
+export async function getUserPerk(title: string): Promise<IPerk> {
+  return await getUserPerks().then((perks) => {
+    return perks
       ? perks.find((userPerk) => userPerk.title == title)
       : getPerk(title);
-    callback(perk);
   });
 }
-
-export {
-  setUserLoggedin,
-  getUserLoggedin,
-  getUserData,
-  logout,
-  setUserData,
-  getUserPerks,
-  getUserPerk,
-};

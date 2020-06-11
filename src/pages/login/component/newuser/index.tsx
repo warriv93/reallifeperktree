@@ -27,8 +27,8 @@ export default function Newuser(props) {
 
     //if username and password both have strings with value run the authenticateUserLogin function otherwise show error message
     username != "" && password != ""
-      ? createUser(username, password, email, (res) => {
-          res.error && setError(res.error);
+      ? createUser(username, password, email).then((res) => {
+          res && res.error && setError(res.error);
         })
       : setError("Please fill out username and password");
   }

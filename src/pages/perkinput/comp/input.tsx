@@ -1,5 +1,5 @@
 import "../styles/radiobtn.scss";
-import { useEffect, useRef } from "react";
+import { useEffect, useState } from "react";
 
 interface Props {
   settempanswer: Function;
@@ -14,24 +14,24 @@ export default function radioButtons({
   questionID,
   placeholder,
 }: Props) {
-  const inputRef = useRef(null);
+  const [value, setValue] = useState(null);
 
   function handleChange(i) {
     settempanswer(i);
   }
 
   useEffect(() => {
-    inputRef.current.value = answer ? answer.answer : null;
+    setValue(answer ? answer.answer : null);
   }, [questionID]);
 
   return (
     <input
       type="number"
-      ref={inputRef}
       className="form-control"
       onChange={(e) => handleChange(e.target.value)}
       placeholder={placeholder}
       autoFocus={true}
+      value={value}
     />
   );
 }

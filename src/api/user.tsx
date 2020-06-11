@@ -15,38 +15,36 @@ let url =
     ? "https://api-reallifeperktree.herokuapp.com/"
     : "http://127.0.0.1:1337/";
 
-function authenticateUserLogin(
+export async function authenticateUserLogin(
   username: string,
-  password: string,
-  callback: any
+  password: string
 ) {
-  axios
+  return await axios
     .post(url + "user/login", {
       username: username,
       password: password,
     })
     .then((response) => {
       // set the user data and boolean loggedin into localstorage
-      getUserbyUsername(response.data.username, (res) => {
-        setUserLoggedin(res.data[0]);
+      getUserbyUsername(response.data.username).then((res) => {
+        setUserLoggedin(res && res.data[0]);
         Router.push("/perktree");
         Toast("Successfully logged in");
       });
     })
     .catch(function (error) {
       console.error(error);
-      callback({ wrongPasswordOrUsername: true });
+      return { wrongPasswordOrUsername: true };
     });
 }
 
 // Request a user based on username and password, if anything is found pass it back up to parent
-function createUser(
+export async function createUser(
   username: string,
   password: string,
-  email: string,
-  callback: any
+  email: string
 ) {
-  axios
+  return await axios
     .post(url + "user/new", {
       username: username,
       password: password,
@@ -56,7 +54,7 @@ function createUser(
     })
     .then((response) => {
       if (response.data.error) {
-        callback({ error: response.data.error });
+        return { error: response.data.error };
       } else {
         delete response.data._id;
         // set the user data and boolean loggedin into localstorage
@@ -67,24 +65,24 @@ function createUser(
     })
     .catch(function (error) {
       console.error(error);
-      callback({ error: error });
+      return { error: error };
     });
 }
 
-function getUserbyUsername(username: string, callback) {
-  axios
+export async function getUserbyUsername(username: string) {
+  return await axios
     .get(url + `user/find/${username}`)
     .then((res) => {
-      callback(res);
+      return res;
       //username not found
     })
     .catch((err) => {
       console.error(err);
-      alert("User not found");
+      alert("User not found, trying to hack?");
     });
 }
 
-function deleteUser(username: string) {
+export function deleteUser(username: string) {
   axios
     .get(url + `user/find/${username}`)
     .then((res) => {
@@ -110,24 +108,22 @@ function deleteUser(username: string) {
     });
 }
 
-function logoutUser() {
+export function logoutUser() {
   axios.get(url + "user/logout");
   logout();
   Router.push("/perktree");
   Toast("Successfully logged out");
 }
 
-function updateUser(
+export async function updateUser(
   oldUsername: string,
   username: string,
   password: string,
   email: string,
-  profilePicture: string,
-  callback: any
+  profilePicture: string
 ) {
   console.log("before req: ", oldUsername, username, password);
-  // check if username already exist in database
-  axios
+  return await axios
     .put(url + `user/update/${oldUsername}`, {
       username: username,
       password: password,
@@ -140,30 +136,30 @@ function updateUser(
         response.data.name == "MongoError" &&
         response.data.code == 11000
       ) {
-        callback({ error: "Username already taken" });
+        return { error: "Username already taken" };
       } else if (
         (response && response.data.length <= 0) ||
         (response && response.data.error)
       ) {
-        callback({ error: "Error" });
         logoutUser();
+        return { error: "Error" };
       } else {
         console.log("Successfully updated user", response.data);
         Toast("Successfully updated user");
         // set the user data and boolean loggedin into localstorage
         setUserLoggedin(response.data);
-        callback({ data: response.data });
+        return response.data;
       }
       // id not found
     })
     .catch((err) => {
       console.error(err);
-      callback({ error: err });
+      return { error: err };
     });
 }
 
-function updatePerk(title, level, callback) {
-  getUserData((user) => {
+export async function updatePerk(title, level) {
+  getUserData().then((user) => {
     console.log(user.username, title, level);
 
     axios
@@ -176,7 +172,7 @@ function updatePerk(title, level, callback) {
           (response && response.data.length <= 0) ||
           (response && response.data.error)
         ) {
-          callback({ error: "Error" });
+          return { error: "Error" };
         } else {
           axios
             .get(url + `user/find/${user.username}`)
@@ -189,29 +185,19 @@ function updatePerk(title, level, callback) {
                     newUserdata.perks.find((perk) => perk.title == title).level
                   }`
                 );
-                callback({ data: newUserdata });
                 setUserData(newUserdata);
+                return { data: newUserdata };
               }
             })
             .catch((err) => {
               console.error(err);
-              callback({ error: err });
+              return { error: err };
             });
         }
       })
       .catch((err) => {
         console.error(err);
-        callback({ error: err });
+        return { error: err };
       });
   });
 }
-
-export {
-  authenticateUserLogin,
-  createUser,
-  deleteUser,
-  logoutUser,
-  updateUser,
-  getUserbyUsername,
-  updatePerk,
-};

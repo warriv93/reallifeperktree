@@ -19,7 +19,7 @@ export default function perkHeader({ urlperk }: Props) {
     // iterate over perkList, if perk title = urlperk setPerk
     urlperk &&
       typeof urlperk === "string" &&
-      getUserPerk(urlperk, (perk) => setPerk(perk));
+      getUserPerk(urlperk).then((perk) => setPerk(perk));
     // only when urlperk changes, run as componentDidUpdate
   }, [urlperk]);
 

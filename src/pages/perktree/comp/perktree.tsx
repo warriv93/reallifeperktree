@@ -9,7 +9,7 @@ export default function perktree() {
   const [perks, setPerks] = useState(perkList);
 
   useEffect(() => {
-    getUserPerks((perks) => setPerks(perks));
+    getUserPerks().then((perks) => perks && setPerks(perks));
     // If we pass an empty array to useEffect, it’s only executed after the first render. https://www.andreasreiterer.at/react-useeffect-hook-loop/
   }, []);
 

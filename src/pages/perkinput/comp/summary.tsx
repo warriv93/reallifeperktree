@@ -15,11 +15,12 @@ export default function summary({ answers, urlperk }: Props) {
 
   useEffect(() => {
     // check values and type of urltitle
-    // iterate over perkList, if perk title = urlperk setPerk
     if (urlperk && typeof urlperk === "string") {
-      getUserPerk(urlperk, (perk) => {
-        calculateScore(perk);
-        setPerk(perk);
+      getUserPerk(urlperk).then((perk) => {
+        if (perk) {
+          calculateScore(perk);
+          setPerk(perk);
+        }
       });
     }
   }, [urlperk]);
@@ -27,9 +28,11 @@ export default function summary({ answers, urlperk }: Props) {
   // after the level has been calculated, update the users perklevel
   useEffect(() => {
     level != 0 &&
-      updatePerk(perk.title, level, (res) => {
-        console.log("updatePerk CALLBACK: ", res);
-      });
+      perk &&
+      updatePerk(perk.title, level).then((res) =>
+        console.log("updated Perk CALLBACK: ", res)
+      );
+    // runs when level is changed
   }, [level]);
 
   // perk level algorithm calculates a score based on the answers
@@ -41,7 +44,7 @@ export default function summary({ answers, urlperk }: Props) {
       perkPlaceholder: string,
       tempTallness = 0;
 
-    answers.map((answer, index) => {
+    answers.map((answer) => {
       inputQuestiontype = perk.questions[answer.question].type == 1 && true;
       perkSection = perk.questions[answer.question].section
         ? perk.questions[answer.question].section

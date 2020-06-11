@@ -28,8 +28,9 @@ export default function Login(props) {
 
     //if username and password both have strings with value run the authenticateUserLogin function otherwise show error message
     username != "" && password != ""
-      ? authenticateUserLogin(username, password, (res) => {
-          res.wrongPasswordOrUsername &&
+      ? authenticateUserLogin(username, password).then((res) => {
+          res &&
+            res.wrongPasswordOrUsername &&
             setWrongPasswordOrUsername(res.wrongPasswordOrUsername);
         })
       : setEmptyPasswordOrUsername(true);
