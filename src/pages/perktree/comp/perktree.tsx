@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import Perk from "./perk";
+import PerkHorizontalList from "./perkhorizontallist";
 
 import "../styles/index.scss";
 import { getUserPerks } from "../../../api/userlocalstorage";
@@ -17,7 +17,7 @@ export default function perktree() {
     <div className="perktree-container">
       {perks &&
         perks.map((perk, index) => (
-          <Perk
+          <PerkHorizontalList
             key={index}
             level={perk.level}
             title={perk.title}

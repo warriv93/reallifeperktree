@@ -9,7 +9,6 @@ export default function PerkCard(props: Props) {
   const [articles, SetArticles] = useState<Array<{ href; text; img }>>();
 
   useEffect(() => {
-    console.log("kja", props.urlperk);
     getArticles("strength").then((res) => SetArticles(res));
   }, [props.urlperk]);
 

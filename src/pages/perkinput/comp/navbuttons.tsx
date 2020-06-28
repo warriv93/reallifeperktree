@@ -9,25 +9,22 @@ interface Props {
   questions: Array<Object>;
 }
 
-export default function Buttons({
+export default function NavButtons({
   activePerkQuestionIndex,
   setActivePerkQuestionIndex,
-  setQuestion,
   saveAnswer,
   onSubmit,
   questions,
 }: Props) {
   function nextBtnClicked(e) {
     e.preventDefault();
-    setQuestion(questions[activePerkQuestionIndex + 1]);
-    setActivePerkQuestionIndex(activePerkQuestionIndex + 1);
+    setActivePerkQuestionIndex((oldIndex) => oldIndex + 1);
     saveAnswer();
   }
 
   function prevBtnClicked(e) {
     e.preventDefault();
-    setQuestion(questions[activePerkQuestionIndex - 1]);
-    setActivePerkQuestionIndex(activePerkQuestionIndex - 1);
+    setActivePerkQuestionIndex((oldIndex) => oldIndex - 1);
   }
 
   return (

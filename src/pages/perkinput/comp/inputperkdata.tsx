@@ -1,175 +1,103 @@
 import React, { Fragment, useState, useEffect } from "react";
 import Progress from "react-progressbar";
-import { getUserPerk } from "../../../api/userlocalstorage";
-import { Perk as IPerk, QuestionType } from "../../../utils/types";
-import RadioButtons from "./radiobtns";
-import Input from "./input";
-import PrevNextButtons from "./buttons";
+import { Question as QuestionType } from "../../../utils/types";
+
+import Question from "./question";
+import NavButtons from "./navbuttons";
 import "../../perk/styles/perkcard.scss";
 import "../styles/inputperkdata.scss";
 
 interface Props {
-  urlperk: string | string[];
-  setPerkDataSubmitted: Function;
   setFinalAnswersFromInput: Function;
+  questions: Array<QuestionType>;
 }
 
 // TODO: FIX SO THAT IT IS A CONTROLLED COMPONENT - input value controlled by react
 // TODO: bryt ner o fixa statefulness, inget clusterfuck plzzzz
 export default function inputperkdata({
-  urlperk,
-  setPerkDataSubmitted,
   setFinalAnswersFromInput,
+  questions,
 }: Props) {
-  // let originQuestion: Question;
-  const [perk, setPerk] = useState<IPerk>();
   const [activePerkQuestionIndex, setActivePerkQuestionIndex] = useState(0);
-  const [question, setQuestion] = useState(
-    perk && perk.questions[activePerkQuestionIndex]
+  const [currentQuestion, setCurrentQuestion] = useState<QuestionType>(
+    questions && questions[activePerkQuestionIndex]
   );
-  const [answers, setAnswers] = useState([]);
-  const [tempAnswer, setTempAnswer] = useState(0);
+  const [finalAnswers, setFinalAnswers] = useState([]);
+  const [currentAnswer, setCurrentAnswer] = useState(0);
 
   useEffect(() => {
-    // check values and type of urltitle
-    // iterate over perkList, if perk title = urlperk setPerk
-    if (urlperk && typeof urlperk === "string") {
-      getUserPerk(urlperk).then((perk) => {
-        setPerk(perk);
-        setQuestion(perk.questions[0]);
-      });
-    }
-  }, [urlperk]);
+    setCurrentQuestion(questions && questions[activePerkQuestionIndex]);
+  }, [questions, activePerkQuestionIndex]);
 
-  function settempanswer(answer) {
-    setTempAnswer(answer);
+  useEffect(() => {
+    console.log(
+      "here,",
+      activePerkQuestionIndex,
+      finalAnswers[activePerkQuestionIndex]
+    );
+    if (finalAnswers[activePerkQuestionIndex]) {
+      setCurrentAnswer(finalAnswers[activePerkQuestionIndex].question);
+    }
+  }, [activePerkQuestionIndex]);
+
+  function setcurrentanswer(answer) {
+    setCurrentAnswer(answer);
   }
 
   function saveAnswer() {
-    let answerMatch = answers.find(
+    // check if answer exists already
+    let finalAnswerToQuestion = finalAnswers.find(
       (answer) => answer.question == activePerkQuestionIndex
     );
-    // console.log(answerMatch);
 
-    if (!answerMatch) {
-      // console.log("SAVE ANSWER", activePerkQuestionIndex, answers);
-
-      setAnswers([
-        ...answers,
+    //if not exist -> set the new answer
+    if (!finalAnswerToQuestion) {
+      setFinalAnswers((oldAnswers) => [
+        ...oldAnswers,
         {
           question: activePerkQuestionIndex,
-          answer: tempAnswer,
+          answer: currentAnswer,
         },
       ]);
     }
-    // if the answer is not the temp asnwer it needs to be updated
-    else if (answerMatch.answer != tempAnswer) {
-      // console.log(
-      //   "UPDATE ANSWER id:",
-      //   activePerkQuestionIndex,
-      //   "answer",
-      //   answerMatch.answer,
-      //   "temp",
-      //   tempAnswer,
-      //   answers
-      // );
-      // update answer
-      answerMatch.answer = tempAnswer;
+    // if the answerAlreadyExist but is not the currentAnswer -> update
+    else if (finalAnswerToQuestion.answer != currentAnswer) {
+      console.log("time to update");
 
-      // AFTER AN UPDATE -> and previous answer exists on next question
-      // sets tempanswer to the next questions answer (otherwise the update will be triggered even tho there is no change)
-      answers.length - 1 > activePerkQuestionIndex &&
-        setTempAnswer(answers[activePerkQuestionIndex + 1].answer);
-    } else {
-      // IF NOTHING IS UPDATED OR SAVED -> and previous answer exists on next question
-      // sets tempanswer to the next questions answer (otherwise the update will be triggered even tho there is no change)
-      answers.length - 1 > activePerkQuestionIndex &&
-        setTempAnswer(answers[activePerkQuestionIndex + 1].answer);
-    }
-  }
-
-  function typeOfQuestion(type: QuestionType) {
-    let exisitingAnswer = answers.find(
-      (answer) => answer.question == activePerkQuestionIndex
-    );
-
-    // console.log("typeOfQuestion, EXISTS: ", exisitingAnswer, tempAnswer);
-    switch (type) {
-      case 0:
-        //   type: QuestionType["1-5"],
-        return (
-          <Fragment>
-            <RadioButtons
-              answer={exisitingAnswer ? exisitingAnswer : null}
-              questionID={activePerkQuestionIndex}
-              settempanswer={settempanswer}
-              labels={["No", "Not really", "Kind of", "Yes", "Absolutely"]}
-            />
-          </Fragment>
-        );
-      case 1:
-        //   type: QuestionType["input"],
-        return (
-          <Fragment>
-            <Input
-              questionID={activePerkQuestionIndex}
-              settempanswer={settempanswer}
-              answer={exisitingAnswer ? exisitingAnswer : null}
-              placeholder={question.placeholder}
-            />
-          </Fragment>
-        );
-
-      case 2:
-        //   type: QuestionType["rarely-often"],
-        return (
-          <Fragment>
-            <RadioButtons
-              answer={exisitingAnswer && exisitingAnswer}
-              questionID={activePerkQuestionIndex}
-              settempanswer={settempanswer}
-              labels={[
-                "Not at all",
-                "Very rarely",
-                "Some times",
-                "Often",
-                "All the time",
-              ]}
-            />
-          </Fragment>
-        );
-      default:
-        return <Fragment />;
+      finalAnswerToQuestion.answer = currentAnswer;
     }
   }
 
   function onSubmit() {
     saveAnswer();
-    setPerkDataSubmitted(true);
-    setFinalAnswersFromInput(answers);
+    setFinalAnswersFromInput(finalAnswers);
   }
 
   return (
     <Fragment>
-      {perk && activePerkQuestionIndex != 0 && (
+      {currentQuestion && activePerkQuestionIndex != 0 && (
         <Progress
           className="progressbar-container shadow"
           completed={Math.round(
-            (activePerkQuestionIndex * 100) / perk.questions.length
+            (activePerkQuestionIndex * 100) / questions.length
           )}
         />
       )}
-      {perk && (
+      {currentQuestion && (
         <div className="perk-card question">
           <div className="left">
             {/* when no more questions show thank you instead to give time for setAnswer to run, otherwise its to fast when going to summary page */}
-            {question &&
-            perk.questions.length - 1 >= activePerkQuestionIndex ? (
+            {questions && questions.length - 1 >= activePerkQuestionIndex ? (
               <Fragment>
-                <p>{question.section && question.section}</p>
-                <h3>{question.paragraph}</h3>
+                <p>{currentQuestion.section && currentQuestion.section}</p>
+                <h3>{currentQuestion.paragraph}</h3>
                 <div className="question-type">
-                  {typeOfQuestion(question.type)}
+                  <Question
+                    currentQuestion={currentQuestion}
+                    finalAnswers={finalAnswers}
+                    activePerkQuestionIndex={activePerkQuestionIndex}
+                    setcurrentanswer={setcurrentanswer}
+                  />
                 </div>
               </Fragment>
             ) : (
@@ -178,13 +106,13 @@ export default function inputperkdata({
                 perk" to proceed.
               </p>
             )}
-            <PrevNextButtons
+            <NavButtons
               activePerkQuestionIndex={activePerkQuestionIndex}
               setActivePerkQuestionIndex={setActivePerkQuestionIndex}
-              setQuestion={setQuestion}
+              setQuestion={setCurrentQuestion}
               saveAnswer={saveAnswer}
               onSubmit={onSubmit}
-              questions={perk.questions}
+              questions={questions}
             />
           </div>
         </div>

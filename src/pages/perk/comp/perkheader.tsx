@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Perk from "../../perktree/comp/perk";
+import PerkHorizontalList from "../../perktree/comp/perkhorizontallist";
 import { Perk as IPerk } from "../../../utils/types";
 // import { getPerk } from "../../../api";
 import { getUserPerk } from "../../../api/userlocalstorage";
@@ -26,7 +26,7 @@ export default function perkHeader({ urlperk }: Props) {
   return (
     <div className="perktree-container perk-header">
       {perk && (
-        <Perk
+        <PerkHorizontalList
           usedInPerkHeader={true}
           level={perk.level}
           title={perk.title}

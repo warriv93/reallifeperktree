@@ -1,4 +1,6 @@
 import Perklevel from "./perklevels";
+import React from "react";
+
 import "../styles/perk.scss";
 
 interface IProps {
@@ -9,23 +11,24 @@ interface IProps {
   description?: string;
 }
 
-export default function Perk(props: IProps) {
+export default function PerkHorizontalList(props: IProps) {
   function renderPerkLevels() {
     let levels = [];
     let totalLevels = 5;
 
     //push desired nbr of levels to the perk
     for (let index = 1; index < totalLevels + 1; index++) {
-      levels.push(
+      levels = [
+        ...levels,
         <Perklevel
-          key={index}
+          key={props.level || index}
           usedInPerkHeader={props.usedInPerkHeader || false}
           grayscale={props.level < index ? "grayscale" : ""}
           currentLevel={props.level}
           image={props.image}
           title={props.title}
-        />
-      );
+        />,
+      ];
     }
     return levels;
   }
