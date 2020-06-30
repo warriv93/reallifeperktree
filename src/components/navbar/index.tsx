@@ -51,7 +51,7 @@ export default function Navbar({ loggedin }: Props) {
             <li className="profile">
               <Link href="/login">
                 <div>
-                  <a className="nav-link"> Login / Create User</a>
+                  <a className="nav-link">Login / Create User</a>
                 </div>
               </Link>
             </li>
