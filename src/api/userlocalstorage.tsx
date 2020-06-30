@@ -1,7 +1,7 @@
 // MANAGE CACHED VALUES
 import { reactLocalStorage } from "reactjs-localstorage";
 import { getPerk } from "./index";
-import { Perk as IPerk } from "../utils/types";
+import { Perk as IPerk, User } from "../utils/types";
 
 // API Guide
 // --- https://www.npmjs.com/package/reactjs-localstorage
@@ -27,7 +27,7 @@ const isClient = typeof document !== "undefined";
 // login user
 // if frontend check,
 // set new "loggedin", set userdata object (if already exist remove and set new one)
-export function setUserLoggedin(user: object): String {
+export function setUserLoggedin(user: User): String {
   let loggedin: String;
   //check so that it is run on a client
   if (isClient) {
@@ -65,7 +65,7 @@ export function logout(): String {
   } else return "You are not a client";
 }
 
-export function setUserData(user: Object) {
+export function setUserData(user: User) {
   //check if userdata obj exists, if exists remove content and set a new obj
   let userdata = reactLocalStorage.getObject("userdata");
   Object.keys(userdata) &&
@@ -78,14 +78,14 @@ export function setUserData(user: Object) {
 export async function getUserPerks(): Promise<Array<IPerk>> {
   //check if userdata obj exists, if exists remove content and set a new obj
   let userdata = reactLocalStorage.getObject("userdata");
-  let perks = null;
-  Object.keys(userdata).length !== 0 &&
+  return (
+    Object.keys(userdata).length !== 0 &&
     userdata.constructor === Object &&
     getUserData().then((userData) => {
       // return the perks array from an existing user
-      perks = userData.perks;
-    });
-  return perks;
+      return userData.perks;
+    })
+  );
 }
 
 export async function getUserPerk(title: string): Promise<IPerk> {
