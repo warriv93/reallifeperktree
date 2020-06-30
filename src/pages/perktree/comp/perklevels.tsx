@@ -25,9 +25,9 @@ const PerkLevel: React.FunctionComponent<Props> = ({
     (currentLevel == 0 && getUserLoggedin()) ||
     (usedInPerkHeader && getUserLoggedin())
   ) {
-    link = `/perkinput/${title}`;
+    link = `/questionnaire/${title}`;
   } else if (!usedInPerkHeader) {
-    link = `/perk/${title}`;
+    link = `/learn/${title}`;
   } else {
     link = "/login";
   }
