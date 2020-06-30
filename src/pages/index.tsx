@@ -1,7 +1,7 @@
 import Layout from "../components/layout";
 import image from "../assets/perks/CharismaPerk.png";
 import Link from "next/link";
-import Perktree from "./perktree";
+import Perktree from "./perktree/comp/perktree";
 import "../styles/home.scss";
 
 const Index = () => (
