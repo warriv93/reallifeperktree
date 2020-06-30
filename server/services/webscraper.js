@@ -1,8 +1,7 @@
 const request = require('request-promise');
 const htmltarget = require('cheerio');
 const url = 'https://www.health.com/fitness/strength-training';
-
-
+const shortid = require('shortid');
 
 module.exports = () => request(url)
     .then(html => {
@@ -13,12 +12,14 @@ module.exports = () => request(url)
         let listOfArticles = [];
 
         for (let i = 0; i < res.length; i++) {
+            //if error or already exist
             if (!res[i].attribs || listOfArticles.find((e) => res[i].attribs.href == e.href)) continue;
 
             listOfArticles.push({
                 href: res[i].attribs.href,
                 text: res[i].attribs["data-tracking-content-headline"],
-                img: img[i] && img[i].attribs ? img[i].attribs["data-src"] : null
+                img: img[i] && img[i].attribs ? img[i].attribs["data-src"] : null,
+                id: shortid.generate()
             })
         }
         return listOfArticles;

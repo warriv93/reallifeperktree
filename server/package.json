@@ -30,6 +30,7 @@
     "passport-local-mongoose": "^6.0.1",
     "path": "^0.12.7",
     "request-promise": "^4.2.5",
+    "shortid": "^2.2.15",
     "should": "^13.2.3"
   }
 }

@@ -6,17 +6,17 @@ interface Props {
 }
 
 export default function PerkCard(props: Props) {
-  const [articles, SetArticles] = useState<Array<{ href; text; img }>>();
+  const [articles, SetArticles] = useState<Array<{ href; text; img; id }>>();
 
   useEffect(() => {
     getArticles("strength").then((res) => SetArticles(res));
-  }, [props.urlperk]);
+  }, []);
 
   return (
     <Fragment>
       {articles &&
         articles.map((article) => (
-          <a href={article.href}>
+          <a href={article.href} key={article.id}>
             <div className="perk-card">
               <div className="left">
                 <h3>{article.text}</h3>

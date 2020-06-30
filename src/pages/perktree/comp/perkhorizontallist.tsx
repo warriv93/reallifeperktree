@@ -1,4 +1,4 @@
-import Perklevel from "./perklevels";
+import Perklevel from "./perklevel";
 import React from "react";
 
 import "../styles/perk.scss";
@@ -21,7 +21,7 @@ export default function PerkHorizontalList(props: IProps) {
       levels = [
         ...levels,
         <Perklevel
-          key={props.level || index}
+          key={index}
           usedInPerkHeader={props.usedInPerkHeader || false}
           grayscale={props.level < index ? "grayscale" : ""}
           currentLevel={props.level}
