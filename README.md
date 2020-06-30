@@ -26,6 +26,12 @@ reactjs-localstorage
 
 Docker
 
+CircleCI Pipeline - https://app.circleci.com/pipelines/github/warriv93/reallifeperktree
+
+### Backend API
+
+Nodejs, Express, Passport, MongoDB, Webscraper
+
 ### To run
 
 yarn

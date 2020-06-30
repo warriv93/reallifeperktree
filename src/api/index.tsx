@@ -1,3 +1,6 @@
+// https://medium.com/@robinpokorny/index-as-a-key-is-an-anti-pattern-e0349aece318
+import shortid from "shortid";
+
 import strPerkImage from "../assets/perks/strPerk.png";
 import endPerkImage from "../assets/perks/EndurancePerk.png";
 import agiPerkImage from "../assets/perks/AgilityPerk.png";
@@ -285,6 +288,7 @@ export const perkQuestions = {
 
 export const perkList: Array<Perk> = [
   {
+    id: shortid.generate(),
     level: 0,
     title: "Strength",
     image: strPerkImage,
@@ -292,6 +296,7 @@ export const perkList: Array<Perk> = [
     questions: perkQuestions.strength,
   },
   {
+    id: shortid.generate(),
     level: 0,
     title: "Endurance",
     image: endPerkImage,
@@ -299,6 +304,7 @@ export const perkList: Array<Perk> = [
     questions: perkQuestions.endurance,
   },
   {
+    id: shortid.generate(),
     level: 0,
     title: "Agility",
     image: agiPerkImage,
@@ -306,6 +312,7 @@ export const perkList: Array<Perk> = [
     questions: perkQuestions.agility,
   },
   {
+    id: shortid.generate(),
     level: 0,
     title: "Charisma",
     image: chaPerkImage,
@@ -313,6 +320,7 @@ export const perkList: Array<Perk> = [
     questions: perkQuestions.charisma,
   },
   {
+    id: shortid.generate(),
     level: 0,
     title: "Intelligence",
     image: intPerkImage,

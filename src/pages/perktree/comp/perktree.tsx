@@ -16,9 +16,9 @@ export default function perktree() {
   return (
     <div className="perktree-container">
       {perks &&
-        perks.map((perk, index) => (
+        perks.map((perk) => (
           <PerkHorizontalList
-            key={index}
+            key={perk.id}
             level={perk.level}
             title={perk.title}
             image={perk.image}
