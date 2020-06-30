@@ -1,29 +1,19 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { getUserPerk } from "../../../api/userlocalstorage";
 import { Perk as IPerk } from "../../../utils/types";
 import { updatePerk } from "../../../api/user";
 
 interface Props {
-  answers: any[];
-  urlperk: string | string[];
+  answers: Array<{ question: number; answer: number }>;
+  perk: IPerk;
 }
 
-export default function summary({ answers, urlperk }: Props) {
+export default function summary({ answers, perk }: Props) {
   const [level, setLevel] = useState(0);
-  const [perk, setPerk] = useState<IPerk>();
 
   useEffect(() => {
-    // check values and type of urltitle
-    if (urlperk && typeof urlperk === "string") {
-      getUserPerk(urlperk).then((perk) => {
-        if (perk) {
-          calculateScore(perk);
-          setPerk(perk);
-        }
-      });
-    }
-  }, [urlperk]);
+    perk && calculateScore(perk);
+  }, [perk]);
 
   // after the level has been calculated, update the users perklevel
   useEffect(() => {
@@ -44,7 +34,11 @@ export default function summary({ answers, urlperk }: Props) {
       perkPlaceholder: string,
       tempTallness = 0;
 
+    console.log(answers);
+
     answers.map((answer) => {
+      if (answer && !answer.answer) return;
+
       inputQuestiontype = perk.questions[answer.question].type == 1 && true;
       perkSection = perk.questions[answer.question].section
         ? perk.questions[answer.question].section

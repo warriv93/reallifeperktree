@@ -1,10 +1,10 @@
 import React, { Fragment, useState, useEffect } from "react";
 import Progress from "react-progressbar";
 import { Question as QuestionType } from "../../../utils/types";
+import NavButtons from "./navbuttons";
 
 import Question from "./question";
-import NavButtons from "./navbuttons";
-import "../../perk/styles/perkcard.scss";
+import "../../learn/styles/perkcard.scss";
 import "../styles/inputperkdata.scss";
 
 interface Props {
@@ -12,8 +12,6 @@ interface Props {
   questions: Array<QuestionType>;
 }
 
-// TODO: FIX SO THAT IT IS A CONTROLLED COMPONENT - input value controlled by react
-// TODO: bryt ner o fixa statefulness, inget clusterfuck plzzzz
 export default function inputperkdata({
   setFinalAnswersFromInput,
   questions,
@@ -22,55 +20,54 @@ export default function inputperkdata({
   const [currentQuestion, setCurrentQuestion] = useState<QuestionType>(
     questions && questions[activePerkQuestionIndex]
   );
-  const [finalAnswers, setFinalAnswers] = useState([]);
-  const [currentAnswer, setCurrentAnswer] = useState(0);
+  const [finalAnswers, setFinalAnswers] = useState<
+    Array<{ question: number; answer: number }>
+  >([]);
 
   useEffect(() => {
     setCurrentQuestion(questions && questions[activePerkQuestionIndex]);
   }, [questions, activePerkQuestionIndex]);
 
-  useEffect(() => {
-    console.log(
-      "here,",
-      activePerkQuestionIndex,
-      finalAnswers[activePerkQuestionIndex]
-    );
-    if (finalAnswers[activePerkQuestionIndex]) {
-      setCurrentAnswer(finalAnswers[activePerkQuestionIndex].question);
-    }
-  }, [activePerkQuestionIndex]);
+  function saveAnswer(answer: number) {
+    console.log("SAVEANSWER, ", answer);
 
-  function setcurrentanswer(answer) {
-    setCurrentAnswer(answer);
-  }
-
-  function saveAnswer() {
+    if (answer == undefined || answer == null) return;
     // check if answer exists already
-    let finalAnswerToQuestion = finalAnswers.find(
-      (answer) => answer.question == activePerkQuestionIndex
-    );
+
+    let finalAnswerToQuestion = findFinalAnswerToQuestion();
+    console.log(finalAnswerToQuestion, "finalAnswerToQuestion");
 
     //if not exist -> set the new answer
-    if (!finalAnswerToQuestion) {
+    if (finalAnswerToQuestion == null || finalAnswerToQuestion == undefined) {
       setFinalAnswers((oldAnswers) => [
         ...oldAnswers,
         {
           question: activePerkQuestionIndex,
-          answer: currentAnswer,
+          answer,
         },
       ]);
     }
     // if the answerAlreadyExist but is not the currentAnswer -> update
-    else if (finalAnswerToQuestion.answer != currentAnswer) {
-      console.log("time to update");
+    else if (finalAnswerToQuestion.answer != answer) {
+      console.log("update thta shietz");
 
-      finalAnswerToQuestion.answer = currentAnswer;
+      finalAnswerToQuestion.answer = answer;
     }
   }
 
-  function onSubmit() {
-    saveAnswer();
+  function submitFinalAnswers() {
+    console.log("IM HERE, but what is happening");
+
     setFinalAnswersFromInput(finalAnswers);
+  }
+
+  function findFinalAnswerToQuestion(): { question: number; answer: number } {
+    let answer =
+      finalAnswers &&
+      finalAnswers.find(
+        (answer) => answer && answer.question == activePerkQuestionIndex
+      );
+    return answer ? answer : null;
   }
 
   return (
@@ -94,9 +91,9 @@ export default function inputperkdata({
                 <div className="question-type">
                   <Question
                     currentQuestion={currentQuestion}
-                    finalAnswers={finalAnswers}
+                    findFinalAnswerToQuestion={findFinalAnswerToQuestion}
                     activePerkQuestionIndex={activePerkQuestionIndex}
-                    setcurrentanswer={setcurrentanswer}
+                    saveAnswer={saveAnswer}
                   />
                 </div>
               </Fragment>
@@ -109,10 +106,9 @@ export default function inputperkdata({
             <NavButtons
               activePerkQuestionIndex={activePerkQuestionIndex}
               setActivePerkQuestionIndex={setActivePerkQuestionIndex}
-              setQuestion={setCurrentQuestion}
               saveAnswer={saveAnswer}
-              onSubmit={onSubmit}
-              questions={questions}
+              submitFinalAnswers={submitFinalAnswers}
+              questionsLength={questions.length}
             />
           </div>
         </div>

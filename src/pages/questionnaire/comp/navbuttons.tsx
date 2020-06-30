@@ -2,24 +2,21 @@ import React, { Fragment } from "react";
 
 interface Props {
   activePerkQuestionIndex: number;
-  setQuestion: Function;
   setActivePerkQuestionIndex: Function;
   saveAnswer: Function;
-  onSubmit: Function;
-  questions: Array<Object>;
+  submitFinalAnswers: Function;
+  questionsLength: number;
 }
 
 export default function NavButtons({
   activePerkQuestionIndex,
   setActivePerkQuestionIndex,
-  saveAnswer,
-  onSubmit,
-  questions,
+  submitFinalAnswers,
+  questionsLength,
 }: Props) {
   function nextBtnClicked(e) {
     e.preventDefault();
     setActivePerkQuestionIndex((oldIndex) => oldIndex + 1);
-    saveAnswer();
   }
 
   function prevBtnClicked(e) {
@@ -38,16 +35,19 @@ export default function NavButtons({
         </button>
       )}
       {/* when no more questions show progress perk btn instead */}
-      {questions.length - 1 >= activePerkQuestionIndex ? (
+      {questionsLength - 1 == activePerkQuestionIndex ? (
+        <button
+          className="btn btn-outline-success"
+          onClick={() => submitFinalAnswers()}
+        >
+          Progress perk
+        </button>
+      ) : (
         <button
           className="btn btn-outline-success"
           onClick={(e) => nextBtnClicked(e)}
         >
           Next
-        </button>
-      ) : (
-        <button className="btn btn-outline-success" onClick={() => onSubmit}>
-          Progress perk
         </button>
       )}
     </Fragment>

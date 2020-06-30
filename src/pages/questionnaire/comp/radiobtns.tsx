@@ -3,28 +3,33 @@ import { useState, useEffect } from "react";
 
 interface Props {
   labels: Array<String>;
-  setcurrentanswer: Function;
-  existingAnswer: any;
+  saveAnswer: Function;
+  existingAnswer: number;
   questionID: number;
 }
 
 export default function radioButtons({
   labels,
-  setcurrentanswer,
+  saveAnswer,
   existingAnswer,
   questionID,
 }: Props) {
-  const [checked, setChecked] = useState(null);
+  const [checked, setChecked] = useState<number>(null);
 
-  function handleChange(i) {
-    if (typeof i === "number") {
-      setChecked(i);
-      setcurrentanswer(i);
-    }
+  function handleChange(i: number) {
+    console.log("Clicked", i);
+
+    if (i == null || i == undefined) return;
+    setChecked(i);
+    saveAnswer(i);
   }
 
   useEffect(() => {
-    setChecked(existingAnswer ? existingAnswer.answer : null);
+    console.log("existingAnswer: ", existingAnswer);
+
+    //set existing answer or null
+    setChecked(existingAnswer);
+    // setcurrentanswer(existingAnswer ? existingAnswer.answer : null);
   }, [questionID]);
 
   return (
