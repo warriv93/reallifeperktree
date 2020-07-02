@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Fragment, useState } from "react";
+import { useState } from "react";
 import profileface from "../../assets/profilepic.png";
 import MobileMenu from "./mobilemenu";
 import Menuitems from "./menuitems";
@@ -14,7 +14,7 @@ export default function Navbar({ loggedin }: Props) {
   const [open, setOpen] = useState(false);
 
   return (
-    <Fragment>
+    <>
       <nav className="navbar navbar-expand-lg navbar-expand-md navbar-expand-sm navbar-dark bg-primary">
         <button
           className="navbar-toggler"
@@ -60,6 +60,6 @@ export default function Navbar({ loggedin }: Props) {
       </nav>
 
       {<MobileMenu toggle={open ? "open" : ""} />}
-    </Fragment>
+    </>
   );
 }

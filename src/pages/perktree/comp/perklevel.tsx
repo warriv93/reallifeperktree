@@ -1,10 +1,10 @@
-import * as React from "react";
+import React from "react";
 import Link from "next/link";
 import { getUserLoggedin } from "../../../api/userlocalstorage";
 
 import "../styles/perklevel.scss";
 
-interface Props {
+interface IProps {
   image: string;
   grayscale: string;
   title: string;
@@ -12,13 +12,13 @@ interface Props {
   currentLevel: number;
 }
 
-const PerkLevel: React.FunctionComponent<Props> = ({
+export default function PerkLevel({
   grayscale,
   image,
   title,
   usedInPerkHeader,
   currentLevel,
-}) => {
+}: IProps) {
   let link: string;
 
   if (
@@ -46,6 +46,4 @@ const PerkLevel: React.FunctionComponent<Props> = ({
       {grayscale && <span className="perktooltiptext">Progress perk</span>}
     </li>
   );
-};
-
-export default PerkLevel;
+}

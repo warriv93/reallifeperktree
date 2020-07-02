@@ -9,7 +9,9 @@ export default function PerkCard(props: Props) {
   const [articles, SetArticles] = useState<Array<{ href; text; img; id }>>();
 
   useEffect(() => {
-    getArticles("strength").then((res) => SetArticles(res));
+    // TODO: Change "strength" hard code -> urlperk
+    // TODO: implement webscraping for all perks
+    getArticles("strength").then((articles) => SetArticles(articles));
   }, []);
 
   return (

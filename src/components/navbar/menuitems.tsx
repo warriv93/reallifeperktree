@@ -1,13 +1,12 @@
 import "./styles/mobilemenu.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from "next/link";
-import { Fragment } from "react";
 interface Props {
   mobileMenu?: boolean;
 }
 
 const menu: React.FunctionComponent<Props> = ({ mobileMenu }) => (
-  <Fragment>
+  <>
     <span>
       <li>
         <Link href="/">
@@ -45,6 +44,6 @@ const menu: React.FunctionComponent<Props> = ({ mobileMenu }) => (
         </Link>
       </li>
     </span>
-  </Fragment>
+  </>
 );
 export default menu;

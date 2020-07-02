@@ -1,5 +1,5 @@
-import Perklevel from "./perklevel";
 import React from "react";
+import Perklevel from "./perklevel";
 
 import "../styles/perk.scss";
 

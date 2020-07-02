@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import PerkHorizontalList from "./perkhorizontallist";
 
-import "../styles/index.scss";
 import { getUserPerks } from "../../../api/userlocalstorage";
 import { perkList } from "../../../api/";
+import "../styles/index.scss";
 
 export default function perktree() {
   const [perks, setPerks] = useState(perkList);

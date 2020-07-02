@@ -1,5 +1,5 @@
-import "./style/style.scss";
 import "../../styles/froala_blocks.scss";
+import "./style/style.scss";
 
 import Layout from "../../components/layout";
 
